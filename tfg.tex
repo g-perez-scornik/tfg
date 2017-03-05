@@ -1,0 +1,54 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+
+\newtheorem{axiom}{Axiom}
+\setcounter{axiom}{-1}
+\newtheorem{klaxiom}{KL Axiom}
+\newtheorem{proposition}{Proposition}[section]
+
+\begin{document}
+
+\section{The basic theory}
+
+The axiomatic theory of Synthetic Differential Geometry begins by assuming a certain topos \( \mathcal{E} \) exists. A topos is a category with certain properties which are meant to abstract the way in which the category of sets behaves. In fact, most naive set theoretic and logical notions have meaningful interpretation in terms of objects and morphisms of a topos. Thus, from this point on we will mainly omit the fact that we are working in a topos, and use standard set theoretic notation, giving only brief reminders now and then. 
+
+\subsection{Axiomatics}
+
+We begin with an object \( R \). We can think of \( R \) as an extension of the notion of the standard continuum, \( \mathbb{R} \). Thus \( R \) should be a ring. However, due to an axiom that we will shortly introduce, we cannot ask that \( R \) be a field. Later on, we will need to strengthen this requirement to, for example ``2:=1+1 is invertible''. But later on we may need that ``3 is invertible''. Instead of introducing these small axioms successively, we will take care of them succintly with our:
+
+\begin{axiom}
+  \label{ax0}
+  \( R \) is a \( \mathbb{Q} \)-algebra.
+\end{axiom}
+
+With that out of the way, we proceed to introduce a central object of study, the ``infinitesimals''. These come in the form of nilpotent elements of \( R \). To be precise, let \( D = \{d\in R \mid d^2=0\} \). The (first version of the) defining axiom of SDG concerns \( D \), and as in all the literature we refer to it as the Kock-Lawvere axiom.
+
+\begin{klaxiom}
+  \label{KL1}
+  For all \( f:D\to R \) there exist unique \( a,b\in R \) such that \( f(d) = a + bd\,\forall d\in D \)
+\end{klaxiom}
+
+Note that, in particular, \( a=f(0) \). Of course, this is a strong requirement. So strong in fact, that we will have to weaken our logic in order for the theory to be remotely interesting. This is because of the following proposition.
+
+\begin{proposition}
+  \label{0prop}
+  \( R=\{0\} \)
+\end{proposition}
+
+\begin{proof}
+  Let \( f:D\to R \) be defined by
+  \[
+    f(d) =
+    \left\{ 
+      \begin{aligned}
+	1,& & d \neq 0 \\
+	0,& & d = 0
+      \end{aligned}
+    \right.
+  \]
+  By the KL axiom \ref{KL1}, there exist unique \( a,b\in R \) such that \( f(d) = a + bd \) for all \( d \). Since \( a =  f(0) = 0 \), there exists \( b\in R \) such that \( f(d) = bd \) for all \( d \). Thus for non-zero \( d \) we have \( 1 = bd \). Multiplying by \( d \), this implies that \( d = 0 \). In other words, \( D = \{0\} \). But further still, since \( b \) is unique, and any \( b\in R \) trivially satisfies that \( f(d) = bd\,\forall d \in D \), it must be that \( R = \{0\} \).
+\end{proof}
+
+\end{document}
