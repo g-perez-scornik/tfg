@@ -8,6 +8,9 @@
 \newtheorem{klaxiom}{KL Axiom}
 \newtheorem{proposition}{Proposition}[section]
 
+\theoremstyle{definition}
+\newtheorem{defn}{Definition}[section]
+
 \begin{document}
 
 \section{The basic theory}
@@ -16,7 +19,7 @@ The axiomatic theory of Synthetic Differential Geometry begins by assuming a cer
 
 \subsection{Axiomatics}
 
-We begin with an object \( R \). We can think of \( R \) as an extension of the notion of the standard continuum, \( \mathbb{R} \). Thus \( R \) should be a ring. However, due to an axiom that we will shortly introduce, we cannot ask that \( R \) be a field. Later on, we will need to strengthen this requirement to, for example ``2:=1+1 is invertible''. But later on we may need that ``3 is invertible''. Instead of introducing these small axioms successively, we will take care of them succintly with our:
+We begin with an object \( R \). We can think of \( R \) as an extension of the notion of the standard continuum, \( \mathbb{R} \). Thus \( R \) should be a commutative ring with unit. However, due to an axiom that we will shortly introduce, we cannot ask that \( R \) be a field. Later on, we will need to strengthen this requirement to, for example ``2:=1+1 is invertible''. But later on we may need that ``3 is invertible''. Instead of introducing these small axioms successively, we will take care of them succintly with our:
 
 \begin{axiom}
   \label{ax0}
@@ -48,7 +51,46 @@ Note that, in particular, \( a=f(0) \). Of course, this is a strong requirement.
       \end{aligned}
     \right.
   \]
-  By the KL axiom \ref{KL1}, there exist unique \( a,b\in R \) such that \( f(d) = a + bd \) for all \( d \). Since \( a =  f(0) = 0 \), there exists \( b\in R \) such that \( f(d) = bd \) for all \( d \). Thus for non-zero \( d \) we have \( 1 = bd \). Multiplying by \( d \), this implies that \( d = 0 \). In other words, \( D = \{0\} \). But further still, since \( b \) is unique, and any \( b\in R \) trivially satisfies that \( f(d) = bd\,\forall d \in D \), it must be that \( R = \{0\} \).
+By the KL axiom \ref{KL1}, there exist unique \( a,b\in R \) such that \( f(d) = a + bd \) for all \( d \). Since \( a =  f(0) = 0 \), there exists \( b\in R \) such that \( f(d) = bd \) for all \( d \). Thus for non-zero \( d \) we have \( 1 = bd \). Squaring both sides yields \( 1 = 0 \), and since \( R \) is a ring this concludes the proof.
 \end{proof}
+
+However, the above proof relies on the ``fact'' that, for any \( x\in R \) we have either \( x = 0 \) or \( x\neq0 \). Indeed the well-definedness of the function \( f \) depends on this assertion. This is true in classical logic, as it is a simple application of the \textbf{Law of the Excluded Middle} (LEM):
+\[
+  \forall p\, p\vee \neg p
+\].
+
+To carry on with our theory, we see that we have to reject LEM. The above proof then fails, but of course just because of that we cannot conclude that the theory functions properly. To do so would by all means require exhibiting the category \( \mathcal{E} \) explicitly. For now we will continue ignoring this, and develop the naive theory, knowing that we have to abstain from assuming LEM.
+
+\subsection{Elementary Calculus}
+
+With our basic axiom scheme in place we can begin revisiting the classical notion of a derivative in this new context. We begin, as expected, with a function \( f:R\to R \). Fix \( x\in R \) and define a new function \( g:D\to R \) by
+\[
+  d\mapsto f(x+d)
+\]
+By the KL axiom \ref{KL1} there are unique \( a,b\in R \) such that
+\[
+  \forall d\in D\, f(x+d) = f(x)+bd
+\]
+(since \( g(0) = f(x) \)). This naturally leads to the following
+\begin{defn}
+  Let \( f:R\to R \). The \textit{derivative} of \( d \) at \( x \), denoted \( f'(x) \), is the unique \( b\in R \) such that \( f(x+d)=f(x)+bd\,\forall d\in D \).
+\end{defn}
+
+Clearly this also allows us to define the derivative \textit{function} \( f':R\to R \). For instance, let us calculate the derivative of a simple polynomial function. Let \( f:x\mapsto x^2+x \) then
+\begin{align*}
+  f(x+d) & =  x^2+2xd + d^2 + x + d \\ 
+         & =  x^2 + x + (2x+1)d
+  \label{eq:dercalc}
+\end{align*}
+
+by which \( f'(x)=2x+1 \). So far our ``formal'' calculus agrees with standard calculus. In fact, we have the following proposition:
+\begin{proposition}
+  Let \( f,g:R\to R \) and let \(\alpha\in R.\) The following hold:
+  \begin{itemize}
+    \item \((f+g)' = f'+g'\)
+    \item \((\alpha f)' = \alpha f'\)
+    \item \((fg)' = f'g + fg'\)
+  \end{itemize}
+\end{proposition}
 
 \end{document}
