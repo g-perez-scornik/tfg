@@ -80,17 +80,26 @@ Clearly this also allows us to define the derivative \textit{function} \( f':R\t
 \begin{align*}
   f(x+d) & =  x^2+2xd + d^2 + x + d \\ 
          & =  x^2 + x + (2x+1)d
-  \label{eq:dercalc}
 \end{align*}
 by which \( f'(x)=2x+1 \). So far our ``formal'' calculus agrees with standard calculus. In fact, we have the following proposition:
 
 \begin{proposition}
   Let \( f,g:R\to R \) and let \(\alpha\in R.\) The following hold:
-  \begin{itemize}
+  \begin{enumerate}
     \item \((f+g)' = f'+g'\)
     \item \((\alpha f)' = \alpha f'\)
     \item \((fg)' = f'g + fg'\)
-  \end{itemize}
+  \end{enumerate}
 \end{proposition}
+\begin{proof}
+  The proof is as simple as one could suspect, here we only prove the third identity as an example. We have:
+  \begin{align*}
+    f(x+d)g(x+d) & = & (f(x)+f'(x)d)(g(x)+g'(x)d) \\
+                 & = & f(x)g(x) + (f'(x)g(x)+f(x)g'(x))d + f'(x)g'(x)d^2 \\
+		 & = & f(x)g(x) + (f'(x)g(x)+f(x)g'(x))d  
+    \label{eq:prodrule}
+  \end{align*}
+  At a given \( x\in R \), this clearly holds for all \( d\in D \), giving us the result.
+\end{proof}
 
 \end{document}
