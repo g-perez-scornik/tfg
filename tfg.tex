@@ -1,4 +1,5 @@
 \documentclass[11pt]{article}
+\usepackage{cite}
 \usepackage{amsmath}
 \usepackage{amsfonts}
 \usepackage{amsthm}
@@ -74,6 +75,7 @@ By the KL axiom \ref{KL1} there are unique \( a,b\in R \) such that
 (since \( g(0) = f(x) \)). This naturally leads to the following
 \begin{defn}
   Let \( f:R\to R \). The \textit{derivative} of \( f \) at \( x \), denoted \( f'(x) \), is the unique \( b\in R \) such that \( f(x+d)=f(x)+bd\,\forall d\in D \).
+  \label{def:1varder}
 \end{defn}
 
 Clearly this also allows us to define the derivative \textit{function} \( f':R\to R \). For instance, let us calculate the derivative of a simple polynomial function. Let \( f:x\mapsto x^2+x \) then
@@ -94,12 +96,78 @@ by which \( f'(x)=2x+1 \). So far our ``formal'' calculus agrees with standard c
 \begin{proof}
   The proof is as simple as one could suspect, here we only prove the third identity as an example. We have:
   \begin{align*}
-    f(x+d)g(x+d) & = & (f(x)+f'(x)d)(g(x)+g'(x)d) \\
-                 & = & f(x)g(x) + (f'(x)g(x)+f(x)g'(x))d + f'(x)g'(x)d^2 \\
-		 & = & f(x)g(x) + (f'(x)g(x)+f(x)g'(x))d  
+    f(x+d)g(x+d) & = (f(x)+f'(x)d)(g(x)+g'(x)d) \\
+                 & = f(x)g(x) + (f'(x)g(x)+f(x)g'(x))d + f'(x)g'(x)d^2 \\
+		 & = f(x)g(x) + (f'(x)g(x)+f(x)g'(x))d  
     \label{eq:prodrule}
   \end{align*}
   At a given \( x\in R \), this clearly holds for all \( d\in D \), giving us the result.
 \end{proof}
 
+Furthermore we have the Chain Rule:
+\begin{proposition}
+  Let \( f,g:R\to E \) be two functions. Then the derivative of the composite \( g\circ f \) is
+  \[
+    (f\circ g) = (f'\circ g)\cdot g'
+  \]
+\end{proposition}
+\begin{proof}
+  Let \( x\in R \). Then
+  \[
+   (f\circ g)(x+d) = f(g(x)) + (f\circ g)'(x)d
+  \]
+  by definition. Meanwhile, if we expand \( g(x+d) \) first:
+  \begin{align*}
+    (f\circ g)(x+d) & = f(g(x+d)) \\
+                    & = f(g(x)+g'(x)d) \\
+  \end{align*}
+  Observe that \( g'(x)d\in D \), since \( (g'(x)d)^2 = g'(x)^2d^2 = 0 \). Now, \( f'(g(x)) \) is the unique coefficient satisfying
+  \[
+    f(g(x)+g'(x)d) = f(g(x)) + f'(g(x))g'(x)d
+  \]
+\end{proof}
+
+The reader may notice that these statements seem lazily worded. Normally, we would include in the hypotheses something like ``\textit{Let \( f,g:R\to R \) be} differentiable \textit{functions. Then} (some other function) \textit{is differentiable, and \dots etc.}'' We are not in fact forgetting hypotheses. The Kock-Lawvere Axiom \ref{KL1} actually implies that \textit{every} function from \( R \) to \( R \) is differentiable. This is easy to verify by noting that in the definition of the derivative (\ref{def:1varder}), no additional assumptions are made other than \( f \) being a function. As a direct consequence, every function from \( R \) to \( R \) is infinitely differentiable.
+
+This leads us to ask if we also have Taylor expansions of functions. In classical calculus, a Taylor expansion of second order involves a second degree polynomial, and ``terms of order 3''. In our context, these are simply nilcube elements, i.e. \( \delta\in R : \delta^3 = 0 \). An example of such a nilcube is any \( d_1+d_2 \) where \( d_1,d_2 \) are both in \( D \). In effect,
+\[
+  (d_1+d_2)^3 = d_1^3 + d_2^3 + 3d_1^2d_2 + 3d_1d_2^2 = 0
+\]
+
+Furthermore, if \( f:R\to R\) is a function, 
+\begin{align*}
+  f(x+d_1+d_2) & = f(x+d_1)+f'(x+d_1)d_2
+               & = f(x) + f'(x)d_1 + f'(x)d_2 + f''(x)d_1d_2
+\end{align*}
+and meanwhile,
+\begin{align*}
+  (d_1+d_2)^2 & = 2d_1d_2
+\end{align*}
+Joining the two together yields:
+\[
+  f(x+d_1+d_2) = f(x) + f'(x)(d_1+d_2) + \frac{f''(x)}{2}(d_1+d_2)^2
+\]
+
+What we have just proven is the following proposition.
+\begin{proposition}
+  If \( f:R\to R \) is a function and \( d_1,d_2\in D \), then \( \delta = d_1+d_2 \) satisfies
+  \[
+    f(x+\delta) = f(x) + f'(x)\delta + \frac{f''(x)}{2}\delta^2
+  \]
+
+\end{proposition}
+
+This justifies the earlier heuristic of considering nilcubes as candidates for second order Taylor expansions. Unfortunately, there is no way to assert as of now that \textit{any} nilcube must be of the form \( d_1+d_2 \) with \( d_1,d_2\in D \). It is a partial result. In section {placeholder} we will introduce Taylor expansions for every nilpotent element by way of an axiom that generalizes the KL axiom \ref{KL1}. 
+
+
+\clearpage
+\nocite{*}
+\bibliography{tfg}
+\bibliographystyle{plain}
 \end{document}
+
+
+
+
+
+
