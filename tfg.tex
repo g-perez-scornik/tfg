@@ -6,11 +6,14 @@
 
 \newtheorem{axiom}{Axiom}
 \setcounter{axiom}{-1}
+
 \newtheorem{klaxiom}{KL Axiom}
 \newtheorem{proposition}{Proposition}[section]
 
 \theoremstyle{definition}
 \newtheorem{defn}{Definition}[section]
+
+\newcommand{\abs}[1]{\lvert #1 \rvert}
 
 \begin{document}
 
@@ -106,7 +109,7 @@ by which \( f'(x)=2x+1 \). So far our ``formal'' calculus agrees with standard c
 
 Furthermore we have the Chain Rule:
 \begin{proposition}
-  Let \( f,g:R\to E \) be two functions. Then the derivative of the composite \( g\circ f \) is
+  Let \( f,g:R\to R \) be two functions. Then the derivative of the composite \( g\circ f \) is
   \[
     (f\circ g) = (f'\circ g)\cdot g'
   \]
@@ -157,7 +160,7 @@ What we have just proven is the following proposition.
 
 \end{proposition}
 
-This justifies the earlier heuristic of considering nilcubes as candidates for second order Taylor expansions. Unfortunately, there is no way to assert as of now that \textit{any} nilcube must be of the form \( d_1+d_2 \) with \( d_1,d_2\in D \). It is a partial result. In section {placeholder} we will introduce Taylor expansions for every nilpotent element by way of an axiom that generalizes the KL axiom \ref{KL1}. Still, it serves as a nice exercise to prove the following, more general, Taylor formula.
+This justifies the earlier heuristic of considering nilcubes as candidates for second order Taylor expansions. Unfortunately, there is no way to assert as of now that \textit{any} nilcube must be of the form \( d_1+d_2 \) with \( d_1,d_2\in D \). It is a partial result. In section {/placeholder1/} we will introduce Taylor expansions for every nilpotent element by way of an axiom that generalizes the KL axiom \ref{KL1}. Still, it serves as a nice exercise to prove the following, more general, Taylor formula.
 
 \begin{proposition}
   Let \( f:R\to R \) be a function. Then for all \( n\in\mathbb N \) and \( \delta = d_1+\cdots+d_n \)
@@ -172,18 +175,30 @@ This justifies the earlier heuristic of considering nilcubes as candidates for s
   \[
     \delta^k = (d_1+\cdots+d_n)^k = \sum_{i_1+\cdots+i_n=k}\left( k\atop i_1,\dots,i_n \right)\prod_{r=1}^{n}d_r^{i_r}
   \]
-  Recall that the \( d_r \) are in \( D \), so only the summands with unit powers of each \( d_r \) will be non-zero. That is, choosing a subset of the \( i_r \) to be 1, and the rest 0. In that case the multinomial coefficients are simply \( k! \), giving us
+  Recall that the \( d_r \) are in \( D \), so only the only non-zero summands will be those with each \( d_r \) raised to either 1 or 0. That is, choosing a subset of the \( i_r \) to be 1, and the rest 0. In that case the multinomial coefficients are simply \( k! \), giving us
   \[
-    \delta^k = \sum_{I\subset \{1,\dots,n\}}k!\prod_{t\in I}d_t
+    \delta^k = \sum_{I\subset \{1,\dots,n\}\atop \abs{I}=k}k!\prod_{t\in I}d_t
   \]
-  In other words, the \( k \)-\textit{th} elementary symmetric polynomial of \( n \) variables (multiplied by \( k! \)). Denote this by \( e_k \). We proceed inductively:
-  \begin{align*}
+  in other words, the \( k \)-\textit{th} elementary symmetric polynomial of \( n \) variables (multiplied by \( k! \)). Denote this by \( e_k(X_1,\dots,X_n) \), and convene \( e_0 \equiv 1 \) and \( e_k(X_1,\dots,X_n) = 0 \) if \( k>n \). We proceed inductively:
+  % [TODO] Fix this equation
+  \begin{align}
     f(x+\delta) & = f(x+d_1+\cdots+d_n) \\
                 & = f(x+d_1+\cdots+d_{n-1})+f'(x+d_1+\cdots+d_{n-1})d_n \\
 		& = \sum_{i=0}^{n-1}\frac{f^{(i)}(x)}{i!}i!e_i(d_1,\dots,d_{n-1}) + d_n\sum_{i=0}^{n-1}\frac{f^{(i+1)}(x)}{i!}i!e_i(d_1,\dots,d_{n-1}) \\
-		& = \sum_{i=0}^{n-1}f^{(i)}(x)\left( e_i(d_1,\dots,d_{n-1})+d_ke_{i-1}(d_1,\dots,d_{n-1})\right) + d_nf^{(n)}e_n(d_1,\dots,d_{n-1})
-  \end{align*}
+		& = \sum_{i=0}^{n-1}f^{(i)}(x)\left( e_i(d_1,\dots,d_{n-1})+d_ke_{i-1}(d_1,\dots,d_{n-1})\right) + d_kf^{(n)}(x)e_{k-1}(d_1,\dots,d_{k-1})
+		\label{eq:ntaylor}
+  \end{align}
+It's now useful to use the following recursion that elementary symmetric polynomials satisfy:
+\[
+  e_k(X_1,\dots,X_n) = e_{k}(X_1,\dots,X_{n-1}) + X_{n}e_{k-1}(X_1,\dots,X_{n-1})
+\]
+Finally, observe that \( e_{k-1}(d_1,\dots,d_{k-1}) \) is just \( d_1d_2\cdots d_{k-1} \), meaning that \( d_ke_{k-1}(d_1,\dots,d_{k-1}) = e_k(d_1,\dots, d_{k-1},d_k) \). With these two identities, \ref{eq:ntaylor} becomes:
+\[
+  \sum_{i=0}^{n}f^{(i)}(x)e_i(d_1,\dots,d_k)= \sum_{i=0}^n \frac{f^{(i)}(x)}{i!}\delta^i
+\]
 \end{proof}
+
+We'd do well to note that, for \( n\geq k+1 \), \( \delta^n \) is 0. The above Taylor formula is of course still valid for any \( k \) and \( n \), but the terms are all zero after \( k+1 \). We again find a unique characterization of all functions on a certain set of nilpotents. This property will be stated in section {/placeholder1/} as a general axiom.
 
 
 \clearpage
