@@ -9,11 +9,14 @@
 
 \newtheorem{klaxiom}{KL Axiom}
 \newtheorem{proposition}{Proposition}[section]
+\newtheorem{lemma}{Lemma}[section]
 
 \theoremstyle{definition}
 \newtheorem{defn}{Definition}[section]
 
 \newcommand{\abs}[1]{\lvert #1 \rvert}
+\newcommand{\ddx}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\ddxn}[3]{\frac{\partial^{#1} #2}{\partial #3}}
 
 \begin{document}
 
@@ -194,21 +197,41 @@ It's now useful to use the following recursion that elementary symmetric polynom
 \]
 Finally, observe that \( e_{k-1}(d_1,\dots,d_{k-1}) \) is just \( d_1d_2\cdots d_{k-1} \), meaning that \( d_ke_{k-1}(d_1,\dots,d_{k-1}) = e_k(d_1,\dots, d_{k-1},d_k) \). With these two identities, \ref{eq:ntaylor} becomes:
 \[
-  \sum_{i=0}^{n}f^{(i)}(x)e_i(d_1,\dots,d_k)= \sum_{i=0}^n \frac{f^{(i)}(x)}{i!}\delta^i
+  \sum_{i=0}^{n}f^{(i)}(x)e_i(d_1,\dots,d_k)= \sum_{i=0}^n \frac{f^{(i)}(x)}{i!}\delta^j
 \]
 \end{proof}
 
 We'd do well to note that, for \( n\geq k+1 \), \( \delta^n \) is 0. The above Taylor formula is of course still valid for any \( k \) and \( n \), but the terms are all zero after \( k+1 \). We again find a unique characterization of all functions on a certain set of nilpotents. This property will be stated in section {/placeholder1/} as a general axiom.
 
+\subsection{Calculus of several variables}
+We now take the usual course in calculus, which is to generalize the previous study to functions of more than one variable, i.e. \( R^n\to R \), and further on functions \( E\to V \) where \( E \) and \( V \) are ``vector spaces'' in a sense that will be made precise.
+
+\subsubsection{Scalar functions}
+Let \( f:R^n\to R \) be a function, and \( r=(r_1,\dots,r_n)\in R^n \). As one would expect, we calculate the partial derivatives by adding an infinitesimal increment along a single coordinate direction. That is, let \( g: D\to R \) be defined by
+\[
+  d\mapsto f(r_1+d,\dots,r_n)
+\]
+By the KL axiom \ref{KL1}, there exists a unique \( b\in R \) such that
+\[
+  f(r_1+d,\dots,r_n) = f(r) + bd
+\]
+We define \( \ddx{f}{x_1}(r_1,\dots,r_n)\) as \( b \), which simultaneaously defines a function \( \ddx{f}{x_1}:R^n\to R \) Similarly, we define \( \ddx{f}{x_2},\dots,\ddx{f}{x_n} \). By iterating the process we obtain higher partial derivatives, denoted
+\[
+  \ddxn{k}{f}{x_{i_1}\cdots x_{i_k}}
+\]
+
+A nice result is a parallel of Schwarz' theorem of the interchangeability of partial derivatives.
+
+\begin{proposition}
+  Let \( f:R^n\to R \) be a function. Then for any \( 1\leq i,j\leq n \)
+  \[
+    \ddxn{2}{f}{x_ix_j}= \ddxn{2}{f}{x_jx_i}
+  \]
+  \label{prop:schwarz}
+\end{proposition}
 
 \clearpage
 \nocite{*}
 \bibliography{tfg}
 \bibliographystyle{plain}
 \end{document}
-
-
-
-
-
-
