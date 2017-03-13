@@ -16,7 +16,8 @@
 
 \newcommand{\abs}[1]{\lvert #1 \rvert}
 \newcommand{\ddx}[2]{\frac{\partial #1}{\partial #2}}
-\newcommand{\ddxn}[3]{\frac{\partial^{#1} #2}{\partial #3}}
+\newcommand{\ddxk}[4]{\frac{\partial^{#1} #2}{\partial #3 \cdots \partial #4}}
+\newcommand{\ddxII}[3]{\frac{\partial^{2} #1}{\partial #2 \partial #3}}
 
 \begin{document}
 
@@ -217,7 +218,7 @@ By the KL axiom \ref{KL1}, there exists a unique \( b\in R \) such that
 \]
 We define \( \ddx{f}{x_1}(r_1,\dots,r_n)\) as \( b \), which simultaneaously defines a function \( \ddx{f}{x_1}:R^n\to R \) Similarly, we define \( \ddx{f}{x_2},\dots,\ddx{f}{x_n} \). By iterating the process we obtain higher partial derivatives, denoted
 \[
-  \ddxn{k}{f}{x_{i_1}\cdots x_{i_k}}
+  \ddxk{k}{f}{x_{i_1}}{x_{i_k}}
 \]
 
 A nice result is a parallel of Schwarz' theorem of the interchangeability of partial derivatives.
@@ -225,10 +226,31 @@ A nice result is a parallel of Schwarz' theorem of the interchangeability of par
 \begin{proposition}
   Let \( f:R^n\to R \) be a function. Then for any \( 1\leq i,j\leq n \)
   \[
-    \ddxn{2}{f}{x_ix_j}= \ddxn{2}{f}{x_jx_i}
+    \ddxII{f}{x_i}{x_j}= \ddxII{f}{x_j}{x_i}
   \]
   \label{prop:schwarz}
 \end{proposition}
+%TODO: this part looks horrible
+The previous result follows directly from the following lemma which generalizes the second-order Taylor expansion to two dimensions.
+\begin{lemma}
+  Let \( f:R^n \to R \) be a function. Then for all \( (d_1,d_2)\in D\times D \)
+  \[
+    f(r_1,\dots,r_i+d_1,\dots,r_j+d_2,\dots,r_n) = f(x_1,\dots,x_i,\dots,x_j+d_2,\dots,x_n) + \ddx{f}{x_i}(x_1,\dots,x_i,\dots,x_j,\dots,x_n)d_1 + \ddxII{f}{x_i}{x_j}(x_1,\dots,x_n)d_2d_1 
+  \]
+  
+  \label{}
+\end{lemma}
+
+\begin{proof}
+  Apply the definition of the partial derivative in \( x_i \), and succesively in \( x_j \)
+  \begin{align*}
+    f(r_1,\dots,r_i+d_1,\dots,r_j+d_2,\dots,r_n) & = f(x_1,\dots,x_i,\dots,x_j+d_2,\dots,x_n) + \ddx{f}{x_i}(x_1,\dots,x_i,\dots,x_j+d_2,\dots,x_n)d_1 \\
+                                                 & = f(x_1,\dots,x_n) + \ddx{f}{x_i}(x_1,\dots,x_n)d_1 + \ddxII{f}{x_i}{x_j}(x_1,\dots,x_n)d_2d_1 
+  \end{align*}
+  and \( f(x_1,\dots,x_n), \ddx{f}{x_i}(x_1,\dots,x_n), \ddx{f}{x_j}(x_1,\dots,x_n), \ddxII{f}{x_i}{x_j}(x_1,\dots,x_n)  \) are the unique coefficients that satisfy this for universally quantified \( (d_1,d_2)\in D \).
+\end{proof}
+
+On the other hand, exchanging \( d_1 \) and \( d_2 \) (and commuting products and sums) in the above equations yields the same conclusion for \( \ddxII{f}{x_j}{x_i}(x_1,\dots,x_n) \). Since they are unique they must equal each other, proving (\ref{prop:schwarz}).
 
 \clearpage
 \nocite{*}
