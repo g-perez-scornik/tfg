@@ -65,10 +65,30 @@ By the KL axiom \ref{KL1}, there exist unique \( a,b\in R \) such that \( f(d) =
 However, the above proof relies on the ``fact'' that, for any \( x\in R \) we have either \( x = 0 \) or \( x\neq0 \). Indeed the well-definedness of the function \( f \) depends on this assertion. This is true in classical logic, as it is a simple application of the \textbf{Law of the Excluded Middle} (LEM):
 \[
   \forall p\, p\vee \neg p
-\].
-
+\]
+%TODO: comment about internal logic of topos is intuitionistic
 To carry on with our theory, we see that we have to reject LEM. The above proof then fails, but of course just because of that we cannot conclude that the theory functions properly. To do so would by all means require exhibiting the category \( \mathcal{E} \) explicitly. For now we will continue ignoring this, and develop the naive theory, knowing that we have to abstain from assuming LEM.
 
+Without LEM, (\ref{0prop}) of course still contradicts (because we do want R to be a \( \mathbb{Q} \)-algebra) the statement
+\begin{equation}
+  \forall d\in D\,(d=0) \vee \neg (d=0)
+  \label{eq:not0}
+\end{equation}
+In other words, its negation is true. One may be inclined to ``simplify'' the negation statement, leading to the apparent absurdity that
+\[
+  \exists d\in D\, \neg(d=0) \wedge \neg\neg (d=0)
+\]
+Note that we haven't eliminated the double negation, since \( \neg\neg p\rightarrow p \) is equivalent to LEM. Still, the above would be a contradiction, since \( p\wedge \neg p \) is still false in intuitionistic logic. But, the first equivalence we used on the universally quantified statement (\ref{eq:not0}) also fails to be valid in intuitionistic logic (see \cite[p. 248]{fra84} for example).
+
+%TODO: find a better proof of this
+So what are the elements of \( D \)? For one they are not all zero, for if they were then every function \( d\mapsto ad, a\in R \) would be equal to the constant \( 0 \), but since each coefficient \( a \) is unique, we again reach the absurdity that every \( a\in R \) is the same (equal to zero). At the same time the negation of (\ref{0prop}) implies that not all \( d \) that aren't zero satisfy \( \neg(d=0) \). The consequence is the simple statement that
+\[
+  \exists d\in D \neg\neg(d=0)
+\]
+
+The infinitesimals \( D \) are thus neither zero nor nonzero. This is a contradictory statement in classical logic, but it is precisely of the type of phrases that we should expect to appear if we weaken our logic to intuitionistic logic.
+
+%TODO: cancellation of universally quantified d
 \subsection{Elementary Calculus}
 
 With our basic axiom scheme in place we can begin revisiting the classical notion of a derivative in this new context. We begin, as expected, with a function \( f:R\to R \). Fix \( x\in R \) and define a new function \( g:D\to R \) by
@@ -250,10 +270,9 @@ The previous result follows directly from the following lemma which generalizes 
   and \( f(x_1,\dots,x_n), \ddx{f}{x_i}(x_1,\dots,x_n), \ddx{f}{x_j}(x_1,\dots,x_n), \ddxII{f}{x_i}{x_j}(x_1,\dots,x_n)  \) are the unique coefficients that satisfy this for universally quantified \( (d_1,d_2)\in D \).
 \end{proof}
 
-On the other hand, exchanging \( d_1 \) and \( d_2 \) (and commuting products and sums) in the above equations yields the same conclusion for \( \ddxII{f}{x_j}{x_i}(x_1,\dots,x_n) \). Since they are unique they must equal each other, proving (\ref{prop:schwarz}).
+On the other hand, exchanging \( d_1 \) and \( d_2 \) (and commuting products and sums) in the above equations yields the same conclusion for \( \ddxII{f}{x_j}{x_i}(x_1,\dots,x_n) \). Since they are unique they must equal each other, proving (\ref{prop:schwarz}). By induction we also obtain that the order in which we differentiate higher partial derivatives does not matter.
 
 \clearpage
-\nocite{*}
 \bibliography{tfg}
 \bibliographystyle{plain}
 \end{document}
