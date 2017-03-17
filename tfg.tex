@@ -1,3 +1,7 @@
+% B.Sc. Thesis - Synthetic Differential Geometry
+% Gaspar Perez Scornik <gasparperez2010@gmail.com>
+%
+
 \documentclass[11pt]{article}
 \usepackage{cite}
 \usepackage{amsmath}
@@ -15,10 +19,13 @@
 \theoremstyle{definition}
 \newtheorem{defn}{Definition}[section]
 
-\newcommand{\abs}[1]{\lvert #1 \rvert}
-\newcommand{\ddx}[2]{\frac{\partial #1}{\partial #2}}
-\newcommand{\ddxk}[4]{\frac{\partial^{#1} #2}{\partial #3 \cdots \partial #4}}
-\newcommand{\ddxII}[3]{\frac{\partial^{2} #1}{\partial #2 \partial #3}}
+\newcommand{\abs}[1]{\lvert #1 \rvert} %Absolute value
+\newcommand{\ddx}[2]{\frac{\partial #1}{\partial #2}} %partial derivative
+\newcommand{\ddxk}[4]{\frac{\partial^{#1} #2}{\partial #3 \cdots \partial #4}} %k-th partial derivative
+\newcommand{\ddxII}[3]{\frac{\partial^{2} #1}{\partial #2 \partial #3}} %2nd partial derivative
+\newcommand{\farg}{-} %empty argument in function
+\renewcommand{\vec}{\underline} %markup for vectors
+\DeclareMathOperator{\spn}{span}
 
 \numberwithin{equation}{section}
 
@@ -276,6 +283,81 @@ The previous result follows directly from the following lemma which generalizes 
 \end{proof}
 
 On the other hand, exchanging \( d_1 \) and \( d_2 \) (and commuting products and sums) in the above equations yields the same conclusion for \( \ddxII{f}{x_j}{x_i}(x_1,\dots,x_n) \). Since they are unique they must equal each other, proving (\ref{prop:schwarz}). By induction we also obtain that the order in which we differentiate higher partial derivatives does not matter.
+
+\subsection{Vector functions}
+We will now examine functions between \( R \)-modules. However, for a general \( R \)-module \( V \), it does not follow from the KL axiom (\ref{KL1}) that a version of it holds for functions \( D\to V \). In this case what we do is simply restrict our attention to those \( R \)-modules where this is the case. This leads to the following definition:
+
+%TODO: example of R-module that isn't Euclidean.
+\begin{defn}
+  An \( R \)-module \( V \) is said to be a \emph{Euclidean \( R \)-module} if the vector form of the KL axiom holds. That is, for any function \( f: D\to V \),
+  \[
+    \exists! \, \vec a,\vec b\in V \text{ such that } f(d) = \vec a + d\vec b \,\forall d\in D
+  \]
+  (again \( \vec a \) is evidently \( f(0) \))
+\end{defn}
+
+This may seem like a very ad-hoc definition, but we will encounter many Euclidean \( R \)-modules naturally. For example we have the following lemma.
+
+\begin{lemma}
+  \leavevmode
+  \begin{enumerate}
+    \item \( R^n \) is a Euclidean \( R \)-module.
+    \item For any object \( X \), and Euclidean \( R \)-module \( V \), the exponential \( V^X \) is a Euclidean \( R \)-module. 
+  \end{enumerate}
+  \label{lm:Emod}
+\end{lemma}
+
+\begin{proof}
+  \leavevmode
+  \begin{enumerate}
+    \item This is evident since a function \( f:D\to R^n \) is uniquely determined by each of its component functions. We let \( f_i = \pi_i \circ{f}  \) where \( \pi_i:R^n\to R \) is the \( i \)-\textit{th} coordinate projection. Then \( \vec a=(a_1,\dots,a_n), \vec b=(b_1,\dots,b_n) \) are the unique coefficients in the claim. Here each \( a_i,b_i \) is obtained by applying the KL axiom to \( f_i \).
+    \item First of all, \( V^X \) is an \( R \)-module in an obvious way. Let \( f:D\to V^X \) be a function. This defines, for each \( x\in X \), a function \( g(x):D\to V \) by
+    \[
+      d\mapsto f(d)(x)
+    \]
+    since \( V \) is Euclidean, there exist unique \( a(x), b(x) \) such that
+    \[
+      f(d)(x) = \vec a(x) + d\vec b(x)\,\forall d\in D
+    \]
+    Evidently, varying \( x \) defines functions \( \vec a,\vec b:X\to V \), which are unique such that \( f(d) = \vec a + d\vec b \,\forall d\in D\)
+  \end{enumerate}
+\end{proof}
+
+Additionally, it's clear that any \( V \) which is isomorphic to \( R^n \) as an \( R \)-module is too Euclidean. In \cite{kock10} for example, it begins directly with this notion, calling them ``finite dimensional vector spaces''. Another fundamental example of a Euclidean \( R \)-module that we'll study are tangent spaces, in section {/placeholder2/}.
+
+For now let us go back to doing calculus. The Euclidean structure allows one to define directional derivatives, as is done in \cite{lav96}, for example.
+\begin{defn}
+  Let \( V,E \) be Euclidean \( R \)-modules, \( f:V\to E \) a function and \( \vec u, \vec a\in V \). The derivative of \( f \) at \( \vec a \) in direction \( \vec u \) is the unique \( \vec b\in E \) such that
+  \[
+    \forall d\in D,\, f(\vec a + d\vec u) = f(\vec a) + d\vec b
+  \]
+  We denote this by \( \partial_{\vec u}f(a) \). 
+\end{defn}
+
+We note that \( \partial_{(\farg)}f(\vec a) \) is a linear function. In other words, for all \( \lambda,\mu \in R\),
+\[
+  \partial_{\lambda \vec u + \mu \vec v}f(\vec a) = \lambda\partial_{\vec u}f(\vec a) + \mu\partial_{\vec v}f(\vec a)
+\]
+The proof is a straightforward excercise (one may consult \cite[p. 13]{lav96}).
+
+If \( V \) is finitely generated, i.e. \( V = \spn{\{e_1,\dots,e_n\}} \), then one can define
+\[
+  \ddx{f}{x_i}(\vec a) = \partial_{e_1}f(\vec a)
+\]
+and if \( \vec u = \sum_{i=1}^{n}{u_ie_i} \) then by linearity
+\[
+  \partial_{\vec u}f(\vec a) = \sum_{i=1}^{n}\ddx{f}{x_i}u_i
+\]
+
+Finally, the familiar total differential makes an appearance here too.
+
+\begin{defn}
+  Let \( f:V\to E \) be a function. The \emph{differential} of \( f \) at \( \vec a\in V \) is the function \( df(\vec a):V\to E \) defined by
+  \[
+    \vec u\mapsto \partial_{\vec u}f(\vec a)
+  \]
+\end{defn}
+
 
 \clearpage
 \bibliography{tfg}
