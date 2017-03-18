@@ -1,13 +1,16 @@
 % B.Sc. Thesis - Synthetic Differential Geometry
-% Gaspar Perez Scornik <gasparperez2010@gmail.com>
+% Gaspar Pérez Scornik <gasparperez2010@gmail.com>
 %
 
 \documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
 \usepackage{cite}
 \usepackage{amsmath}
 \usepackage{amsfonts}
 \usepackage{amsthm}
+\usepackage{xfrac}
 \usepackage[a4paper,total={6.5in,8in}]{geometry}
+\usepackage{fix-cm}
 
 \newtheorem{axiom}{Axiom}
 \setcounter{axiom}{-1}
@@ -24,6 +27,7 @@
 \newcommand{\ddxk}[4]{\frac{\partial^{#1} #2}{\partial #3 \cdots \partial #4}} %k-th partial derivative
 \newcommand{\ddxII}[3]{\frac{\partial^{2} #1}{\partial #2 \partial #3}} %2nd partial derivative
 \newcommand{\farg}{-} %empty argument in function
+\newcommand{\quot}[2]{#1/#2} %quotient of groups, modules, etc.
 \renewcommand{\vec}{\underline} %markup for vectors
 \DeclareMathOperator{\spn}{span}
 
@@ -311,7 +315,7 @@ This may seem like a very ad-hoc definition, but we will encounter many Euclidea
   \leavevmode
   \begin{enumerate}
     \item This is evident since a function \( f:D\to R^n \) is uniquely determined by each of its component functions. We let \( f_i = \pi_i \circ{f}  \) where \( \pi_i:R^n\to R \) is the \( i \)-\textit{th} coordinate projection. Then \( \vec a=(a_1,\dots,a_n), \vec b=(b_1,\dots,b_n) \) are the unique coefficients in the claim. Here each \( a_i,b_i \) is obtained by applying the KL axiom to \( f_i \).
-    \item First of all, \( V^X \) is an \( R \)-module in an obvious way. Let \( f:D\to V^X \) be a function. This defines, for each \( x\in X \), a function \( g(x):D\to V \) by
+    \item First of all, \( V^X \) is an \( R \)-module by the pointwise sum of maps. Let \( f:D\to V^X \) be a function. This defines, for each \( x\in X \), a function \( g(x):D\to V \) by
     \[
       d\mapsto f(d)(x)
     \]
@@ -357,6 +361,45 @@ Finally, the familiar total differential makes an appearance here too.
     \vec u\mapsto \partial_{\vec u}f(\vec a)
   \]
 \end{defn}
+
+\section{Infiniteseimal linearity}
+
+\subsection{A closer look at the KL axiom}
+
+Let \( (a,b)\in R\times R \). To this pair we can associate the function
+\[
+  f:D\to R
+  \atop
+  d\mapsto a + bd
+\]
+
+In this manner we obtain a map
+\[
+  \alpha : R\times R\to R^D
+\]
+
+Axiom (\ref{KL1}) can then be succintly stated by demanding that \( \alpha \) be bijective. Note that the \( R \)-module structure is also preserved, so that \( \alpha \) is an \( R \)-module isomorphism. Furthermore, \( R^D \) has a natural \( R \)-algebra structure given by the pointwise product of maps:
+
+\begin{align*}
+  (a_1 + b_1d)(a_2 + b_2d) & = a_1a_2 + (a_1b_2 + b_1a_2)d + b_1b_2d^2 \\
+                           & = a_1a_2 + (a_1b_2 + b_1a_2)d
+\end{align*}
+
+As such, \( R\times R \) does not possess an \( R \)-algebra structure, but if we define a product by the above formula, that is
+\[
+  (a_1,b_1)\cdot(a_2,b_2) = (a_1a_2,a_1b_2 + b_1a_2)
+\]
+then \( \alpha  \) is an \( R \)-algebra isomorphism.
+
+It will be helpful for motivating the forthcoming definitions to state this in yet another way. The previous structure on \( R\times R \) is nothing more than the natural \( R \)-algebra on
+\[
+  W = \quot{R[X]}{(X^2)}
+\]
+thus there is an isomorphism of \( R \)-algebras
+\[
+  W \stackrel{\alpha}{\cong} R^D
+\]
+
 
 
 \clearpage
