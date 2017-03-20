@@ -379,11 +379,12 @@ In this manner we obtain a map
   \alpha : R\times R\to R^D
 \]
 
-Axiom (\ref{KL1}) can then be succintly stated by demanding that \( \alpha \) be bijective. Note that the \( R \)-module structure is also preserved, so that \( \alpha \) is an \( R \)-module isomorphism. Furthermore, \( R^D \) has a natural \( R \)-algebra structure given by the pointwise product of maps:
+Axiom \ref{KL1} can then be succintly stated by demanding that \( \alpha \) be bijective. Note that the \( R \)-module structure is also preserved, so that \( \alpha \) is an \( R \)-module isomorphism. Furthermore, \( R^D \) has a natural \( R \)-algebra structure given by the pointwise product of maps:
 
 \begin{align*}
   (a_1 + b_1d)(a_2 + b_2d) & = a_1a_2 + (a_1b_2 + b_1a_2)d + b_1b_2d^2 \\
                            & = a_1a_2 + (a_1b_2 + b_1a_2)d
+  \label{R-alg}
 \end{align*}
 
 As such, \( R\times R \) does not possess an \( R \)-algebra structure, but if we define a product by the above formula, that is
@@ -444,7 +445,15 @@ It will do to explore some simple consequences of this definition.
 
 Naturally, there is no reason for \( X_1,\dots,X_n \) to be a minimal set of generators. In \cite{lav96}, this minimal number of generators is referred to as the \emph{breadth} of a Weil algebra, and the smallest power that annihilates the maximal ideal as the \emph{height}.
 
-That a Weil algebra is finite dimensional over \( \mathbb{Q} \) means that it is isomorphic to \( \mathbb{Q}^n \) with a certain product given by \( \gamma_{ij}^k \), for some \( n \). If \( A \) is any other \( \mathbb{Q} \)-algebra, then so can \( A^n \) be endowed with a product determined by the same constants.
+%TODO:prove this
+That a Weil algebra \( W \) is finite dimensional over \( \mathbb{Q} \) means that it is isomorphic to \( \mathbb{Q}^n \) with a certain product given by \( \gamma_{ij}^k \), for some \( n \). If \( A \) is any other \( \mathbb{Q} \)-algebra, then so can \( A^n \) be endowed with a product by letting \( e_ie_j = \gamma_{ij}^ke_k \) where \( e_l = (0,\stackrel{(l)}{\dots},1,\dots,0 \), making \( A^n \) an \( A \)-algebra. This structure is manifestly dependent on the \( e_l \). However, it does not depend on the presentation of \( W \). This algebra structure on \( A^n \) is denoted \( A[W] \). For instance, the \( R \)-algebra on \( R\times R \) from (\ref{R-alg}) arises in this way as \( R[W] \), where
+\[
+  W = \mathbb{Q}[X]/(X^2)
+\]
+
+It's worth mentioning that in \cite{lav96}, the author defines Weil algebras directly as objects which according to our definition arise as \( R[W] \) with \( W \) a Weil algebra as defined above. The distinction is that \( R[W] \) need not be a local ring (for instance, (\ref{R-alg}) has the ideal \( ((0,a)) \) with \( a\in R \) which is not maximal since any element \( (d,0) \) with \( d\in D \) is in its complement, but it is not a unit.
+
+
 
 
 
