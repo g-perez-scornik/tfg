@@ -64,7 +64,7 @@ Note that, in particular, \( a=f(0) \). Of course, this is a strong requirement.
 
 \begin{proof}
   Let \( f:D\to R \) be defined by
-  \[
+  \begin{equation*}
     f(d) =
     \left\{ 
       \begin{aligned}
@@ -72,14 +72,14 @@ Note that, in particular, \( a=f(0) \). Of course, this is a strong requirement.
 	0,& & d = 0
       \end{aligned}
     \right.
-  \]
+  \end{equation*}
 By the KL axiom \ref{KL1}, there exist unique \( a,b\in R \) such that \( f(d) = a + bd \) for all \( d \). Since \( a =  f(0) = 0 \), there exists \( b\in R \) such that \( f(d) = bd \) for all \( d \). Thus for non-zero \( d \) we have \( 1 = bd \). Squaring both sides yields \( 1 = 0 \), and since \( R \) is a ring this concludes the proof.
 \end{proof}
 
 However, the above proof relies on the ``fact'' that, for any \( x\in R \) we have either \( x = 0 \) or \( x\neq0 \). Indeed the well-definedness of the function \( f \) depends on this assertion. This is true in classical logic, as it is a simple application of the \textbf{Law of the Excluded Middle} (LEM):
-\[
+\begin{equation*}
   \forall p\, p\vee \neg p
-\]
+\end{equation*}
 %TODO: comment about internal logic of topos is intuitionistic
 To carry on with our theory, we see that we have to reject LEM. The above proof then fails, but of course just because of that we cannot conclude that the theory functions properly. To do so would by all means require exhibiting the category \( \mathcal{E} \) explicitly. For now we will continue ignoring this, and develop the naive theory, knowing that we have to abstain from assuming LEM.
 
@@ -89,16 +89,16 @@ Without LEM, (\ref{0prop}) of course still contradicts (because we do want R to 
   \label{eq:not0}
 \end{equation}
 In other words, its negation is true. One may be inclined to ``simplify'' the negation statement, leading to the apparent absurdity that
-\[
+\begin{equation*}
   \exists d\in D\, \neg(d=0) \wedge \neg\neg (d=0)
-\]
+\end{equation*}
 Note that we haven't eliminated the double negation, since \( \neg\neg p\rightarrow p \) is equivalent to LEM. Still, the above would be a contradiction, since \( p\wedge \neg p \) is still false in intuitionistic logic. But, the first equivalence we used on the universally quantified statement (\ref{eq:not0}) also fails to be valid in intuitionistic logic (see \cite[p. 248]{fra84} for example).
 
 %TODO: find a better proof of this
 So what are the elements of \( D \)? For one they are not all zero, for if they were then every function \( d\mapsto ad, a\in R \) would be equal to the constant \( 0 \), but since each coefficient \( a \) is unique, we again reach the absurdity that every \( a\in R \) is the same (equal to zero). At the same time the negation of (\ref{0prop}) implies that not all \( d \) that aren't zero satisfy \( \neg(d=0) \). The consequence is the simple statement that
-\[
+\begin{equation*}
   \exists d\in D \neg\neg(d=0)
-\]
+\end{equation*}
 
 The infinitesimals \( D \) are thus neither zero nor nonzero. This is a contradictory statement in classical logic, but it is precisely of the type of phrases that we should expect to appear if we weaken our logic to intuitionistic logic.
 
@@ -106,13 +106,13 @@ The infinitesimals \( D \) are thus neither zero nor nonzero. This is a contradi
 \subsection{Elementary Calculus}
 
 With our basic axiom scheme in place we can begin revisiting the classical notion of a derivative in this new context. We begin, as expected, with a function \( f:R\to R \). Fix \( x\in R \) and define a new function \( g:D\to R \) by
-\[
+\begin{equation*}
   d\mapsto f(x+d)
-\]
+\end{equation*}
 By the KL axiom \ref{KL1} there are unique \( a,b\in R \) such that
-\[
+\begin{equation*}
   \forall d\in D\, f(x+d) = f(x)+bd
-\]
+\end{equation*}
 (since \( g(0) = f(x) \)). This naturally leads to the following
 \begin{defn}
   Let \( f:R\to R \). The \textit{derivative} of \( f \) at \( x \), denoted \( f'(x) \), is the unique \( b\in R \) such that \( f(x+d)=f(x)+bd\,\forall d\in D \).
@@ -148,32 +148,32 @@ by which \( f'(x)=2x+1 \). So far our ``formal'' calculus agrees with standard c
 Furthermore we have the Chain Rule:
 \begin{proposition}
   Let \( f,g:R\to R \) be two functions. Then the derivative of the composite \( g\circ f \) is
-  \[
+  \begin{equation*}
     (f\circ g) = (f'\circ g)\cdot g'
-  \]
+  \end{equation*}
 \end{proposition}
 \begin{proof}
   Let \( x\in R \). Then
-  \[
+  \begin{equation*}
    (f\circ g)(x+d) = f(g(x)) + (f\circ g)'(x)d
-  \]
+  \end{equation*}
   by definition. Meanwhile, if we expand \( g(x+d) \) first:
   \begin{align*}
     (f\circ g)(x+d) & = f(g(x+d)) \\
                     & = f(g(x)+g'(x)d) \\
   \end{align*}
   Observe that \( g'(x)d\in D \), since \( (g'(x)d)^2 = g'(x)^2d^2 = 0 \). Now, \( f'(g(x)) \) is the unique coefficient satisfying
-  \[
+  \begin{equation*}
     f(g(x)+g'(x)d) = f(g(x)) + f'(g(x))g'(x)d
-  \]
+  \end{equation*}
 \end{proof}
 
 The reader may notice that these statements seem lazily worded. Normally, we would include in the hypotheses something like ``\textit{Let \( f,g:R\to R \) be} differentiable \textit{functions. Then} (some other function) \textit{is differentiable, and \dots etc.}'' We are not in fact forgetting hypotheses. The Kock-Lawvere Axiom \ref{KL1} actually implies that \textit{every} function from \( R \) to \( R \) is differentiable. This is easy to verify by noting that in the definition of the derivative (\ref{def:1varder}), no additional assumptions are made other than \( f \) being a function. As a direct consequence, every function from \( R \) to \( R \) is infinitely differentiable.
 
 This leads us to ask if we also have Taylor expansions of functions. In classical calculus, a Taylor expansion of second order involves a second degree polynomial, and ``terms of order 3''. In our context, these are simply nilcube elements, i.e. \( \delta\in R : \delta^3 = 0 \). An example of such a nilcube is any \( d_1+d_2 \) where \( d_1,d_2 \) are both in \( D \). In effect,
-\[
+\begin{equation*}
   (d_1+d_2)^3 = d_1^3 + d_2^3 + 3d_1^2d_2 + 3d_1d_2^2 = 0
-\]
+\end{equation*}
 
 Furthermore, if \( f:R\to R\) is a function, 
 \begin{align*}
@@ -185,16 +185,16 @@ and meanwhile,
   (d_1+d_2)^2 & = 2d_1d_2
 \end{align*}
 Joining the two together yields:
-\[
+\begin{equation*}
   f(x+d_1+d_2) = f(x) + f'(x)(d_1+d_2) + \frac{f''(x)}{2}(d_1+d_2)^2
-\]
+\end{equation*}
 
 What we have just proven is the following proposition.
 \begin{proposition}
   If \( f:R\to R \) is a function and \( d_1,d_2\in D \), then \( \delta = d_1+d_2 \) satisfies
-  \[
+  \begin{equation*}
     f(x+\delta) = f(x) + f'(x)\delta + \frac{f''(x)}{2}\delta^2
-  \]
+  \end{equation*}
 
 \end{proposition}
 
@@ -202,21 +202,21 @@ This justifies the earlier heuristic of considering nilcubes as candidates for s
 
 \begin{proposition}
   Let \( f:R\to R \) be a function. Then for all \( n\in\mathbb N \) and \( \delta = d_1+\cdots+d_n \)
-  \[
+  \begin{equation*}
     f(x+\delta) = f(x) + f'(x)\delta + \frac{f''(x)}{2!}\delta^2 + \cdots + \frac{f^{(n)}}{n!}\delta^n
-  \]
+  \end{equation*}
   where \( x\in R \), \( d_1,\dots,d_n\in D \)
 \end{proposition}
 
 \begin{proof}
   To begin with, let us look at the powers of \( \delta \), that is, the usual multinomial formula:
-  \[
+  \begin{equation*}
     \delta^k = (d_1+\cdots+d_n)^k = \sum_{i_1+\cdots+i_n=k}\left( k\atop i_1,\dots,i_n \right)\prod_{r=1}^{n}d_r^{i_r}
-  \]
+  \end{equation*}
   Recall that the \( d_r \) are in \( D \), so only the only non-zero summands will be those with each \( d_r \) raised to either 1 or 0. That is, choosing a subset of the \( i_r \) to be 1, and the rest 0. In that case the multinomial coefficients are simply \( k! \), giving us
-  \[
+  \begin{equation*}
     \delta^k = \sum_{I\subset \{1,\dots,n\}\atop \abs{I}=k}k!\prod_{t\in I}d_t
-  \]
+  \end{equation*}
   in other words, the \( k \)-\textit{th} elementary symmetric polynomial of \( n \) variables (multiplied by \( k! \)). Denote this by \( e_k(X_1,\dots,X_n) \), and convene \( e_0 \equiv 1 \) and \( e_k(X_1,\dots,X_n) = 0 \) if \( k>n \). We proceed inductively:
   % [TODO] Fix this equation
   \begin{align}
@@ -229,13 +229,13 @@ This justifies the earlier heuristic of considering nilcubes as candidates for s
     \label{eq:ntaylor}
   \end{align}
 It's now useful to use the following recursion that elementary symmetric polynomials satisfy:
-\[
+\begin{equation*}
   e_k(X_1,\dots,X_n) = e_{k}(X_1,\dots,X_{n-1}) + X_{n}e_{k-1}(X_1,\dots,X_{n-1})
-\]
+\end{equation*}
 Finally, observe that \( e_{k-1}(d_1,\dots,d_{k-1}) \) is just \( d_1d_2\cdots d_{k-1} \), meaning that \( d_ke_{k-1}(d_1,\dots,d_{k-1}) = e_k(d_1,\dots, d_{k-1},d_k) \). With these two identities, \ref{eq:ntaylor} becomes:
-\[
+\begin{equation*}
   \sum_{i=0}^{n}f^{(i)}(x)e_i(d_1,\dots,d_k)= \sum_{i=0}^n \frac{f^{(i)}(x)}{i!}\delta^j
-\]
+\end{equation*}
 \end{proof}
 
 We'd do well to note that, for \( n\geq k+1 \), \( \delta^n \) is 0. The above Taylor formula is of course still valid for any \( k \) and \( n \), but the terms are all zero after \( k+1 \). We again find a unique characterization of all functions on a certain set of nilpotents. This property will be stated in section {/placeholder1/} as a general axiom.
@@ -245,25 +245,25 @@ We now take the usual course in calculus, which is to generalize the previous st
 
 \subsubsection{Scalar functions}
 Let \( f:R^n\to R \) be a function, and \( r=(r_1,\dots,r_n)\in R^n \). As one would expect, we calculate the partial derivatives by adding an infinitesimal increment along a single coordinate direction. That is, let \( g: D\to R \) be defined by
-\[
+\begin{equation*}
   d\mapsto f(r_1+d,\dots,r_n)
-\]
+\end{equation*}
 By the KL axiom \ref{KL1}, there exists a unique \( b\in R \) such that
-\[
+\begin{equation*}
   f(r_1+d,\dots,r_n) = f(r) + bd
-\]
+\end{equation*}
 We define \( \ddx{f}{x_1}(r_1,\dots,r_n)\) as \( b \), which simultaneaously defines a function \( \ddx{f}{x_1}:R^n\to R \) Similarly, we define \( \ddx{f}{x_2},\dots,\ddx{f}{x_n} \). By iterating the process we obtain higher partial derivatives, denoted
-\[
+\begin{equation*}
   \ddxk{k}{f}{x_{i_1}}{x_{i_k}}
-\]
+\end{equation*}
 
 A nice result is a parallel of Schwarz' theorem of the interchangeability of partial derivatives.
 
 \begin{proposition}
   Let \( f:R^n\to R \) be a function. Then for any \( 1\leq i,j\leq n \)
-  \[
+  \begin{equation*}
     \ddxII{f}{x_i}{x_j}= \ddxII{f}{x_j}{x_i}
-  \]
+  \end{equation*}
   \label{prop:schwarz}
 \end{proposition}
 %TODO: this part looks horrible
@@ -294,9 +294,9 @@ We will now examine functions between \( R \)-modules. However, for a general \(
 %TODO: example of R-module that isn't Euclidean.
 \begin{defn}
   An \( R \)-module \( V \) is said to be a \emph{Euclidean \( R \)-module} if the vector form of the KL axiom holds. That is, for any function \( f: D\to V \),
-  \[
+  \begin{equation*}
     \exists! \, \vec a,\vec b\in V \text{ such that } f(d) = \vec a + d\vec b \,\forall d\in D
-  \]
+  \end{equation*}
   (again \( \vec a \) is evidently \( f(0) \))
 \end{defn}
 
@@ -316,13 +316,13 @@ This may seem like a very ad-hoc definition, but we will encounter many Euclidea
   \begin{enumerate}
     \item This is evident since a function \( f:D\to R^n \) is uniquely determined by each of its component functions. We let \( f_i = \pi_i \circ{f}  \) where \( \pi_i:R^n\to R \) is the \( i \)-\textit{th} coordinate projection. Then \( \vec a=(a_1,\dots,a_n), \vec b=(b_1,\dots,b_n) \) are the unique coefficients in the claim. Here each \( a_i,b_i \) is obtained by applying the KL axiom to \( f_i \).
     \item First of all, \( V^X \) is an \( R \)-module by the pointwise sum of maps. Let \( f:D\to V^X \) be a function. This defines, for each \( x\in X \), a function \( g(x):D\to V \) by
-    \[
+    \begin{equation*}
       d\mapsto f(d)(x)
-    \]
+    \end{equation*}
     since \( V \) is Euclidean, there exist unique \( a(x), b(x) \) such that
-    \[
+    \begin{equation*}
       f(d)(x) = \vec a(x) + d\vec b(x)\,\forall d\in D
-    \]
+    \end{equation*}
     Evidently, varying \( x \) defines functions \( \vec a,\vec b:X\to V \), which are unique such that \( f(d) = \vec a + d\vec b \,\forall d\in D\)
   \end{enumerate}
 \end{proof}
@@ -332,34 +332,34 @@ Additionally, it's clear that any \( V \) which is isomorphic to \( R^n \) as an
 For now let us go back to doing calculus. The Euclidean structure allows one to define directional derivatives, as is done in \cite{lav96}, for example.
 \begin{defn}
   Let \( V,E \) be Euclidean \( R \)-modules, \( f:V\to E \) a function and \( \vec u, \vec a\in V \). The derivative of \( f \) at \( \vec a \) in direction \( \vec u \) is the unique \( \vec b\in E \) such that
-  \[
+  \begin{equation*}
     \forall d\in D,\, f(\vec a + d\vec u) = f(\vec a) + d\vec b
-  \]
+  \end{equation*}
   We denote this by \( \partial_{\vec u}f(a) \). 
 \end{defn}
 
 We note that \( \partial_{(\farg)}f(\vec a) \) is a linear function. In other words, for all \( \lambda,\mu \in R\),
-\[
+\begin{equation*}
   \partial_{\lambda \vec u + \mu \vec v}f(\vec a) = \lambda\partial_{\vec u}f(\vec a) + \mu\partial_{\vec v}f(\vec a)
-\]
+\end{equation*}
 The proof is a straightforward excercise (one may consult \cite[p. 13]{lav96}).
 
 If \( V \) is finitely generated, i.e. \( V = \spn{\{e_1,\dots,e_n\}} \), then one can define
-\[
+\begin{equation*}
   \ddx{f}{x_i}(\vec a) = \partial_{e_1}f(\vec a)
-\]
+\end{equation*}
 and if \( \vec u = \sum_{i=1}^{n}{u_ie_i} \) then by linearity
-\[
+\begin{equation*}
   \partial_{\vec u}f(\vec a) = \sum_{i=1}^{n}\ddx{f}{x_i}u_i
-\]
+\end{equation*}
 
 Finally, the familiar total differential makes an appearance here too.
 
 \begin{defn}
   Let \( f:V\to E \) be a function. The \emph{differential} of \( f \) at \( \vec a\in V \) is the function \( df(\vec a):V\to E \) defined by
-  \[
+  \begin{equation*}
     \vec u\mapsto \partial_{\vec u}f(\vec a)
-  \]
+  \end{equation*}
 \end{defn}
 
 
@@ -368,39 +368,39 @@ Finally, the familiar total differential makes an appearance here too.
 \subsection{A closer look at the KL axiom}
 
 Let \( (a,b)\in R\times R \). To this pair we can associate the function
-\[
+\begin{equation*}
   f:D\to R
   \atop
   d\mapsto a + bd
-\]
+\end{equation*}
 
 In this manner we obtain a map
-\[
+\begin{equation*}
   \alpha : R\times R\to R^D
-\]
+\end{equation*}
 
 Axiom \ref{KL1} can then be succintly stated by demanding that \( \alpha \) be bijective. Note that the \( R \)-module structure is also preserved, so that \( \alpha \) is an \( R \)-module isomorphism. Furthermore, \( R^D \) has a natural \( R \)-algebra structure given by the pointwise product of maps:
 
-\begin{align*}
+\begin{align}
   (a_1 + b_1d)(a_2 + b_2d) & = a_1a_2 + (a_1b_2 + b_1a_2)d + b_1b_2d^2 \\
                            & = a_1a_2 + (a_1b_2 + b_1a_2)d
   \label{R-alg}
-\end{align*}
+\end{align}
 
 As such, \( R\times R \) does not possess an \( R \)-algebra structure, but if we define a product by the above formula, that is
-\[
+\begin{equation*}
   (a_1,b_1)\cdot(a_2,b_2) = (a_1a_2,a_1b_2 + b_1a_2)
-\]
+\end{equation*}
 then \( \alpha  \) is an \( R \)-algebra isomorphism.
 
 It will be helpful for motivating the forthcoming definitions to state this in yet another way. The previous structure on \( R\times R \) is nothing more than the natural \( R \)-algebra on
-\[
+\begin{equation*}
   W = \quot{R[X]}{(X^2)}
-\]
+\end{equation*}
 thus there is an isomorphism of \( R \)-algebras
-\[
+\begin{equation*}
   W \stackrel{\alpha}{\cong} R^D
-\]
+\end{equation*}
 
 In the following section we will generalize this idea.
 
@@ -410,9 +410,9 @@ The infinitesimals \( D \) are one among many other ``small objects'' in SDG, ca
 
 \begin{defn}
   A \emph{Weil algebra} \( W \) is a \( \mathbb{Q} \)-algebra together with a morphism
-  \[
+  \begin{equation*}
     \pi: W\to\mathbb Q
-  \]
+  \end{equation*}
   such that \( W \) is a local ring with maximal ideal \( I=\pi^{-1}(0) \) with \( I \) nilpotent and such that \( W \) is finite dimensional as a \( \mathbb{Q} \) vector space.
 \end{defn}
 
@@ -420,36 +420,36 @@ It will do to explore some simple consequences of this definition.
 
 \begin{lemma}
   Any Weil algbra \( W \) may be finitely presented, that is, \( W \) is isomorphic to
-  \[
+  \begin{equation*}
     \mathbb{Q}[X_1,\dots,X_n]/(P_1,\dots,P_s)
-  \]
+  \end{equation*}
   where \( P_1,\dots P_s \) are polynomials of \( \mathbb{Q}[X_1,\dots,X_n] \).
   \label{lm:finpr}
 \end{lemma}
 
 \begin{proof}
   Let \( e_1,\dots,e_n \) be a \( \mathbb{Q} \)-basis of \( W \). The algbra structure is then determined by the constants \( \gamma_{ij}^k \) given by
-  \[
+  \begin{equation*}
     e_i\cdot e_j = \sum_{k=1}^n \gamma_{ij}^ke_k
-  \]
+  \end{equation*}
   in other words, the kernel of the surjection
-  \[
+  \begin{equation*}
     E: \mathbb{Q}[X_1,\dots,X_n]\to W
-  \]
+  \end{equation*}
   given by \( X_k\mapsto e_k \) is the ideal generated by the polynomials
-  \[
+  \begin{equation*}
     X_iX_j - \sum_{k=1}^n\gamma_{ij}^kX_k
-  \]
+  \end{equation*}
   With \( 1\leq i,j\leq n \). Thus \( W \) is isomorphic to \( \mathbb{Q}[X_1,\dots,X_n]/\ker E \) with \( \ker E \) finitely generated.
 \end{proof}
 
 Naturally, there is no reason for \( X_1,\dots,X_n \) to be a minimal set of generators. In \cite{lav96}, this minimal number of generators is referred to as the \emph{breadth} of a Weil algebra, and the smallest power that annihilates the maximal ideal as the \emph{height}.
 
 %TODO:prove this
-That a Weil algebra \( W \) is finite dimensional over \( \mathbb{Q} \) means that it is isomorphic to \( \mathbb{Q}^n \) with a certain product given by \( \gamma_{ij}^k \), for some \( n \). If \( A \) is any other \( \mathbb{Q} \)-algebra, then so can \( A^n \) be endowed with a product by letting \( e_ie_j = \gamma_{ij}^ke_k \) where \( e_l = (0,\stackrel{(l)}{\dots},1,\dots,0 \), making \( A^n \) an \( A \)-algebra. This structure is manifestly dependent on the \( e_l \). However, it does not depend on the presentation of \( W \). This algebra structure on \( A^n \) is denoted \( A[W] \). For instance, the \( R \)-algebra on \( R\times R \) from (\ref{R-alg}) arises in this way as \( R[W] \), where
-\[
+That a Weil algebra \( W \) is finite dimensional over \( \mathbb{Q} \) means that it is isomorphic to \( \mathbb{Q}^n \) with a certain product given by \( \gamma_{ij}^k \), for some \( n \). If \( A \) is any other \( \mathbb{Q} \)-algebra, then so can \( A^n \) be endowed with a product by letting \( e_ie_j = \gamma_{ij}^ke_k \) where \( e_l = (0,\stackrel{(l)}{\dots},1,\dots,0) \), making \( A^n \) an \( A \)-algebra. This structure is manifestly dependent on the \( e_l \). However, it does not depend on the presentation of \( W \). This algebra structure on \( A^n \) is denoted \( A[W] \). For instance, the \( R \)-algebra on \( R\times R \) from (\ref{R-alg}) arises in this way as \( R[W] \), where
+\begin{equation*}
   W = \mathbb{Q}[X]/(X^2)
-\]
+\end{equation*}
 
 It's worth mentioning that in \cite{lav96}, the author defines Weil algebras directly as objects which according to our definition arise as \( R[W] \) with \( W \) a Weil algebra as defined above. The distinction is that \( R[W] \) need not be a local ring (for instance, (\ref{R-alg}) has the ideal \( ((0,a)) \) with \( a\in R \) which is not maximal since any element \( (d,0) \) with \( d\in D \) is in its complement, but it is not a unit.
 
