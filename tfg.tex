@@ -30,6 +30,10 @@
 \newcommand{\quot}[2]{#1/#2} %quotient of groups, modules, etc.
 \renewcommand{\vec}{\underline} %markup for vectors
 \DeclareMathOperator{\spn}{span}
+\DeclareMathOperator{\spec}{Spec}
+\DeclareMathOperator{\rspec}{Spec_R}
+\DeclareMathOperator{\id}{id}
+
 
 \numberwithin{equation}{section}
 
@@ -115,11 +119,11 @@ By the KL axiom \ref{KL1} there are unique \( a,b\in R \) such that
 \end{equation*}
 (since \( g(0) = f(x) \)). This naturally leads to the following
 \begin{defn}
-  Let \( f:R\to R \). The \textit{derivative} of \( f \) at \( x \), denoted \( f'(x) \), is the unique \( b\in R \) such that \( f(x+d)=f(x)+bd\,\forall d\in D \).
+  Let \( f:R\to R \). The \emph{derivative} of \( f \) at \( x \), denoted \( f'(x) \), is the unique \( b\in R \) such that \( f(x+d)=f(x)+bd\,\forall d\in D \).
   \label{def:1varder}
 \end{defn}
 
-Clearly this also allows us to define the derivative \textit{function} \( f':R\to R \). For instance, let us calculate the derivative of a simple polynomial function. Let \( f:x\mapsto x^2+x \) then
+Clearly this also allows us to define the derivative \emph{function} \( f':R\to R \). For instance, let us calculate the derivative of a simple polynomial function. Let \( f:x\mapsto x^2+x \) then
 \begin{align*}
   f(x+d) & =  x^2+2xd + d^2 + x + d \\ 
          & =  x^2 + x + (2x+1)d
@@ -363,9 +367,9 @@ Finally, the familiar total differential makes an appearance here too.
 \end{defn}
 
 
-\section{Infiniteseimal linearity}
+\section{The general KL axiom}
 
-\subsection{A closer look at the KL axiom}
+\subsection{A closer look at the first axiom}
 
 Let \( (a,b)\in R\times R \). To this pair we can associate the function
 \begin{equation*}
@@ -413,8 +417,10 @@ The infinitesimals \( D \) are one among many other ``small objects'' in SDG, ca
   \begin{equation*}
     \pi: W\to\mathbb Q
   \end{equation*}
-  such that \( W \) is a local ring with maximal ideal \( I=\pi^{-1}(0) \) with \( I \) nilpotent and such that \( W \) is finite dimensional as a \( \mathbb{Q} \) vector space.
+  such that \( W \) is a local ring with maximal ideal \( I=\pi^{-1}(0) \) with \( I \) nilpotent and such that \( W \) is finite dimensional as a \( \mathbb{Q} \) vector space. A homomorphism of Weil algebras \( f:W_1\to W_2 \) is thus an algebra homomorphism sending the maximal ideal of \( W_1 \) to that of \( W_2 \).
 \end{defn}
+
+
 
 It will do to explore some simple consequences of this definition.
 
@@ -451,10 +457,51 @@ That a Weil algebra \( W \) is finite dimensional over \( \mathbb{Q} \) means th
   W = \mathbb{Q}[X]/(X^2)
 \end{equation*}
 
-It's worth mentioning that in \cite{lav96}, the author defines Weil algebras directly as objects which according to our definition arise as \( R[W] \) with \( W \) a Weil algebra as defined above. The distinction is that \( R[W] \) need not be a local ring (for instance, (\ref{R-alg}) has the ideal \( ((0,a)) \) with \( a\in R \) which is not maximal since any element \( (d,0) \) with \( d\in D \) is in its complement, but it is not a unit.
+It's worth mentioning that in \cite{lav96}, the author defines Weil algebras directly as objects which according to our definition arise as \( R[W] \) with \( W \) a Weil algebra as defined above. The distinction is that \( R[W] \) need not be a local ring (for instance, (\ref{R-alg}) has the ideal \( ((0,a)) \) with \( a\in R \) which is not maximal since any element \( (d,0) \) with \( d\in D \) is in its complement, but it is not a unit. However this only changes the phrasing involved for the general KL axiom (the goal of this section), and not the content.
 
+\subsection{Spectra of Weil Algebras}
 
+The final piece involved in the statement of the general KL axiom is that of the \emph{spectrum} of a Weil algebra.
+\begin{defn}
+  Let \( W \) be a Weil algebra, and \( C \) be an \( R \)-algebra. If \( W \) is presented as 
+  \begin{equation*}
+    \mathbb{Q}[X_1,\dots,X_n]/(P_1\dots,P_s)
+  \end{equation*}
+  the \emph{spectrum} of \( W \) in \( C \) is
+  \begin{equation*}
+    \spec_C{W} = \{(a_1,\dots,a_n)\in C^n \mid P_j(a_1,\dots,a_n) = 0, j=1,\dots,s\} 
+    \label{def:spec}
+  \end{equation*}
+\end{defn}
+It is not difficult but it is prudent to check that this is well defined. In fact we shall prove that \( \spec_C(\farg) \) is functorial. Note that elements of \( \spec_C(W) \) can be ``evaluated'' at by classes in \( W \), since two representatives differ by an element of \( I=(P_1,\dots,P_j) \), but every polynomial in \( I \) is zero on \( \spec_C(W) \) by definition. We shorten such an evaluation, \( (P+I)(a) \), simply to \( P(a) \). 
 
+Let \( W_1, W_2 \) be Weil algebras, with
+\begin{align*}
+  W_1 &\cong \mathbb{Q}[X_1,\dots,X_n]/I \\
+  W_2 &\cong \mathbb{Q}[Y_1,\dots,Y_n]/J
+\end{align*}
+
+Now let \( f:W_1\to W_2 \) be a homomorphism of Weil algebras. Define
+\begin{equation*}
+  \spec_C(f):\spec_C(W_2)\to \spec_C(W_1)
+\end{equation*}
+by
+\begin{equation*}
+  \spec_C(f)(b_1,\dots,b_m) = (a_1,\dots,a_n)
+\end{equation*}
+where
+\begin{equation*}
+  a_i = f(X_i)(b_1,\dots,b_m)
+\end{equation*}
+
+We have
+\begin{enumerate}
+  \item \(\spec_C(\farg)\) preserves identities.
+    In effect, the identity on a Weil algebra \( \id_W \)<++> sends \( X_i \) to \( X_i \), and since \( X_i(b_1,\dots,b_m) = b_i \) so is \( \spec_C(\id_W) \) the identity on \( \spec_C(W) \).
+  \item \(\spec_C(g\circ f) = \spec_C(f)\circ \spec_C(g)\), where defined. The proof is a simple verification.
+\end{enumerate}
+
+So, by virtue of the functoriality we get as a corollary that isomorphic Weil algebras induce a bijection on their spectra.
 
 
 \clearpage
