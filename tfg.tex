@@ -497,12 +497,61 @@ where
 We have
 \begin{enumerate}
   \item \(\spec_C(\farg)\) preserves identities.
-    In effect, the identity on a Weil algebra \( \id_W \)<++> sends \( X_i \) to \( X_i \), and since \( X_i(b_1,\dots,b_m) = b_i \) so is \( \spec_C(\id_W) \) the identity on \( \spec_C(W) \).
+    In effect, the identity on a Weil algebra \( \id_W \) sends \( X_i \) to \( X_i \), and since \( X_i(b_1,\dots,b_m) = b_i \) so is \( \spec_C(\id_W) \) the identity on \( \spec_C(W) \).
   \item \(\spec_C(g\circ f) = \spec_C(f)\circ \spec_C(g)\), where defined. The proof is a simple verification.
 \end{enumerate}
 
 So, by virtue of the functoriality we get as a corollary that isomorphic Weil algebras induce a bijection on their spectra.
 
+\section{Microlinearity}
+
+\subsection{A simple example}
+
+We begin by observing a few specific cases. Let
+\begin{equation*}
+   D\times D \to D 
+\end{equation*}
+be the multiplication map, i.e. \( (d_1,d_2)\mapsto d_1d_2 \). Nothing in our theory suggests that this map should be surjective, but for many purposes it suffices to have the following property:
+
+\begin{proposition}
+  If \( f_1,f_2:D \to R \) verify that, for each \( d_1,d_2\in D,\, f_1(d_1d_2) = f_2(d_1d_2)  \) then \( f_1=f_2 \).
+\end{proposition}
+
+That is, it suffices to know any function \( f:D\to R \) on products of elements of \( D \). This is referred to in \cite{kock06} as ``\emph{\( R \) thinks that the multiplication : \( D\times D\to D \) is surjective}''.
+
+\begin{proof}
+  Define \( g = f_1-f_2 \). By our hypothesis \( g \) is identically zero on all elements \( d_1d_2 \) with \( d_1,d_2\in D \). By the KL axiom (since the previous section this refers to axiom {//placeholder//}, but in this case axiom \ref{KL1} also suffices), there exist unique \( a,b\in R \) such that
+  \begin{equation*}
+    g(d)=a + bd\quad \forall d\in D 
+  \end{equation*}
+  On the one hand \( a=g(0)=g(0\cdot 0) = 0 \), so that \( g(d)=bd \). Thus, for all \( d_1,d_2\in D \) we have \( 0 = g(d_1d_2) = bd_1d_2 \), or in other words that \( bd_1d_2=0 \) for all \( d_1,d_2\in D \), which means that \( b=0 \).
+\end{proof}
+
+\subsection{A slightly more interesting example}
+
+Consider two functions \( f,g:D\to X \) such that \( f(0)=g(0) \), where \( X \) is some set (object of \(  \mathcal{E}) \). Here there is no reason to assume that this will define a map \( D(2)\to X \). It will be the case, however, if \( X \) is \( R \).
+
+\begin{proposition}
+  Let \( f,g:D\to R \) be functions such that \( f(0)=g(0) \). Then there exists a unique function \( h:D(2)\to R \) such that \( h(d,0) = f(d) \) and \( h(0,d)=g(d) \) for all \( d\in D \).
+\end{proposition}
+
+\begin{proof}
+  Let \( a_0 = g(0)=f(0) \). Then we have that for all \( d\in D \),
+  \begin{align*}
+    f(d) &= a_0 + a_1d \\
+    g(d) &= a_0 + b_1d \\
+  \end{align*}
+  Thus, we simply define \( h \) by
+  \begin{equation*}
+    h(d_1,d_2) = a_0 + a_1d_1 + b_1d_2
+  \end{equation*}
+  This clearly satisfies the existence requirements. The Uniqueness is a consequence of the KL axiom. Let \( k \) be another function that satisfies the hypotheses. By the KL axiom applied to \( D(2) \),
+  \begin{equation*}
+    k(d_1,d_2) = \alpha_0 + \alpha_1d_1 + \alpha_2d_2
+  \end{equation*}
+  for unique \( \alpha_i \). By \( k(d,0)=f(d) \) we obtain \( \alpha_0=a_0 \) and \( \alpha_1 = a_1 \). Similarly \( \alpha_2=b_1 \). Since the \( \alpha_i \) are unique and determine \( k \), we get \( k=h \) (if preferred we could have concluded at the very definition of \( h \), since the KL axiom asserts that functions on \( D(2) \) are defined as such - the argument has simply been explicited a bit further here).
+
+\end{proof}
 
 \clearpage
 \bibliography{tfg}
