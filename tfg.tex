@@ -11,6 +11,7 @@
 \usepackage{xfrac}
 \usepackage[a4paper,total={6.5in,8in}]{geometry}
 \usepackage{fix-cm}
+\usepackage[all]{xy}
 
 \newtheorem{axiom}{Axiom}
 \setcounter{axiom}{-1}
@@ -21,13 +22,20 @@
 
 \theoremstyle{definition}
 \newtheorem{defn}{Definition}[section]
+\newtheorem{exmp}{Example}[defn]
 
+\mathchardef\mhyph="2D
 \newcommand{\abs}[1]{\lvert #1 \rvert} %Absolute value
 \newcommand{\ddx}[2]{\frac{\partial #1}{\partial #2}} %partial derivative
 \newcommand{\ddxk}[4]{\frac{\partial^{#1} #2}{\partial #3 \cdots \partial #4}} %k-th partial derivative
 \newcommand{\ddxII}[3]{\frac{\partial^{2} #1}{\partial #2 \partial #3}} %2nd partial derivative
 \newcommand{\farg}{-} %empty argument in function
 \newcommand{\quot}[2]{#1/#2} %quotient of groups, modules, etc.
+\newcommand{\sdgE}{\mathcal{E}}
+\newcommand{\Q}{\mathbb{Q}}
+%TODO: make this look better
+\newcommand{\qalg}{\Q\mhyph\mathbf{Alg}}
+\newcommand{\walg}{\operatorname W}
 \renewcommand{\vec}{\underline} %markup for vectors
 \DeclareMathOperator{\spn}{span}
 \DeclareMathOperator{\spec}{Spec}
@@ -41,7 +49,7 @@
 
 \section{The basic theory}
 
-The axiomatic theory of Synthetic Differential Geometry begins by assuming a certain topos \( \mathcal{E} \) exists. A topos is a category with certain properties which are meant to abstract the way in which the category of sets behaves. In fact, most naive set theoretic and logical notions have meaningful interpretation in terms of objects and morphisms of a topos. Thus, from this point on we will mainly omit the fact that we are working in a topos, and use standard set theoretic notation, giving only brief reminders now and then. 
+The axiomatic theory of Synthetic Differential Geometry begins by assuming a certain topos \( \sdgE \) exists. A topos is a category with certain properties which are meant to abstract the way in which the category of sets behaves. In fact, most naive set theoretic and logical notions have meaningful interpretation in terms of objects and morphisms of a topos. Thus, from this point on we will mainly omit the fact that we are working in a topos, and use standard set theoretic notation, giving only brief reminders now and then. 
 
 \subsection{Axiomatics}
 
@@ -49,7 +57,7 @@ We begin with an object \( R \). We can think of \( R \) as an extension of the 
 
 \begin{axiom}
   \label{ax0}
-  \( R \) is a \( \mathbb{Q} \)-algebra.
+  \( R \) is a \( \Q \)-algebra.
 \end{axiom}
 
 With that out of the way, we proceed to introduce a central object of study, the ``infinitesimals''. These come in the form of nilpotent elements of \( R \). To be precise, let \( D = \{d\in R \mid d^2=0\} \). The (first version of the) defining axiom of SDG concerns \( D \), and as in all the literature we refer to it as the Kock-Lawvere axiom.
@@ -85,9 +93,9 @@ However, the above proof relies on the ``fact'' that, for any \( x\in R \) we ha
   \forall p\, p\vee \neg p
 \end{equation*}
 %TODO: comment about internal logic of topos is intuitionistic
-To carry on with our theory, we see that we have to reject LEM. The above proof then fails, but of course just because of that we cannot conclude that the theory functions properly. To do so would by all means require exhibiting the category \( \mathcal{E} \) explicitly. For now we will continue ignoring this, and develop the naive theory, knowing that we have to abstain from assuming LEM.
+To carry on with our theory, we see that we have to reject LEM. The above proof then fails, but of course just because of that we cannot conclude that the theory functions properly. To do so would by all means require exhibiting the category \( \sdgE \) explicitly. For now we will continue ignoring this, and develop the naive theory, knowing that we have to abstain from assuming LEM.
 
-Without LEM, (\ref{0prop}) of course still contradicts (because we do want R to be a \( \mathbb{Q} \)-algebra) the statement
+Without LEM, (\ref{0prop}) of course still contradicts (because we do want R to be a \( \Q \)-algebra) the statement
 \begin{equation}
   \forall d\in D\,(d=0) \vee \neg (d=0)
   \label{eq:not0}
@@ -413,11 +421,11 @@ In the following section we will generalize this idea.
 The infinitesimals \( D \) are one among many other ``small objects'' in SDG, called \emph{Weil algebras}, due to André Weil. We will use the general definition as per \cite{bun17}.
 
 \begin{defn}
-  A \emph{Weil algebra} \( W \) is a \( \mathbb{Q} \)-algebra together with a morphism
+  A \emph{Weil algebra} \( W \) is a \( \Q \)-algebra together with a morphism
   \begin{equation*}
-    \pi: W\to\mathbb Q
+    \pi: W\to\Q
   \end{equation*}
-  such that \( W \) is a local ring with maximal ideal \( I=\pi^{-1}(0) \) with \( I \) nilpotent and such that \( W \) is finite dimensional as a \( \mathbb{Q} \) vector space. A homomorphism of Weil algebras \( f:W_1\to W_2 \) is thus an algebra homomorphism sending the maximal ideal of \( W_1 \) to that of \( W_2 \).
+  such that \( W \) is a local ring with maximal ideal \( I=\pi^{-1}(0) \) with \( I \) nilpotent and such that \( W \) is finite dimensional as a \( \Q \) vector space. A homomorphism of Weil algebras \( f:W_1\to W_2 \) is thus an algebra homomorphism sending the maximal ideal of \( W_1 \) to that of \( W_2 \).
 \end{defn}
 
 
@@ -427,34 +435,34 @@ It will do to explore some simple consequences of this definition.
 \begin{lemma}
   Any Weil algbra \( W \) may be finitely presented, that is, \( W \) is isomorphic to
   \begin{equation*}
-    \mathbb{Q}[X_1,\dots,X_n]/(P_1,\dots,P_s)
+    \Q[X_1,\dots,X_n]/(P_1,\dots,P_s)
   \end{equation*}
-  where \( P_1,\dots P_s \) are polynomials of \( \mathbb{Q}[X_1,\dots,X_n] \).
+  where \( P_1,\dots P_s \) are polynomials of \( \Q[X_1,\dots,X_n] \).
   \label{lm:finpr}
 \end{lemma}
 
 \begin{proof}
-  Let \( e_1,\dots,e_n \) be a \( \mathbb{Q} \)-basis of \( W \). The algbra structure is then determined by the constants \( \gamma_{ij}^k \) given by
+  Let \( e_1,\dots,e_n \) be a \( \Q \)-basis of \( W \). The algbra structure is then determined by the constants \( \gamma_{ij}^k \) given by
   \begin{equation*}
     e_i\cdot e_j = \sum_{k=1}^n \gamma_{ij}^ke_k
   \end{equation*}
   in other words, the kernel of the surjection
   \begin{equation*}
-    E: \mathbb{Q}[X_1,\dots,X_n]\to W
+    E: \Q[X_1,\dots,X_n]\to W
   \end{equation*}
   given by \( X_k\mapsto e_k \) is the ideal generated by the polynomials
   \begin{equation*}
     X_iX_j - \sum_{k=1}^n\gamma_{ij}^kX_k
   \end{equation*}
-  With \( 1\leq i,j\leq n \). Thus \( W \) is isomorphic to \( \mathbb{Q}[X_1,\dots,X_n]/\ker E \) with \( \ker E \) finitely generated.
+  With \( 1\leq i,j\leq n \). Thus \( W \) is isomorphic to \( \Q[X_1,\dots,X_n]/\ker E \) with \( \ker E \) finitely generated.
 \end{proof}
 
 Naturally, there is no reason for \( X_1,\dots,X_n \) to be a minimal set of generators. In \cite{lav96}, this minimal number of generators is referred to as the \emph{breadth} of a Weil algebra, and the smallest power that annihilates the maximal ideal as the \emph{height}.
 
 %TODO:prove this
-That a Weil algebra \( W \) is finite dimensional over \( \mathbb{Q} \) means that it is isomorphic to \( \mathbb{Q}^n \) with a certain product given by \( \gamma_{ij}^k \), for some \( n \). If \( A \) is any other \( \mathbb{Q} \)-algebra, then so can \( A^n \) be endowed with a product by letting \( e_ie_j = \gamma_{ij}^ke_k \) where \( e_l = (0,\stackrel{(l)}{\dots},1,\dots,0) \), making \( A^n \) an \( A \)-algebra. This structure is manifestly dependent on the \( e_l \). However, it does not depend on the presentation of \( W \). This algebra structure on \( A^n \) is denoted \( A[W] \). For instance, the \( R \)-algebra on \( R\times R \) from (\ref{R-alg}) arises in this way as \( R[W] \), where
+That a Weil algebra \( W \) is finite dimensional over \( \Q \) means that it is isomorphic to \( \Q^n \) with a certain product given by \( \gamma_{ij}^k \), for some \( n \). If \( A \) is any other \( \Q \)-algebra, then so can \( A^n \) be endowed with a product by letting \( e_ie_j = \gamma_{ij}^ke_k \) where \( e_l = (0,\stackrel{(l)}{\dots},1,\dots,0) \), making \( A^n \) an \( A \)-algebra. This structure is manifestly dependent on the \( e_l \). However, it does not depend on the presentation of \( W \). This algebra structure on \( A^n \) is denoted \( A[W] \). For instance, the \( R \)-algebra on \( R\times R \) from (\ref{R-alg}) arises in this way as \( R[W] \), where
 \begin{equation*}
-  W = \mathbb{Q}[X]/(X^2)
+  W = \Q[X]/(X^2)
 \end{equation*}
 
 It's worth mentioning that in \cite{lav96}, the author defines Weil algebras directly as objects which according to our definition arise as \( R[W] \) with \( W \) a Weil algebra as defined above. The distinction is that \( R[W] \) need not be a local ring (for instance, (\ref{R-alg}) has the ideal \( ((0,a)) \) with \( a\in R \) which is not maximal since any element \( (d,0) \) with \( d\in D \) is in its complement, but it is not a unit. However this only changes the phrasing involved for the general KL axiom (the goal of this section), and not the content.
@@ -465,7 +473,7 @@ The final piece involved in the statement of the general KL axiom is that of the
 \begin{defn}
   Let \( W \) be a Weil algebra, and \( C \) be an \( R \)-algebra. If \( W \) is presented as 
   \begin{equation*}
-    \mathbb{Q}[X_1,\dots,X_n]/(P_1\dots,P_s)
+    \Q[X_1,\dots,X_n]/(P_1\dots,P_s)
   \end{equation*}
   the \emph{spectrum} of \( W \) in \( C \) is
   \begin{equation*}
@@ -477,8 +485,8 @@ It is not difficult but it is prudent to check that this is well defined. In fac
 
 Let \( W_1, W_2 \) be Weil algebras, with
 \begin{align*}
-  W_1 &\cong \mathbb{Q}[X_1,\dots,X_n]/I \\
-  W_2 &\cong \mathbb{Q}[Y_1,\dots,Y_n]/J
+  W_1 &\cong \Q[X_1,\dots,X_n]/I \\
+  W_2 &\cong \Q[Y_1,\dots,Y_n]/J
 \end{align*}
 
 Now let \( f:W_1\to W_2 \) be a homomorphism of Weil algebras. Define
@@ -529,10 +537,11 @@ That is, it suffices to know any function \( f:D\to R \) on products of elements
 
 \subsection{A slightly more interesting example}
 
-Consider two functions \( f,g:D\to X \) such that \( f(0)=g(0) \), where \( X \) is some set (object of \(  \mathcal{E}) \). Here there is no reason to assume that this will define a map \( D(2)\to X \). It will be the case, however, if \( X \) is \( R \).
+Consider two functions \( f,g:D\to X \) such that \( f(0)=g(0) \), where \( X \) is some set (object of \(  \sdgE) \). Here there is no reason to assume that this will define a map \( D(2)\to X \). It will be the case, however, if \( X \) is \( R \).
 
 \begin{proposition}
   Let \( f,g:D\to R \) be functions such that \( f(0)=g(0) \). Then there exists a unique function \( h:D(2)\to R \) such that \( h(d,0) = f(d) \) and \( h(0,d)=g(d) \) for all \( d\in D \).
+  \label{prop:d2}
 \end{proposition}
 
 \begin{proof}
@@ -552,6 +561,87 @@ Consider two functions \( f,g:D\to X \) such that \( f(0)=g(0) \), where \( X \)
   for unique \( \alpha_i \). By \( k(d,0)=f(d) \) we obtain \( \alpha_0=a_0 \) and \( \alpha_1 = a_1 \). Similarly \( \alpha_2=b_1 \). Since the \( \alpha_i \) are unique and determine \( k \), we get \( k=h \) (if preferred we could have concluded at the very definition of \( h \), since the KL axiom asserts that functions on \( D(2) \) are defined as such - the argument has simply been explicited a bit further here).
 
 \end{proof}
+
+\subsection{Perceived colimits}
+
+The previous examples can be stated in diagrammatic form, which will then lend itself to a generalization in terms of (co)limits. We'll focus on the second example. Consider the following commutative diagram:
+
+\begin{equation}
+  \xymatrix{
+    {\{0\}} \ar[d]_0 \ar[r]^0   & D \ar[d]^{i_2} \\
+    D \ar[r]_{i_1}              & D(2)
+  }
+  \label{dg:pushout}
+\end{equation}
+
+Where \( i_1 \) and \( i_2 \) are the inclusion maps \( i_1(d)=(d,0),\, i_2(d)=(0,d) \) and \( 0 \) is the constant zero map. The previous observation that two maps \( f,g:D\to X \) do not have to define a map \( D(2)\to X \) is equivalent to saying that diagram \ref{dg:pushout} is not a pushout. But, if we apply the \( R^{(\farg)} \) functor to it, the result is:
+
+\begin{equation*}
+  \xymatrix{
+    R^{\{0\}}       & R^D \ar[l]_{R^0}                           \\
+    R^D \ar[u]^{R^0} & R^{D(2)} \ar[u]_{R^{i_2}} \ar[l]^{R^{i_2}} 
+  }
+  \label{dg:pullback}
+\end{equation*}
+
+\begin{proposition}
+  Diagram \ref{dg:pullback} is a pullback.
+  \label{prop:pullback}
+\end{proposition}
+
+%TODO:make sure of this and add to appendix
+\begin{proof}
+  First we will make the diagram a little neater. Firstly, \( R^{\{0\}} \) is isomorphic to \( R \). The map \( R^0 \) Takes \( f:D\to R \) and sends it to \( f\circ 0 \), which we simply identify with \( f(0) \) the same way we identified \( R^{\{0\}} \) with \( R \). Likewise, the map \( R^{i_1} \) sends \( g:D(2)\to R \) to \( g\circ i_1 \). Thus, for \ref{dg:pullback} to be a pullback, we'd need that the set \( R^D(2) \) be in bijection with the set of pairs \( f,g\in R^D \) such that \( f(0)=g(0) \). But this is precisely what we proved in proposition \ref{prop:d2}.
+\end{proof}
+
+How we refer to this phenomenon (or how it is often referred to) is \emph{``R perceives diagram \ref{dg:pushout} as a pushout}. This is of course generalizes, as we will see shortly. To do so we will give a few definitions first.
+
+\begin{defn}
+  Let \( \walg \) be the category of Weil algebras (a subcategory of the category of \( \Q \)-algebras \( \qalg \)). A \emph{good limit} of Weil algebras is a limit \( \left(L\stackrel{f_i}{\longrightarrow}D_i\right)_{i\in I} \) in \( \qalg \) which is also a limit in \( \walg \). That is, the morphisms in the diagram defining \( L \) must be Weil algebra homomorphisms, and so must the projections \( f_i \).
+\end{defn}
+
+\begin{defn}
+  A diagram in \( \sdgE \) is said to be a (finite) \emph{quasi colimit} if it is the image under the functor
+  \begin{equation*}
+    \spec_R(\farg):\walg\to\sdgE
+  \end{equation*}
+  of a good finite colimit in \( \walg \).
+\end{defn}
+
+\begin{defn}
+  An object \( X \) is said to perceive a quasi colimit as a colimit if the functor
+  \begin{equation*}
+    X^{(\farg)}:\sdgE\to\sdgE
+  \end{equation*}
+  takes said quasi colimit into a limit (of \( \sdgE \)).
+\end{defn}
+
+\begin{exmp}
+  The following diagram is a good colimit of Weil algbras (it is a pushout in \( \qalg \), and the morphisms are Weil algebra homomorphisms).
+  \begin{equation}
+    \xymatrix{
+      {\Q}                   & {\Q[X]/(X^2)} \ar[l]^0 \\
+      {\Q[X]/(X^2)} \ar[u]^0 & {\Q[X,Y]/(X^2,Y^2,XY)} \ar[u]^{p_2} \ar[l]^{p_1}
+    }
+    \label{dg:goodlimex}
+  \end{equation}
+  where \( p_1(X)=X, p_1(Y)=0, p_2(X)=0 \), and \( p_2(Y)=X \). Via the \( \spec_R(\farg) \) functor this is taken to
+  \begin{equation*}
+    \xymatrix{
+      {\{0\}} \ar[d]_0 \ar[r]^0 & D \ar[d]^{i_2} \\
+      D \ar[r]_{i_1}            & D(2)
+    } 
+  \end{equation*}
+  which is the same as diagram \ref{dg:pushout}. Thus, since diagram \ref{dg:goodlimex} is an example of a good finite limit, diagram \ref{dg:pushout} is a finite quasi colimit. Furthermore, \( R \) perceives \ref{dg:pushout} as a limit, as observed in proposition \ref{prop:pullback}.
+\end{exmp}
+
+%TODO: add other places where it is useful, if they arise
+For plenty more examples, one should look at \cite{lav96}. The objective of these definitions are to state the upcoming proposition, which generalizes the previous observation that \emph{``R perceives\dots etc''}. The result will be of use in section {//placeholder//} as a smoothness condition.
+
+\begin{proposition}
+  \( R \) perceives finite quasi colimits as colimits. Conversely, if \( R \) perceives a diagram as a colimit, it is a quasi colimit. 
+  \label{prop:Rperc}
+\end{proposition}
 
 \clearpage
 \bibliography{tfg}
