@@ -13,7 +13,7 @@
 \usepackage{fix-cm}
 \usepackage[all]{xy}
 
-\newtheorem{axiom}{Axiom}
+\newtheorem{axiom}{Axiom}[section]
 \setcounter{axiom}{-1}
 
 \newtheorem{klaxiom}{KL Axiom}
@@ -377,7 +377,7 @@ Finally, the familiar total differential makes an appearance here too.
 
 \section{The general KL axiom}
 
-\subsection{A closer look at the first axiom}
+\subsection{A closer look at the first axiom} \label{ax1re}
 
 Let \( (a,b)\in R\times R \). To this pair we can associate the function
 \begin{equation*}
@@ -464,6 +464,7 @@ That a Weil algebra \( W \) is finite dimensional over \( \Q \) means that it is
 \begin{equation*}
   W = \Q[X]/(X^2)
 \end{equation*}
+If we repeat the steps that we took to obtain a presentation of a Weil algebra \( W \cong \mathbb{Q}[X_1,\dots,X_n]/(P_1,\dots,P_s) \) then it's clear that for any other \( \mathbb{Q} \)-algebra \( A \), the algebra \( A[W] \) is also presented as \( A[X_1,\dots,X_n](P_1,\dots,P_s) \).
 
 It's worth mentioning that in \cite{lav96}, the author defines Weil algebras directly as objects which according to our definition arise as \( R[W] \) with \( W \) a Weil algebra as defined above. The distinction is that \( R[W] \) need not be a local ring (for instance, (\ref{R-alg}) has the ideal \( ((0,a)) \) with \( a\in R \) which is not maximal since any element \( (d,0) \) with \( d\in D \) is in its complement, but it is not a unit. However this only changes the phrasing involved for the general KL axiom (the goal of this section), and not the content.
 
@@ -509,7 +510,58 @@ We have
   \item \(\spec_C(g\circ f) = \spec_C(f)\circ \spec_C(g)\), where defined. The proof is a simple verification.
 \end{enumerate}
 
-So, by virtue of the functoriality we get as a corollary that isomorphic Weil algebras induce a bijection on their spectra.
+By virtue of the (contravariant) functoriality we get as a corollary that isomorphic Weil algebras induce a bijection on their spectra. With these definitions in place we may state the complete version of the KL axiom.
+
+\subsection{The KL Axiom}
+
+Let \( W\cong \mathbb{Q}[X_1,\dots,X_n]/I \) be a Weil algebra. Earlier we observed that we can evaluate (classes of) polynomials in \( W \) at elements of \( \spec_R(W) \) (just replace \( C \) with \( R \)). In other words each element of \( W \) defines a mapping \( \spec_R(W)\to R \)
+\begin{equation*}
+  W\to R^{\spec_R(W)}
+\end{equation*}
+
+In the same manner we also obtain a mapping
+\begin{equation*}
+  \alpha : R[W]\to R^{\spec_R(W)}
+\end{equation*}
+
+Again given by sending \( (p+I)\in R[W] \) to the map \( a\mapsto p(a) \). It is of course an algebra homomorphism. The KL Axiom asserts that it is bijective.
+\begin{axiom}[KL]
+  Let \( W\cong \mathbb{Q}[X_1,\dots,X_n]/I \) be a Weil algebra. Then the map
+  \begin{equation*}
+    \alpha : R[W]\to R^{\spec_R(W)}
+  \end{equation*}
+  given by \( p+I \mapsto (a\mapsto p(a)) \) is an \( R \)-algebra isomorphism.
+  \label{ax:genKL}
+\end{axiom}
+
+By asserting this axiom we obtain many of the propositions in the first part of this monograph in a stronger version, and further generalizations. But before looking at those examples we'll note that the first KL axiom given is too a consequence of axiom \ref{ax:genKL}. This can be seen simply by applying the axiom to the Weil algebra \( \mathbb{Q}[X]/(X^2) \). The result is the equivalent version of axiom \ref{KL1} that we had already observed in section \ref{ax1re}.
+
+What the general KL axiom provides is essentially, given a particular set of ``small'' elements of \( R \), a correspondence between functions from that set to \( R \) with a particular finite dimensional \( R \)-algebra. These ``small'' elelements are the objects \( \spec_R(W) \) for some Weil algebra \( W \).  We refer to them as ``small'' because they are meant to be a rigorization of the historically nebulous concept of ``infinitesimals''. We first introduced nilsquares (\( \spec_R(Q[X]/(X^2)) \)), on which all functions are affine, giving us first order derivatives. The Taylor formulas that came afterwards were restricted, however, to sums of elements of \( D \) and not any nilpotent element of \( R \). Since other nilpotents are too spectra of certain Weil algebra, we now have Taylor formulae for these, given by axiom \ref{ax:genKL}. We'll look at a few such spectra, study the KL axiom in regards to them and at the same time introduce their common nomenclature.
+
+\begin{itemize}
+  \item \( D_k := \spec_R(W_{k+1}) \) with \( W_{k+1} = \mathbb{Q}[X]/(X^{k+1}) \). These are elements of \( R \) whose \( (k+1) \)-th power is zero. One can check that \( W_{k+1} \) is isomorphic to the the set \( \{a_0+a_1\epsilon + \dots + a_k\epsilon^k\ \mid a_i\in R\} \) with \( \epsilon \) denoting the equivalence class of \( X \) in \( W_{k+1} \). By axiom \ref{ax:genKL} the set of functions \( D_k\to R \) are isomorphic as an \( R \)-algebra to the algebra \( W_{k+1} \). Another way of saying this is that:
+    \begin{proposition}
+      For all functions \( g:D_k\to R \) there exist unique coefficients \( a_0,\dots,a_k\in R \) such that
+      \begin{equation*}
+	 g(\delta) = a_0 + a_1\delta + \dots + a_k\delta^k \quad \forall\delta\in D_k
+      \end{equation*}
+    \end{proposition}
+    And as an immediate consequence we have that, for any \( f:R\to R \) there exist unique coefficients \( a_0,\dots,a_k\in R \) such that
+    \begin{equation*}
+      f(x+\delta) = a_0 + a_1\delta + \dots + a_k\delta^k \quad \forall \delta\in R\, :\, \delta^{k+1}=0
+    \end{equation*}
+    That is, we have Taylor formulas of all orders (and one can check that the \( a_i \) are precisely the Taylor coefficients.
+
+  \item \( D_k^n := \spec_R(W_{k+1}^n) \) where \( W_{k+1}^n \) just means the cartesian product with itself \( n \) times. This is a Weil algebra, and it is presented by \( \mathbb{Q}[X_1,\dots,X_n](X_1^{k+1},\dots,X_n^{k+1}) \). The general KL axiom applied to this particular algebra is what yields higher dimensional Taylor formulae. We state it now without proof (a tedious but simple combinatorial exercise).
+    \begin{proposition}
+      For any function \( f:R^n\to R \),
+      \begin{equation*}
+	f( \vec{x} + \vec{\delta} ) = \sum_{\alpha \leq k}{\frac{\vec{\delta}}{\alpha!}\cdot\frac{\partial^{\abs\alpha}f}{\partial x^\alpha}(\vec{x})}\quad \forall \delta : \delta^{k+1}=0
+      \end{equation*}
+    \end{proposition}
+    where we're using the usual multi-index notation - if \( \alpha=(\alpha_1,\dots,\alpha_n) \) then \( \abs\alpha = \alpha_1+\dots+\alpha_n \), \( \alpha! = \alpha_1!\cdot\dots\cdot\alpha_n! \) and \( \frac{\partial^{\abs\alpha}f}{\partial x^\alpha}=\frac{\partial^{\abs\alpha}f}{\partial x^{\alpha_1}\dots\partial x^{\alpha_n}} \). The partial derivatives are defined in the same way as before.
+
+\end{itemize}
 
 \section{Microlinearity}
 
