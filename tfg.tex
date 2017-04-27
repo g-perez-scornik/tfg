@@ -539,7 +539,7 @@ By asserting this axiom we obtain many of the propositions in the first part of 
 What the general KL axiom provides is essentially, given a particular set of ``small'' elements of \( R \), a correspondence between functions from that set to \( R \) with a particular finite dimensional \( R \)-algebra. These ``small'' elelements are the objects \( \spec_R(W) \) for some Weil algebra \( W \).  We refer to them as ``small'' because they are meant to be a rigorization of the historically nebulous concept of ``infinitesimals''. We first introduced nilsquares (\( \spec_R(Q[X]/(X^2)) \)), on which all functions are affine, giving us first order derivatives. The Taylor formulas that came afterwards were restricted, however, to sums of elements of \( D \) and not any nilpotent element of \( R \). Since other nilpotents are too spectra of certain Weil algebra, we now have Taylor formulae for these, given by axiom \ref{ax:genKL}. We'll look at a few such spectra, study the KL axiom in regards to them and at the same time introduce their common nomenclature.
 
 \begin{itemize}
-  \item \( D_k := \spec_R(W_{k+1}) \) with \( W_{k+1} = \mathbb{Q}[X]/(X^{k+1}) \). These are elements of \( R \) whose \( (k+1) \)-th power is zero. One can check that \( W_{k+1} \) is isomorphic to the the set \( \{a_0+a_1\epsilon + \dots + a_k\epsilon^k\ \mid a_i\in R\} \) with \( \epsilon \) denoting the equivalence class of \( X \) in \( W_{k+1} \). By axiom \ref{ax:genKL} the set of functions \( D_k\to R \) are isomorphic as an \( R \)-algebra to the algebra \( W_{k+1} \). Another way of saying this is that:
+  \item \( D_k := \spec_R(W_{k+1}) \) with \( W_{k+1} = \mathbb{Q}[X]/(X^{k+1}) \). These are elements of \( R \) whose \( (k+1) \)-th power is zero (in particular \( D_2 = D \)). One can check that \( W_{k+1} \) is isomorphic to the the set \( \{a_0+a_1\epsilon + \dots + a_k\epsilon^k\ \mid a_i\in R\} \) with \( \epsilon \) denoting the equivalence class of \( X \) in \( W_{k+1} \). By axiom \ref{ax:genKL} the set of functions \( D_k\to R \) are isomorphic as an \( R \)-algebra to the algebra \( W_{k+1} \). Another way of saying this is that:
     \begin{proposition}
       For all functions \( g:D_k\to R \) there exist unique coefficients \( a_0,\dots,a_k\in R \) such that
       \begin{equation*}
@@ -550,9 +550,9 @@ What the general KL axiom provides is essentially, given a particular set of ``s
     \begin{equation*}
       f(x+\delta) = a_0 + a_1\delta + \dots + a_k\delta^k \quad \forall \delta\in R\, :\, \delta^{k+1}=0
     \end{equation*}
-    That is, we have Taylor formulas of all orders (and one can check that the \( a_i \) are precisely the Taylor coefficients.
+    That is, we have Taylor formulas of all orders (and one can check that the \( a_i \) are precisely the Taylor coefficients).
 
-  \item \( D_k^n := \spec_R(W_{k+1}^n) \) where \( W_{k+1}^n \) just means the cartesian product with itself \( n \) times. This is a Weil algebra, and it is presented by \( \mathbb{Q}[X_1,\dots,X_n](X_1^{k+1},\dots,X_n^{k+1}) \). The general KL axiom applied to this particular algebra is what yields higher dimensional Taylor formulae. We state it now without proof (a tedious but simple combinatorial exercise).
+  \item \( (D_k)^n := \spec_R((W_{k+1})^n) \) where \( (W_{k+1})^n \) just means the cartesian product with itself \( n \) times (and so does taking the spectrum of the product of \( W_k \) coincide with the product of \( D_k \)). This is a Weil algebra, and it is presented by \( \mathbb{Q}[X_1,\dots,X_n](X_1^{k+1},\dots,X_n^{k+1}) \) . The general KL axiom applied to this particular algebra is what yields higher dimensional Taylor formulae. We state it now without proof (a tedious but simple combinatorial exercise).
     \begin{proposition}
       For any function \( f:R^n\to R \),
       \begin{equation*}
@@ -560,8 +560,17 @@ What the general KL axiom provides is essentially, given a particular set of ``s
       \end{equation*}
     \end{proposition}
     where we're using the usual multi-index notation - if \( \alpha=(\alpha_1,\dots,\alpha_n) \) then \( \abs\alpha = \alpha_1+\dots+\alpha_n \), \( \alpha! = \alpha_1!\cdot\dots\cdot\alpha_n! \) and \( \frac{\partial^{\abs\alpha}f}{\partial x^\alpha}=\frac{\partial^{\abs\alpha}f}{\partial x^{\alpha_1}\dots\partial x^{\alpha_n}} \). The partial derivatives are defined in the same way as before.
-
+  \item \( D(n) := \spec_R(W(n)) \) where \( W(n) = \Q[X_1,\dots,X_n]/(\{X_iX_j\}_{1\leq i,j \leq n}) \). A simpler way of writing this is \( D(n) = \{(d_1,\dots,d_n)\subset R^n\mid \text{the product of any two \( d_i,d_j \) is zero}\} \).
+  \item \( D_k(n) := \spec_R(W_k(n)) \) where \( W_k(n) = \Q[X_1,\dots,X_n]/(\{X_{i_1}\cdots X_{i_k}\}_{1\leq i_1,\dots,i_k\leq n}) \). Again these are the elements of \( R^n \) such that the product of any \( k \) of their components is equal to zero.
 \end{itemize}
+
+There are some notable inclusions:
+
+\begin{align*}
+  D_k(n)  &\subset D_l(n)             \text{ iff k\(\leq\) l} \\
+  D_k(n)  &\subset (D_k)^n            \\
+  (D_k)^n &\subset D_{n\cdot k}(n)   
+\end{align*}
 
 \section{Microlinearity}
 
@@ -693,6 +702,64 @@ For plenty more examples, one should look at \cite{lav96}. The objective of thes
 \begin{proposition}
   \( R \) perceives finite quasi colimits as colimits. Conversely, if \( R \) perceives a diagram as a colimit, it is a quasi colimit. 
   \label{prop:Rperc}
+\end{proposition}
+
+We'll need a simple result previously, in the form of the following
+
+%TODO:proof
+\begin{lemma}
+  Let 
+  \begin{equation*}
+   \left(W_i\stackrel{p_i}{\longleftarrow}W_L\right)_{i\in I}
+  \end{equation*}
+  be any limit of Weil algebras. Then the diagram
+  \begin{equation*}
+    \left(R[W_i]\stackrel{p_i}{\longleftarrow}R[W_L]\right)_{i\in I}
+  \end{equation*}
+  is a limit of \( R \)-algebras.  
+  \label{lm:Rbracket}
+\end{lemma}
+
+With that, we can prove the proposition.
+
+\begin{proof}[Proof of proposition \ref{prop:Rperc}]
+  Let \( \left(L\stackrel{f_i}{\longrightarrow}D_i\right)_{i\in I} \) be a finite quasi colimit. That is, we may write the diagram as
+  \begin{equation}
+    \left(\spec_R(W_L)\stackrel{\spec_R(p_i)}{\longrightarrow}\spec_R(W_i)\right)_{i\in I}
+    \label{dg:fquasicolt}
+  \end{equation}
+  where
+  \begin{equation*}
+   \left(W_i\stackrel{p_i}{\longleftarrow}W_L\right)_{i\in I}
+  \end{equation*}
+  is some good finite limit of Weil algebras. We need to prove that diagram \ref{dg:fquasicolt} is taken to a limit by the functor \( R^{(\farg)} \). Under this functor, the resulting diagram is
+  \begin{equation}
+    \left(R^{\spec_R(W_L)}\stackrel{R^{\spec_R(p_i)}}{\longrightarrow}R^{\spec_R(W_i)}\right)_{i\in I}
+    \label{dg:Rfqc}
+  \end{equation}
+  Now we invoke the general KL axiom, which says that this diagram is isomorphic to
+  \begin{equation*}
+    \left(R[W_i]\stackrel{p_i}{\longleftarrow}R[W_L]\right)_{i\in I}
+  \end{equation*}
+  By lemma \ref{lm:Rbracket}, this is a limit, since by hypothesis
+  \begin{equation*}
+   \left(W_i\stackrel{p_i}{\longleftarrow}W_L\right)_{i\in I}
+  \end{equation*} 
+  is a limit of Weil algebras.
+\end{proof}
+
+\subsection{Microlinear objects}
+
+The behavior of \( R \) studied above will be a fundamental requirement as we move onto studying other objects of synthetic differential geometry. We call these objects \emph{microlinear}, and it can be said that they are a sort of generalized ``manifold'' in the context of SDG. Let us state this precisely:
+
+\begin{defn}
+  An object \( M \) is said to be \emph{microlinear} if it perceives finite quasi colimits as limits.
+\end{defn}
+
+Thus, obviously \( R \) is microlinear. We'll make two observations.
+
+\begin{proposition}
+  If \( M \) is a microlinear object and \( X \) is any other object, then \( M^X \) is also microlinear.
 \end{proposition}
 
 \clearpage
