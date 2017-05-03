@@ -723,9 +723,9 @@ We'll need a simple result previously, in the form of the following
 With that, we can prove the proposition.
 
 \begin{proof}[Proof of proposition \ref{prop:Rperc}]
-  Let \( \left(L\stackrel{f_i}{\longrightarrow}D_i\right)_{i\in I} \) be a finite quasi colimit. That is, we may write the diagram as
+  Let \( \left(L\stackrel{f_i}{\longleftarrow}D_i\right)_{i\in I} \) be a finite quasi colimit. That is, we may write the diagram as
   \begin{equation}
-    \left(\spec_R(W_L)\stackrel{\spec_R(p_i)}{\longrightarrow}\spec_R(W_i)\right)_{i\in I}
+    \left(\spec_R(W_L)\stackrel{\spec_R(p_i)}{\longleftarrow}\spec_R(W_i)\right)_{i\in I}
     \label{dg:fquasicolt}
   \end{equation}
   where
@@ -761,6 +761,33 @@ Thus, obviously \( R \) is microlinear. We'll make two observations.
 \begin{proposition}
   If \( M \) is a microlinear object and \( X \) is any other object, then \( M^X \) is also microlinear.
 \end{proposition}
+
+\begin{proposition}
+  If
+  \begin{equation*}
+    \left( M\stackrel{f_\alpha}{\longrightarrow} M_\alpha \right)_{\alpha\in A}
+  \end{equation*}
+  is a limit, with \( M_\alpha \) microlinear for every \( \alpha\in A \), then \( M \) is microlinear.
+\end{proposition}
+
+\section{Tangency}
+
+At this point we have enough of the basic theory in place to begin doing actual \emph{geometry} on ``manifolds'' (microlinear objects).
+
+\subsection{The tangent bundle}
+
+Let \( M \) be a microlinear object and \( p\in M \). We make the following
+
+\begin{defn}
+  A tangent vector to \( M \) at \( p \) is a mapping 
+  \begin{equation*}
+    t:D\to M
+  \end{equation*}
+  such that \( t(0)=p \).
+\end{defn}
+
+We call the collection of all such tangent vectors \( T_pM \), the tangent space at \( p \) of \( M \).
+
 
 \clearpage
 \bibliography{tfg}
