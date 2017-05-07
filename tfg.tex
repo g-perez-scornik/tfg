@@ -786,8 +786,184 @@ Let \( M \) be a microlinear object and \( p\in M \). We make the following
   such that \( t(0)=p \).
 \end{defn}
 
-We call the collection of all such tangent vectors \( T_pM \), the tangent space at \( p \) of \( M \).
+We call the collection of all such tangent vectors \( T_pM \), the tangent space at \( p \) of \( M \). In resemblence to classical geometry, we of course expect each \( T_pM \) to have a vector space structure (and to justify calling them \emph{vectors} in the first place). It will not be so, since \( R \) is not a field in the classical sense, but we will prove that each \( T_pM \) is a Euclidean \( R \)-module. Let us begin by defining scalar multiplication:
 
+\begin{equation*}
+  R\times T_pM \to T_pM \atop (\lambda,t)\mapsto \lambda t
+\end{equation*}
+
+where the map \( \lambda t: D\to M \) is defined by
+
+\begin{equation*}
+  (\lambda t)(d) = t(\lambda d)
+\end{equation*}
+
+As for addition, consider two tangent vectors at \( p \), \( t_1,t_2:D\to M \). We now use that \( M \) is microlinear. Recall from earlier that the diagram below is a quasi pushout:
+
+\begin{equation}
+  \xymatrix{
+    {\{0\}} \ar[d]_0 \ar[r]^0   & D \ar[d]^{i_2} \\
+    D \ar[r]_{i_1}              & D(2)
+  }
+  \label{dg:pushoutcopy}
+\end{equation}
+
+Since \( M \) is microlinear, it perceives \ref{dg:pushoutcopy} as a pushout. As we studied in the case of \( R \), this means that the maps \( D(2)\to M \) are in bijection with pairs of maps \( D\to M \) that are equal at \( 0 \). This is the case with \( t_1 \) and \( t_2 \), since \( t_1(0)=p=t_2(0) \). Thus, there exists a unique map, which we call
+
+\begin{equation*}
+  s_{t_1,t_2}:D(2)\to M
+\end{equation*}
+
+allowing us to define
+
+\begin{equation*}
+  t_1+t_2:d\mapsto s_{t_1,t_2}(d,d)
+\end{equation*}
+
+Finally, let us define \( 0\in T_pM \) as the constand map \( 0(d)=p \,\forall d\in D \), and the additive opposite of a vector \( t \) as \( -t \), given by \( (-t)(d) = t(-d) \).
+
+\begin{proposition}
+  Let \( p\in M \). With the operations defined above, \( T_pM \) is an \( R \)-module.
+\end{proposition}
+
+\begin{proof}
+  \begin{enumerate}
+    \item Addition is commutative. Let \( t_1,t_2\in T_pM \). Again, this defines
+      \begin{equation*}
+	s_{t_1,t_2}:D(2)\to M
+      \end{equation*}
+      as the unique map satisfying \( s_{t_1,t_2}(d_1,0) = t_1(d_1) \) and \( s_{t_1,t_2}(0,d_2) = t_2(d_2) \). On the other hand, \( t_1 \) and \( t_2 \) also define the map
+      \begin{equation*}
+	s_{t_2,t_1}:D(2)\to M
+      \end{equation*}
+      unique among maps satisfying \( s_{t_2,t_1}(d_2,0) = t_2(d_2) \) and \( s_{t_2,t_1}(0,d_1) = t_1(d_1) \). Thererore, we have that for all \( (d_1,d_2)\in D(2) \)
+      \begin{equation*}
+	s_{t_1,t_2}(d_1,d_2) = s_{t_2,t_1}(d_2,d_1)
+      \end{equation*}
+      In particular, \( s_{t_1,t_2} \) and \( s_{t_2,t_1} \) are equal on the diagonal \( \left\{ (d,d)\mid d\in D \right\}\subset D(2) \). So, by definition of \( t_1+t_2 \) and \( t_2+t_1 \), these two are equal.
+
+    \item Addition is associative. This requires a generalization of proposition \ref{prop:pullback}, that is, that \( R \) perceives the diagram
+      \begin{equation}
+	\xymatrix{
+	  {\{0\}} \ar[d]_0 \ar[r]^0   & D(q) \ar[d]^{i_2} \\
+	  D(p) \ar[r]_{i_1}              & D(p+q)
+	}
+	\label{dg:pushoutgen}
+      \end{equation}
+      as a pushout, for any \( p,q\geq 1 \). Here the maps \( i_1,i_2 \) are
+      \begin{align*}
+	i_1(d_1,\dots,d_p) &= (d_1,\dots,d_p,0,\dots,0) \\
+	i_2(d_1,\dots,d_q) &= (0,\dots,0,d_1,\dots,d_q)
+      \end{align*}
+      The proof is nearly identical to the case we have examined (\( p=q=1 \)), one can refer to \cite[p. 48]{lav96} for details. That \( R \) perceives \ref{dg:pushoutgen} as a pushout means that \( M \) does as well, \( M \) being microlinear. In turn, this implies that the diagram
+      \begin{equation*}
+	\xymatrix{
+	  M                & M^{D(2)} \ar[l]_{M^0} \\
+	  M^D \ar[u]^{M^0} & M^{D(3)} \ar[u]_{M^{i_2}} \ar[l]^{M^{i_1}}
+	}
+      \end{equation*}
+      is a pullback. That is, any function
+      \begin{equation*}
+	g:D(3)\to M \atop (d_1,d_2,d_3)\mapsto g(d_1,d_2,d_3)
+      \end{equation*}
+      is uniquely determined by the functions
+      \begin{equation*}
+	g_1:D\to M \atop d_1\mapsto g(d_1,0,0)
+      \end{equation*}
+      and
+      \begin{equation*}
+	g_{23}:D(2)\to M \atop (d_2,d_3) \mapsto g(0,d_2,d_3)
+      \end{equation*}
+      Now, by applying the characterization of maps \( D(2)\to M \) on \( g_{23} \), we obtain that \( g \) is the unique map satisfying \( g(d_1,0,0)=g_1(d_1) \), \( g(0,d_2,0)=g_{23}(d_2,0) \), and \( g(0,0,d)=g_{23}(0,d_3) \) for all \( (d_1,d_2,d_3)\in D(3) \). In other words, any map
+      \begin{equation*}
+	g:D(3)\to M
+      \end{equation*}
+      is uniquely determined by three maps \( g_1,g_2,g_3:D\to M \) with \( g_1(0)=g_2(0)=g_3(0) \), and such that
+      \begin{align*}
+	g_1(d_1) &= g(d_1,0,0) \\
+	g_2(d_2) &= g(0,d_2,0) \\
+	g_3(d_3) &= g(0,0,d_3)
+      \end{align*}
+      With that said, let \( t_1,t_2,t_3\in T_pM \) be three tangent vectors. As before, \( t_1 \) and \( t_2 \) determine a unique map
+      \begin{equation*}
+	s_{t_1,t_2}:D(2)\to M
+      \end{equation*}
+      So that, together with \( t_3 \), they determine a map \( g_l:D(3)\to M \) given by
+      \begin{align*}
+	g_l(d_1,0,0) &= s_{t_1,t_2}(d_1,0) \\
+	g_l(0,d_2,0) &= s_{t_1,t_2}(0,d_2) \\
+	g_l(0,0,d_3) &= t_3(d_3)
+      \end{align*}
+      Likewise, we obtain a map \( g_r \) by
+      \begin{align*}
+	g_r(d_1,0,0) &= t_1(d_1)           \\
+	g_r(0,d_2,0) &= s_{t_2,t_3}(d_2,0) \\
+	g_r(0,0,d_3) &= s_{t_2,t_3}(0,d_3)
+      \end{align*}
+      But these are the same map, since they both satisfy
+      \begin{align*}
+	g_l(d_1,0,0) &= g_r(d_1,0,0) = t_1(d_1) \\
+	g_l(0,d_2,0) &= g_r(0,d_2,0) = t_2(d_2) \\
+	g_l(0,0,d_3) &= g_r(0,0,d_3) = t_3(d_3)
+      \end{align*}
+      Now note that
+      \begin{align*}
+	((t_1+t_2)+t_3)(d) &= s_{t_1+t_2,t_3}(d,d) = g_l(d,d,d) \\
+	(t_1+(t_2+t_3))(d) &= s_{t_1,t_2+t_3}(d,d) = g_r(d,d,d) 
+      \end{align*}
+      by which we conclude that \( ((t_1+t_2)+t_3) = (t_1+(t_2+t_3)) \).
+
+    \item The map 0 is the additive identity. Let \( t:D\to M \) be a tangent vector at \( p \), and \( 0:D\to M \) be the constant \( p \). The identities
+      \begin{align*}
+	s_{t,0}(d,0) &= t(d) \\
+	s_{t,0}(0,d) &= 0(d) = p
+      \end{align*}
+      uniquely determine \( s_{t,0}:D(2)\to M \). But the function \( t\circ \pi_1:D(2)\to M \), where \( \pi_2:D(2)\to D \) is the projection onto the second coordinate, also satisfies those equations, making \( s_{t,0} = t\circ \pi_2 \). Therefore,
+      \begin{equation*}
+	(t+0)(d) = s_{t,0}(d,d) = (t\circ \pi_2)(d,d) = t(d)
+      \end{equation*}
+
+    \item The opposite of a vector, as defined, satisfies \( t + (-t) = 0 \). The function \( s_{t,-t}:D(2)\to M \) is unique such that \( s_{t,-t}(d,0) = t(d) \) and \( s_{t,-t}(0,d) = (-t)(d) = t(-d) \). Again, we explicitly exhibit the function
+      \begin{equation*}
+	f:D(2)\to M \atop (d_1,d_2)\mapsto t(d_1-d_2)
+      \end{equation*}
+      and \( f \) satisfies the same equations, making it equal to \( s_{t,-t} \). Therefore, for any \( d\in D \)
+      \begin{equation*}
+	(t+(-t))(d) = s_{t,-t}(d,d) = f(d,d) = t(d-d) = t(0) = p
+      \end{equation*}
+
+    \item We have the identities
+      \begin{enumerate}
+	\item\label{a} \( (\alpha + \beta)t = \alpha t + \beta t \)
+	\item\label{b} \( \alpha(t_1+t_2) = \alpha t_1 + \alpha t_2\)
+	\item\label{c} \( \alpha (\beta t) = (\alpha \beta) t\)
+	\item\label{d}\( 1\cdot t = t \)
+      \end{enumerate}
+      With \( \alpha,\beta\in R \) and \( t,t_1,t_2\in T_pM \). The tangent vector \( \alpha t + \beta t \) is the unique map \( s_{\alpha t, \beta t}:D(2)\to M \) satisfying
+      \begin{align*}
+	s_{\alpha t, \beta t}(d_1,0) &= (\alpha t)(d_1)= t(\alpha d_1) \\
+	s_{\alpha t, \beta t}(0,d_2) &= (\beta t)(d_2)= t(\beta d_2)
+      \end{align*}
+      On the other hand, the map \( c \), defined by
+      \begin{equation*}
+       c(d_1,d_2) = t(\alpha d_1 + \beta d_2)
+      \end{equation*}
+      satisfies the equations, by which \( s_{\alpha t, \beta t} = c\). So,
+      \begin{equation*}
+	(\alpha t + \beta t)(d) = c(d,d) = t(\alpha d + \beta d) = t((\alpha + \beta)d) = (\alpha + \beta)t(d)
+      \end{equation*}
+      by definition. That proves \ref{a}. To prove \ref{b} we make an analogous argument, this time considering
+      \begin{equation*}
+	c(d_1,d_2) = s_{t_1,t_2}(\alpha d_1, \alpha d_2)
+      \end{equation*}
+      leaving \ref{c} and \ref{d}, which are immediate.
+  \end{enumerate}
+  This concludes the proof that \( T_pM \) is an \( R \)-module. We will now prove that it is Euclidean. Recall that this means that, for any map \( \varphi:D\to T_pM \), there should be a unique vector \( t\in T_pM \) such that, for all \( d\in D \)
+  \begin{equation*}
+    \varphi(d) = \varphi(0) + d\cdot t
+  \end{equation*}
+
+\end{proof}.
 
 \clearpage
 \bibliography{tfg}
