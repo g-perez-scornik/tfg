@@ -13,6 +13,10 @@
 \usepackage{fix-cm}
 \usepackage[all]{xy}
 
+\xymatrixrowsep{4em}
+\xymatrixcolsep{4em}
+
+
 \newtheorem{axiom}{Axiom}[section]
 \setcounter{axiom}{-1}
 
@@ -552,6 +556,7 @@ What the general KL axiom provides is essentially, given a particular set of ``s
     \end{equation*}
     That is, we have Taylor formulas of all orders (and one can check that the \( a_i \) are precisely the Taylor coefficients).
 
+    %TODO: make sure of this
   \item \( (D_k)^n := \spec_R((W_{k+1})^n) \) where \( (W_{k+1})^n \) just means the cartesian product with itself \( n \) times (and so does taking the spectrum of the product of \( W_k \) coincide with the product of \( D_k \)). This is a Weil algebra, and it is presented by \( \mathbb{Q}[X_1,\dots,X_n](X_1^{k+1},\dots,X_n^{k+1}) \) . The general KL axiom applied to this particular algebra is what yields higher dimensional Taylor formulae. We state it now without proof (a tedious but simple combinatorial exercise).
     \begin{proposition}
       For any function \( f:R^n\to R \),
@@ -699,6 +704,7 @@ How we refer to this phenomenon (or how it is often referred to) is \emph{``R pe
 %TODO: add other places where it is useful, if they arise
 For plenty more examples, one should look at \cite{lav96}. The objective of these definitions are to state the upcoming proposition, which generalizes the previous observation that \emph{``R perceives\dots etc''}. The result will be of use in section {//placeholder//} as a smoothness condition.
 
+%TODO: converse
 \begin{proposition}
   \( R \) perceives finite quasi colimits as colimits. Conversely, if \( R \) perceives a diagram as a colimit, it is a quasi colimit. 
   \label{prop:Rperc}
@@ -937,7 +943,7 @@ Finally, let us define \( 0\in T_pM \) as the constand map \( 0(d)=p \,\forall d
 	\item\label{a} \( (\alpha + \beta)t = \alpha t + \beta t \)
 	\item\label{b} \( \alpha(t_1+t_2) = \alpha t_1 + \alpha t_2\)
 	\item\label{c} \( \alpha (\beta t) = (\alpha \beta) t\)
-	\item\label{d}\( 1\cdot t = t \)
+	\item\label{d} \( 1\cdot t = t \)
       \end{enumerate}
       With \( \alpha,\beta\in R \) and \( t,t_1,t_2\in T_pM \). The tangent vector \( \alpha t + \beta t \) is the unique map \( s_{\alpha t, \beta t}:D(2)\to M \) satisfying
       \begin{align*}
@@ -962,8 +968,74 @@ Finally, let us define \( 0\in T_pM \) as the constand map \( 0(d)=p \,\forall d
   \begin{equation*}
     \varphi(d) = \varphi(0) + d\cdot t
   \end{equation*}
+  This will again be a consequence of microlinearity. Define
+  \begin{equation*}
+    \tau : D\times D\to M \atop (d_1,d_2)\mapsto (\varphi(d_1)-\varphi(0))(d_2)
+  \end{equation*}
+  Note that \( \varphi(d_1)-\varphi(0) \) is a tangent vector at \( p \), so that
+  \begin{equation*}
+    \tau(d_1,0) = \tau(0,d_2) = \tau(0,0) = p
+  \end{equation*}
+  for all \( d_1,d_2\in D \). We'll now need another lemma concerning a quasi colimit.
 
+  \begin{lemma}
+    M perceives the diagram
+    \begin{equation}
+      \xymatrix{
+	D \ar@<1em>[r]^{i_1} \ar[r]^{i_2} \ar@<-1em>[r]^{0} & D\times D \ar[r]^{\mu} & D
+      }
+      \label{dg:3coequ}
+    \end{equation}
+    \label{lm:3coequ}
+    as a colimit (a ``triple coequalizer'', if one wishes). Here the maps \( i_1,i_2 \) are defined by \( i_1(d)=(d,0), i_2(d)=(0,d) \), \( 0 \) is the zero map, and \( \mu \) is the multiplication of elements of \( R \), restricted to elements of \( D \).
+  \end{lemma}
+
+  In other words, the diagram
+  \begin{equation*}
+    \xymatrix{
+      M^D & M^{D\times D} \ar@<1em>[l]_{M^{i_1}} \ar[l]_{M^{i_2}} \ar@<-1em>[l]_{M^{0}} & M^D \ar[l]_{M^{\mu}} 
+    }
+  \end{equation*}
+  is a limit (a triple equalizer). That is, if \( g\in M^{D\times D} \) is such that
+  \begin{equation}
+    g(d_1,0)=g(0,d_2)=g(0,0) \quad \forall d_1,d_2\in D
+    \label{eq:3equ}
+  \end{equation}
+  then there exists a unique mapping 
+  \begin{equation*}
+    t:D\to M
+  \end{equation*}
+  such that
+  \begin{equation*}
+    g(d_1,d_2) = (t\circ \mu)(d_1,d_2) = t(d_1d_2)
+  \end{equation*}
+  
+  This is all we need, since the map \( \tau \) verifies the equations \ref{eq:3equ}. Therefore there exists a unique \( t:D\to M \) with
+  \begin{equation*}
+    \tau(d_1,d_2)=t(d_1d_2) \quad \forall d_1,d_2\in D
+  \end{equation*}
+  In other words for all \( d_1,d_2 \),
+  \begin{equation*}
+    (\varphi(d_1) - \varphi(0))(d_2) = t(d_1d_2) = (d_1t)(d_2)
+  \end{equation*}
+  where the last equality is by definition of scalar multiplication of tangent vectors. The above holds in particular for all \( d_2\in D \), so that there is an equality of maps
+  \begin{equation*}
+    \varphi(d_1) = \varphi(0)+d_1t
+  \end{equation*}
 \end{proof}.
+
+The proof of lemma \ref{lm:3coequ} is fairly straightforward. Since \( M \) is microlinear, it amounts to proving that diagram \ref{dg:3coequ} is a quasi colimit.
+
+\begin{proof}[Proof of lemma \ref{lm:3coequ}]
+  The diagram
+  \begin{equation}
+    \xymatrix{
+      R[X]/(X^2) & R[X,Y]/(X^2,Y^2) \ar@<1em>[l]_{f_1} \ar[l]_{f_2} \ar@<-1em>[l]_{f_3} & R[X]/(X^2) \ar[l]_{m} 
+    }
+    \label{dg:3equWalg}
+  \end{equation}
+  is a limit.
+\end{proof}
 
 \clearpage
 \bibliography{tfg}
