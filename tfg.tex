@@ -13,8 +13,8 @@
 \usepackage{fix-cm}
 \usepackage[all]{xy}
 
-\xymatrixrowsep{4em}
-\xymatrixcolsep{4em}
+\xymatrixrowsep{8ex}
+\xymatrixcolsep{8ex}
 
 
 \newtheorem{axiom}{Axiom}[section]
@@ -993,7 +993,7 @@ Finally, let us define \( 0\in T_pM \) as the constand map \( 0(d)=p \,\forall d
   In other words, the diagram
   \begin{equation*}
     \xymatrix{
-      M^D & M^{D\times D} \ar@<1em>[l]_{M^{i_1}} \ar[l]_{M^{i_2}} \ar@<-1em>[l]_{M^{0}} & M^D \ar[l]_{M^{\mu}} 
+      M^D & M^{D\times D} \ar@<1ex>[l]_{M^{i_1}} \ar[l]_{M^{i_2}} \ar@<-1ex>[l]_{M^{0}} & M^D \ar[l]_{M^{\mu}} 
     }
   \end{equation*}
   is a limit (a triple equalizer). That is, if \( g\in M^{D\times D} \) is such that
@@ -1027,14 +1027,36 @@ Finally, let us define \( 0\in T_pM \) as the constand map \( 0(d)=p \,\forall d
 The proof of lemma \ref{lm:3coequ} is fairly straightforward. Since \( M \) is microlinear, it amounts to proving that diagram \ref{dg:3coequ} is a quasi colimit.
 
 \begin{proof}[Proof of lemma \ref{lm:3coequ}]
-  The diagram
+  The diagram of Weil algebras
   \begin{equation}
     \xymatrix{
-      R[X]/(X^2) & R[X,Y]/(X^2,Y^2) \ar@<1em>[l]_{f_1} \ar[l]_{f_2} \ar@<-1em>[l]_{f_3} & R[X]/(X^2) \ar[l]_{m} 
+      \Q[X]/(X^2) & \Q[X,Y]/(X^2,Y^2) \ar@<3ex>[l]_{f_1} \ar[l]_{f_2} \ar@<-3ex>[l]_{f_3} & \Q[X]/(X^2) \ar[l]_{m} 
     }
     \label{dg:3equWalg}
   \end{equation}
-  is a limit.
+  is a limit. Here the functions \( m,f_1,f_2,f_3 \) are defined by
+  \begin{align*}
+    f_1: & \begin{array}{c@{\hspace{0.3em}}l} X & \mapsto X \\ Y & \mapsto 0 \end{array} \\[4ex]
+    f_2: & \begin{array}{c@{\hspace{0.3em}}l} X & \mapsto 0 \\ Y & \mapsto X \end{array} \\[4ex]
+    f_3: & \begin{array}{c@{\hspace{0.3em}}l} X & \mapsto 0 \\ Y & \mapsto 0 \end{array} \\[4ex]
+    m:   & \begin{array}{c@{\hspace{0.3em}}l} X & \mapsto XY                 \end{array} 
+  \end{align*}
+  To begin with, the diagram obviously commutes. Now, let \( A \) be any object, and \( g:A\to \Q[X,Y]/(X^2,Y^2) \) a map such that \( f_i\circ g = f_j\circ g \) for any \( i,j \) (\( g \) makes a similar diagram commute). Let \( a\in A \). Its image under \( g \) is an element of \( \Q[X,Y]/(X^2,Y^2) \), and such can be written, modulo \( (X^2,Y^2) \) as
+  \begin{equation*}
+    g(a) = c_{00} + c_{10}X + c_{01}Y + c_{11}XY
+  \end{equation*}
+  The condition that \( g \) commutes with the \( f_i \) force \( c_{10}=c_{01}=0 \). Define
+  \begin{equation*}
+    h(a) = c_{00} + c_{11}X
+  \end{equation*}
+  By varying \( a \) this defines a map \( h:A\to \Q[X]/(X^2) \). Since \( c_{00},c_{11} \) are unique modulo \( (X^2,Y^2) \), the map \( h \) is the unique map such that the following diagram commutes:
+  \begin{equation*}
+    \xymatrix{
+      \Q[X]/(X^2) & \Q[X,Y]/(X^2,Y^2) \ar@<3ex>[l]_{f_1} \ar[l]_{f_2} \ar@<-3ex>[l]_{f_3} & \Q[X]/(X^2) \ar[l]_{m} \\
+      &                                                                                   & A \ar[lu]^g \ar@{.>}[u]^h
+    }
+  \end{equation*}
+  This concludes that diagram \ref{dg:3equWalg} is a limit. It is left to the reader to check that diagram \ref{dg:3coequ} is the result of applying the \( \spec_R \) functor to \ref{dg:3equWalg}, making it a quasi colimit. Since \( M \) was microlinear, the lemma is proven.  
 \end{proof}
 
 \clearpage
