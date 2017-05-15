@@ -39,7 +39,9 @@
 \newcommand{\Q}{\mathbb{Q}}
 %TODO: make this look better
 \newcommand{\qalg}{\Q\mhyph\mathbf{Alg}}
-\newcommand{\walg}{\operatorname W}
+\newcommand{\walg}{\mathbf W}
+\newcommand{\mlin}{\mathbf{Mic}}
+\newcommand{\vbun}{\mathbf{Fib}}
 \renewcommand{\vec}{\underline} %markup for vectors
 \DeclareMathOperator{\spn}{span}
 \DeclareMathOperator{\spec}{Spec}
@@ -376,7 +378,65 @@ Finally, the familiar total differential makes an appearance here too.
   \begin{equation*}
     \vec u\mapsto \partial_{\vec u}f(\vec a)
   \end{equation*}
+  \label{def:df(a)}
 \end{defn}
+
+As noted before, \( df(\vec a) \) defines a linear map \( V\to E \), for each \( a\in V \). It will also be useful to prove that, if \( f \) is linear, it is equal to its own differential. First we need a
+
+\begin{lemma}
+  Let \( V \) be an \( R \)-module, and \( E \) a Euclidean \( R \)-module. Let \( f:V\to E \) be such that
+  \begin{equation*}
+    f(\lambda \vec a) = \lambda f(\vec a)
+  \end{equation*}
+  for all \( \vec a\in V \) and \( \lambda \) in \( R \) (f is homogeneous). Then \( \forall \vec a\in V,\, df(\vec a) = df(\vec 0) \).
+  \label{lm:homg}
+\end{lemma}
+
+\begin{proof}
+  Let \( \vec a\in V \). Since \( E \) is Euclidean, we have
+  \begin{equation*}
+    f(\vec x + d\vec u) = f(\vec x) + d\partial_{\vec u}f(\vec x)
+  \end{equation*}
+  for all \( d\in D \) and \( \vec x,u\in V \). Letting \( x=\lambda a \) and \( d = \lambda\overline d \) for some \( \overline d\in D \), we find that
+  \begin{equation*}
+    f(\lambda\vec a + \lambda d\vec u) = f(\lambda\vec a)+\lambda d\partial_{\vec u}(\lambda\vec a)
+  \end{equation*}
+  At the same time, since \( f \) is homogeneous,
+  \begin{align*}
+    f(\lambda\vec a + \lambda d\vec u) &= \lambda f(\vec a + d\vec u) \\
+                                       &= \lambda (f(\vec a) + d\partial_{\vec u}f(\vec a))
+  \end{align*}
+  Putting together the two equalities, we see that for all \( d\in D \),
+  \begin{align*}
+    \lambda d\partial_{\vec u}f(\lambda\vec a) = \lambda d\partial_{\vec u}f(\vec a) \Rightarrow \\
+    \Rightarrow \lambda\partial_{u}f(\lambda\vec a) = \lambda\partial_{\vec u}(\vec a)
+  \end{align*}
+  Finally, we differentiate both sides with respect to \( \lambda \), which results in
+  \begin{equation*}
+    \partial_{\vec u}f(\lambda\vec a) + \lambda\frac{\partial}{\partial\lambda}(\partial_{\vec u}f(\lambda\vec a)) = \partial_{\vec u}f(\vec a)
+  \end{equation*}
+  Letting \( \lambda=0 \) concludes the proof.
+\end{proof}
+
+With that, we can quickly prove the following
+
+\begin{proposition}
+  Let \( V \) be an \( R \)-module, and \( E \) a Euclidean \( R \)-module. Let \( f:V\to E \) be homogeneous. Then \( f \) is linear and \( f = df(\vec 0) \).
+  \label{prop:homg}
+\end{proposition}
+
+\begin{proof}
+  Since \( E \) is Euclidean, for all \( \vec u\in V \) and \( d\in D \),
+  \begin{align*}
+    d\partial_{\vec u}f(\vec u) &= f(\vec u + d\vec u) - f(\vec u) \\
+                                &= (1+d)f(\vec u) - f(\vec u)      \\
+				&= d\cdot f(\vec u)
+  \end{align*}
+  by which
+  \begin{equation*}
+    f(\vec u) = \partial_{\vec u}f(\vec u) = \partial_{\vec u}(\vec 0) = df(\vec 0 )(\vec u)
+  \end{equation*} 
+\end{proof}
 
 
 \section{The general KL axiom}
@@ -766,6 +826,7 @@ Thus, obviously \( R \) is microlinear. We'll make two observations.
 
 \begin{proposition}
   If \( M \) is a microlinear object and \( X \) is any other object, then \( M^X \) is also microlinear.
+  \label{prop:expmicro}
 \end{proposition}
 
 \begin{proposition}
@@ -774,6 +835,7 @@ Thus, obviously \( R \) is microlinear. We'll make two observations.
     \left( M\stackrel{f_\alpha}{\longrightarrow} M_\alpha \right)_{\alpha\in A}
   \end{equation*}
   is a limit, with \( M_\alpha \) microlinear for every \( \alpha\in A \), then \( M \) is microlinear.
+  \label{prop:limmicro}
 \end{proposition}
 
 \section{Tangency}
@@ -1058,6 +1120,84 @@ The proof of lemma \ref{lm:3coequ} is fairly straightforward. Since \( M \) is m
   \end{equation*}
   This concludes that diagram \ref{dg:3equWalg} is a limit. It is left to the reader to check that diagram \ref{dg:3coequ} is the result of applying the \( \spec_R \) functor to \ref{dg:3equWalg}, making it a quasi colimit. Since \( M \) was microlinear, the lemma is proven.  
 \end{proof}
+
+The natural next step is to define the differential (or derivative, or tangent map, etc.) of a mapping between two microlinear objects. Let \( M,N \) be microlinear, and \( f:M\to N \) a map. Let \( p\in M \). We define:
+\begin{equation*}
+  df_p : T_pM\to T_{f(p)}N
+\end{equation*}
+by
+\begin{equation*}
+  df_p(t) = f\circ t
+\end{equation*}
+
+As we should expect, this map is linear. Since \( T_pM \) is Euclidean, by proposition \ref{prop:homg} it suffices to see that it is homogeneous. For \( d\in D \), we have
+\begin{equation*} 
+  df_p(\alpha t)(d) = (f\circ (\alpha t))(d) = f(t(\alpha d)) = (f\circ t)(\alpha d) = (\alpha \cdot df_p(t))(d)
+\end{equation*}
+
+Another desirable property is that if \( V \) is a Euclidean \( R \)-module, it is canonically isomorphic to \( T_pV \) at every \( p\in V \). This is easy to see by presenting the isomorphism explicitly. Define
+\begin{equation*}
+  \lambda_p:V\to T_pV
+\end{equation*}
+by sending \( v\in V \) to the map
+\begin{equation*}
+  d\mapsto p+dv
+\end{equation*}
+This is a bijection since, by virtue of \( V \) being Euclidean, every map \( t:D\to V \) is characterized by a unique \( b\in V \) such that
+\begin{equation*}
+  d\mapsto t(0)+db
+\end{equation*}
+In \( T_pV \), each \( t(0) \) is equal to \( p \), so the inverse of \( \lambda_p \) is \( \lambda_p^{-1}(t) = b \). The map \( \lambda_p \) is obviously homogeneous, so again by proposition \ref{prop:homg} it is linear. As a short exercise, one can prove that, under this identification, \( df_p \) corresponds to \( df(p) \) (definition \ref{def:df(a)}) for maps of Euclidean \( R \)-modules \( f:V\to E \).
+
+\subsection{Vector bundles; the tangent bundle}
+
+\begin{defn}
+  Let \( \pi:E\to M \) be a mapping of microlinear objects. We say that \( \pi \) is a \emph{(resp. Euclidean) vector bundle} if each fiber \( \pi_p = \pi^{-1}(\{p\}) \) of \( \pi \) is a (resp. Euclidean) \( R \)-module.
+\end{defn}
+
+As a prominent example, we have
+
+\begin{defn}
+  Let \( M \) be a microlinear object. The \emph{tangent bundle} on \( M \) is given by
+  \begin{equation*}
+    \pi:M^D\to M \atop t\mapsto t(0)
+  \end{equation*}
+\end{defn}
+
+The previous map indeed defines a Euclidean vector bundle. First, \( M^D \) is microlinear by proposition \ref{prop:expmicro}, and second each fiber is just \( T_pM \), which we have just seen to be a Euclidean \( R \)-module.
+
+We have defined vector bundles, so we should define what it means to be a morphism of vector bundles. If
+\begin{align*}
+  \pi_1:E_1\to M_1 \\
+  \pi_2:E_2\to M_2 \\
+\end{align*}
+are two vector bundles, then a pair \( (\varphi,f) \) is said to be a morphism of the vector bundles \( \pi_1,\pi_2 \) if the following diagram commutes:
+\begin{equation*}
+  \xymatrix{
+    E_1 \ar[d]_{\pi_1} \ar[r]^\varphi & E_2 \ar[d]^{\pi_2} \\
+    M_1                \ar[r]_f       & M_2
+  }
+\end{equation*}
+Equivalently, \( \varphi \) takes the fiber at \( p\in M_1 \) to the fiber at \( f(p)\in M_2 \).
+
+Again, an important example is provided by the tangent bundle to a microlinear object. If \( M,N \) are microlinear objects, and \( f:M\to N \) is a map, then \( (f^D,f) \) is a morphism of the tangent bundle at \( M \) to the tangent bundle at \( N \), as evidenced by the commutative diagram
+\begin{equation*}
+  \xymatrix{
+    M^D \ar[d]_{\pi_M} \ar[r]^{f^D} & N^D \ar[d]^{\pi_N} \\
+    M                  \ar[r]_f     & N
+  }
+\end{equation*}
+Where \( \pi_M,\pi_N \) are the projections defining the tangent bundles of \( M,N \), respectively. If we define \( \mlin \) to be the category of microlinear objects (with morphisms regular maps), and \( \vbun \) the category of vector bundles (with morphisms of vector bundles as previously defined), then the association of each microlinear object to its tangent bundle defines a functor
+\begin{equation*}
+  T:\mlin\to\vbun
+\end{equation*}
+with
+\begin{align*}
+  TM &= M^D     \\
+  Tf &= (f^D,f) \\
+\end{align*}
+
+which we call the \emph{tangent functor}. Note that fiberwise, this is exactly the association of each object to its tangent space at a point \( p \), and each map \( f \) to its differential \( df_p \).
 
 \clearpage
 \bibliography{tfg}
