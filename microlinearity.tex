@@ -1,0 +1,201 @@
+\section{Microlinearity}
+
+\subsection{A simple example}
+
+We begin by observing a few specific cases. Let
+\begin{equation*}
+   D\times D \to D 
+\end{equation*}
+be the multiplication map, i.e. \( (d_1,d_2)\mapsto d_1d_2 \). Nothing in our theory suggests that this map should be surjective, but for many purposes it suffices to have the following property:
+
+\begin{proposition}
+  If \( f_1,f_2:D \to R \) verify that, for each \( d_1,d_2\in D,\, f_1(d_1d_2) = f_2(d_1d_2)  \) then \( f_1=f_2 \).
+\end{proposition}
+
+That is, it suffices to know any function \( f:D\to R \) on products of elements of \( D \). This is referred to in \cite{kock06} as ``\emph{\( R \) thinks that the multiplication : \( D\times D\to D \) is surjective}''.
+
+\begin{proof}
+  Define \( g = f_1-f_2 \). By our hypothesis \( g \) is identically zero on all elements \( d_1d_2 \) with \( d_1,d_2\in D \). By the KL axiom (since the previous section this refers to axiom {//placeholder//}, but in this case axiom \ref{KL1} also suffices), there exist unique \( a,b\in R \) such that
+  \begin{equation*}
+    g(d)=a + bd\quad \forall d\in D 
+  \end{equation*}
+  On the one hand \( a=g(0)=g(0\cdot 0) = 0 \), so that \( g(d)=bd \). Thus, for all \( d_1,d_2\in D \) we have \( 0 = g(d_1d_2) = bd_1d_2 \), or in other words that \( bd_1d_2=0 \) for all \( d_1,d_2\in D \), which means that \( b=0 \).
+\end{proof}
+
+\subsection{A slightly more interesting example}
+
+Consider two functions \( f,g:D\to X \) such that \( f(0)=g(0) \), where \( X \) is some set (object of \(  \sdgE) \). Here there is no reason to assume that this will define a map \( D(2)\to X \). It will be the case, however, if \( X \) is \( R \).
+
+\begin{proposition}
+  Let \( f,g:D\to R \) be functions such that \( f(0)=g(0) \). Then there exists a unique function \( h:D(2)\to R \) such that \( h(d,0) = f(d) \) and \( h(0,d)=g(d) \) for all \( d\in D \).
+  \label{prop:d2}
+\end{proposition}
+
+\begin{proof}
+  Let \( a_0 = g(0)=f(0) \). Then we have that for all \( d\in D \),
+  \begin{align*}
+    f(d) &= a_0 + a_1d \\
+    g(d) &= a_0 + b_1d \\
+  \end{align*}
+  Thus, we simply define \( h \) by
+  \begin{equation*}
+    h(d_1,d_2) = a_0 + a_1d_1 + b_1d_2
+  \end{equation*}
+  This clearly satisfies the existence requirements. The Uniqueness is a consequence of the KL axiom. Let \( k \) be another function that satisfies the hypotheses. By the KL axiom applied to \( D(2) \),
+  \begin{equation*}
+    k(d_1,d_2) = \alpha_0 + \alpha_1d_1 + \alpha_2d_2
+  \end{equation*}
+  for unique \( \alpha_i \). By \( k(d,0)=f(d) \) we obtain \( \alpha_0=a_0 \) and \( \alpha_1 = a_1 \). Similarly \( \alpha_2=b_1 \). Since the \( \alpha_i \) are unique and determine \( k \), we get \( k=h \) (if preferred we could have concluded at the very definition of \( h \), since the KL axiom asserts that functions on \( D(2) \) are defined as such - the argument has simply been explicited a bit further here).
+
+\end{proof}
+
+\subsection{Perceived colimits}
+
+The previous examples can be stated in diagrammatic form, which will then lend itself to a generalization in terms of (co)limits. We'll focus on the second example. Consider the following commutative diagram:
+
+\begin{equation}
+  \xymatrix{
+    {\{0\}} \ar[d]_0 \ar[r]^0   & D \ar[d]^{i_2} \\
+    D \ar[r]_{i_1}              & D(2)
+  }
+  \label{dg:pushout}
+\end{equation}
+
+Where \( i_1 \) and \( i_2 \) are the inclusion maps \( i_1(d)=(d,0),\, i_2(d)=(0,d) \) and \( 0 \) is the constant zero map. The previous observation that two maps \( f,g:D\to X \) do not have to define a map \( D(2)\to X \) is equivalent to saying that diagram \ref{dg:pushout} is not a pushout. But, if we apply the \( R^{(\farg)} \) functor to it, the result is:
+
+\begin{equation*}
+  \xymatrix{
+    R^{\{0\}}       & R^D \ar[l]_{R^0}                           \\
+    R^D \ar[u]^{R^0} & R^{D(2)} \ar[u]_{R^{i_2}} \ar[l]^{R^{i_2}} 
+  }
+  \label{dg:pullback}
+\end{equation*}
+
+\begin{proposition}
+  Diagram \ref{dg:pullback} is a pullback.
+  \label{prop:pullback}
+\end{proposition}
+
+%TODO:make sure of this and add to appendix
+\begin{proof}
+  First we will make the diagram a little neater. Firstly, \( R^{\{0\}} \) is isomorphic to \( R \). The map \( R^0 \) Takes \( f:D\to R \) and sends it to \( f\circ 0 \), which we simply identify with \( f(0) \) the same way we identified \( R^{\{0\}} \) with \( R \). Likewise, the map \( R^{i_1} \) sends \( g:D(2)\to R \) to \( g\circ i_1 \). Thus, for \ref{dg:pullback} to be a pullback, we'd need that the set \( R^D(2) \) be in bijection with the set of pairs \( f,g\in R^D \) such that \( f(0)=g(0) \). But this is precisely what we proved in proposition \ref{prop:d2}.
+\end{proof}
+
+How we refer to this phenomenon (or how it is often referred to) is \emph{``R perceives diagram \ref{dg:pushout} as a pushout}. This is of course generalizes, as we will see shortly. To do so we will give a few definitions first.
+
+\begin{defn}
+  Let \( \walg \) be the category of Weil algebras (a subcategory of the category of \( \Q \)-algebras \( \qalg \)). A \emph{good limit} of Weil algebras is a limit \( \left(L\stackrel{f_i}{\longrightarrow}D_i\right)_{i\in I} \) in \( \qalg \) which is also a limit in \( \walg \). That is, the morphisms in the diagram defining \( L \) must be Weil algebra homomorphisms, and so must the projections \( f_i \).
+\end{defn}
+
+\begin{defn}
+  A diagram in \( \sdgE \) is said to be a (finite) \emph{quasi colimit} if it is the image under the functor
+  \begin{equation*}
+    \spec_R(\farg):\walg\to\sdgE
+  \end{equation*}
+  of a good finite colimit in \( \walg \).
+\end{defn}
+
+\begin{defn}
+  An object \( X \) is said to perceive a quasi colimit as a colimit if the functor
+  \begin{equation*}
+    X^{(\farg)}:\sdgE\to\sdgE
+  \end{equation*}
+  takes said quasi colimit into a limit (of \( \sdgE \)).
+\end{defn}
+
+\begin{exmp}
+  The following diagram is a good colimit of Weil algbras (it is a pushout in \( \qalg \), and the morphisms are Weil algebra homomorphisms).
+  \begin{equation}
+    \xymatrix{
+      {\Q}                   & {\Q[X]/(X^2)} \ar[l]^0 \\
+      {\Q[X]/(X^2)} \ar[u]^0 & {\Q[X,Y]/(X^2,Y^2,XY)} \ar[u]^{p_2} \ar[l]^{p_1}
+    }
+    \label{dg:goodlimex}
+  \end{equation}
+  where \( p_1(X)=X, p_1(Y)=0, p_2(X)=0 \), and \( p_2(Y)=X \). Via the \( \spec_R(\farg) \) functor this is taken to
+  \begin{equation*}
+    \xymatrix{
+      {\{0\}} \ar[d]_0 \ar[r]^0 & D \ar[d]^{i_2} \\
+      D \ar[r]_{i_1}            & D(2)
+    } 
+  \end{equation*}
+  which is the same as diagram \ref{dg:pushout}. Thus, since diagram \ref{dg:goodlimex} is an example of a good finite limit, diagram \ref{dg:pushout} is a finite quasi colimit. Furthermore, \( R \) perceives \ref{dg:pushout} as a limit, as observed in proposition \ref{prop:pullback}.
+\end{exmp}
+
+%TODO: add other places where it is useful, if they arise
+For plenty more examples, one should look at \cite{lav96}. The objective of these definitions are to state the upcoming proposition, which generalizes the previous observation that \emph{``R perceives\dots etc''}. The result will be of use in section {//placeholder//} as a smoothness condition.
+
+%TODO: converse
+\begin{proposition}
+  \( R \) perceives finite quasi colimits as colimits. Conversely, if \( R \) perceives a diagram as a colimit, it is a quasi colimit. 
+  \label{prop:Rperc}
+\end{proposition}
+
+We'll need a simple result previously, in the form of the following
+
+%TODO:proof
+\begin{lemma}
+  Let 
+  \begin{equation*}
+   \left(W_i\stackrel{p_i}{\longleftarrow}W_L\right)_{i\in I}
+  \end{equation*}
+  be any limit of Weil algebras. Then the diagram
+  \begin{equation*}
+    \left(R[W_i]\stackrel{p_i}{\longleftarrow}R[W_L]\right)_{i\in I}
+  \end{equation*}
+  is a limit of \( R \)-algebras.  
+  \label{lm:Rbracket}
+\end{lemma}
+
+With that, we can prove the proposition.
+
+\begin{proof}[Proof of proposition \ref{prop:Rperc}]
+  Let \( \left(L\stackrel{f_i}{\longleftarrow}D_i\right)_{i\in I} \) be a finite quasi colimit. That is, we may write the diagram as
+  \begin{equation}
+    \left(\spec_R(W_L)\stackrel{\spec_R(p_i)}{\longleftarrow}\spec_R(W_i)\right)_{i\in I}
+    \label{dg:fquasicolt}
+  \end{equation}
+  where
+  \begin{equation*}
+   \left(W_i\stackrel{p_i}{\longleftarrow}W_L\right)_{i\in I}
+  \end{equation*}
+  is some good finite limit of Weil algebras. We need to prove that diagram \ref{dg:fquasicolt} is taken to a limit by the functor \( R^{(\farg)} \). Under this functor, the resulting diagram is
+  \begin{equation}
+    \left(R^{\spec_R(W_L)}\stackrel{R^{\spec_R(p_i)}}{\longrightarrow}R^{\spec_R(W_i)}\right)_{i\in I}
+    \label{dg:Rfqc}
+  \end{equation}
+  Now we invoke the general KL axiom, which says that this diagram is isomorphic to
+  \begin{equation*}
+    \left(R[W_i]\stackrel{p_i}{\longleftarrow}R[W_L]\right)_{i\in I}
+  \end{equation*}
+  By lemma \ref{lm:Rbracket}, this is a limit, since by hypothesis
+  \begin{equation*}
+   \left(W_i\stackrel{p_i}{\longleftarrow}W_L\right)_{i\in I}
+  \end{equation*} 
+  is a limit of Weil algebras.
+\end{proof}
+
+\subsection{Microlinear objects}
+
+The behavior of \( R \) studied above will be a fundamental requirement as we move onto studying other objects of synthetic differential geometry. We call these objects \emph{microlinear}, and it can be said that they are a sort of generalized ``manifold'' in the context of SDG. Let us state this precisely:
+
+\begin{defn}
+  An object \( M \) is said to be \emph{microlinear} if it perceives finite quasi colimits as limits.
+\end{defn}
+
+Thus, obviously \( R \) is microlinear. We'll make two observations.
+
+\begin{proposition}
+  If \( M \) is a microlinear object and \( X \) is any other object, then \( M^X \) is also microlinear.
+  \label{prop:expmicro}
+\end{proposition}
+
+\begin{proposition}
+  If
+  \begin{equation*}
+    \left( M\stackrel{f_\alpha}{\longrightarrow} M_\alpha \right)_{\alpha\in A}
+  \end{equation*}
+  is a limit, with \( M_\alpha \) microlinear for every \( \alpha\in A \), then \( M \) is microlinear.
+  \label{prop:limmicro}
+\end{proposition}
+

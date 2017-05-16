@@ -1,0 +1,360 @@
+\section{Tangency}
+
+At this point we have enough of the basic theory in place to begin doing actual \emph{geometry} on ``manifolds'' (microlinear objects).
+
+\subsection{The tangent bundle}
+
+Let \( M \) be a microlinear object and \( p\in M \). We make the following
+
+\begin{defn}
+  A tangent vector to \( M \) at \( p \) is a mapping 
+  \begin{equation*}
+    t:D\to M
+  \end{equation*}
+  such that \( t(0)=p \).
+\end{defn}
+
+We call the collection of all such tangent vectors \( T_pM \), the tangent space at \( p \) of \( M \). In resemblence to classical geometry, we of course expect each \( T_pM \) to have a vector space structure (and to justify calling them \emph{vectors} in the first place). It will not be so, since \( R \) is not a field in the classical sense, but we will prove that each \( T_pM \) is a Euclidean \( R \)-module. Let us begin by defining scalar multiplication:
+
+\begin{equation*}
+  R\times T_pM \to T_pM \atop (\lambda,t)\mapsto \lambda t
+\end{equation*}
+
+where the map \( \lambda t: D\to M \) is defined by
+
+\begin{equation*}
+  (\lambda t)(d) = t(\lambda d)
+\end{equation*}
+
+As for addition, consider two tangent vectors at \( p \), \( t_1,t_2:D\to M \). We now use that \( M \) is microlinear. Recall from earlier that the diagram below is a quasi pushout:
+
+\begin{equation}
+  \xymatrix{
+    {\{0\}} \ar[d]_0 \ar[r]^0   & D \ar[d]^{i_2} \\
+    D \ar[r]_{i_1}              & D(2)
+  }
+  \label{dg:pushoutcopy}
+\end{equation}
+
+Since \( M \) is microlinear, it perceives \ref{dg:pushoutcopy} as a pushout. As we studied in the case of \( R \), this means that the maps \( D(2)\to M \) are in bijection with pairs of maps \( D\to M \) that are equal at \( 0 \). This is the case with \( t_1 \) and \( t_2 \), since \( t_1(0)=p=t_2(0) \). Thus, there exists a unique map, which we call
+
+\begin{equation*}
+  s_{t_1,t_2}:D(2)\to M
+\end{equation*}
+
+allowing us to define
+
+\begin{equation*}
+  t_1+t_2:d\mapsto s_{t_1,t_2}(d,d)
+\end{equation*}
+
+Finally, let us define \( 0\in T_pM \) as the constand map \( 0(d)=p \,\forall d\in D \), and the additive opposite of a vector \( t \) as \( -t \), given by \( (-t)(d) = t(-d) \).
+
+\begin{proposition}
+  Let \( p\in M \). With the operations defined above, \( T_pM \) is an \( R \)-module.
+\end{proposition}
+
+\begin{proof}
+  \begin{enumerate}
+    \item Addition is commutative. Let \( t_1,t_2\in T_pM \). Again, this defines
+      \begin{equation*}
+	s_{t_1,t_2}:D(2)\to M
+      \end{equation*}
+      as the unique map satisfying \( s_{t_1,t_2}(d_1,0) = t_1(d_1) \) and \( s_{t_1,t_2}(0,d_2) = t_2(d_2) \). On the other hand, \( t_1 \) and \( t_2 \) also define the map
+      \begin{equation*}
+	s_{t_2,t_1}:D(2)\to M
+      \end{equation*}
+      unique among maps satisfying \( s_{t_2,t_1}(d_2,0) = t_2(d_2) \) and \( s_{t_2,t_1}(0,d_1) = t_1(d_1) \). Thererore, we have that for all \( (d_1,d_2)\in D(2) \)
+      \begin{equation*}
+	s_{t_1,t_2}(d_1,d_2) = s_{t_2,t_1}(d_2,d_1)
+      \end{equation*}
+      In particular, \( s_{t_1,t_2} \) and \( s_{t_2,t_1} \) are equal on the diagonal \( \left\{ (d,d)\mid d\in D \right\}\subset D(2) \). So, by definition of \( t_1+t_2 \) and \( t_2+t_1 \), these two are equal.
+
+    \item Addition is associative. This requires a generalization of proposition \ref{prop:pullback}, that is, that \( R \) perceives the diagram
+      \begin{equation}
+	\xymatrix{
+	  {\{0\}} \ar[d]_0 \ar[r]^0   & D(q) \ar[d]^{i_2} \\
+	  D(p) \ar[r]_{i_1}              & D(p+q)
+	}
+	\label{dg:pushoutgen}
+      \end{equation}
+      as a pushout, for any \( p,q\geq 1 \). Here the maps \( i_1,i_2 \) are
+      \begin{align*}
+	i_1(d_1,\dots,d_p) &= (d_1,\dots,d_p,0,\dots,0) \\
+	i_2(d_1,\dots,d_q) &= (0,\dots,0,d_1,\dots,d_q)
+      \end{align*}
+      The proof is nearly identical to the case we have examined (\( p=q=1 \)), one can refer to \cite[p. 48]{lav96} for details. That \( R \) perceives \ref{dg:pushoutgen} as a pushout means that \( M \) does as well, \( M \) being microlinear. In turn, this implies that the diagram
+      \begin{equation*}
+	\xymatrix{
+	  M                & M^{D(2)} \ar[l]_{M^0} \\
+	  M^D \ar[u]^{M^0} & M^{D(3)} \ar[u]_{M^{i_2}} \ar[l]^{M^{i_1}}
+	}
+      \end{equation*}
+      is a pullback. That is, any function
+      \begin{equation*}
+	g:D(3)\to M \atop (d_1,d_2,d_3)\mapsto g(d_1,d_2,d_3)
+      \end{equation*}
+      is uniquely determined by the functions
+      \begin{equation*}
+	g_1:D\to M \atop d_1\mapsto g(d_1,0,0)
+      \end{equation*}
+      and
+      \begin{equation*}
+	g_{23}:D(2)\to M \atop (d_2,d_3) \mapsto g(0,d_2,d_3)
+      \end{equation*}
+      Now, by applying the characterization of maps \( D(2)\to M \) on \( g_{23} \), we obtain that \( g \) is the unique map satisfying \( g(d_1,0,0)=g_1(d_1) \), \( g(0,d_2,0)=g_{23}(d_2,0) \), and \( g(0,0,d)=g_{23}(0,d_3) \) for all \( (d_1,d_2,d_3)\in D(3) \). In other words, any map
+      \begin{equation*}
+	g:D(3)\to M
+      \end{equation*}
+      is uniquely determined by three maps \( g_1,g_2,g_3:D\to M \) with \( g_1(0)=g_2(0)=g_3(0) \), and such that
+      \begin{align*}
+	g_1(d_1) &= g(d_1,0,0) \\
+	g_2(d_2) &= g(0,d_2,0) \\
+	g_3(d_3) &= g(0,0,d_3)
+      \end{align*}
+      With that said, let \( t_1,t_2,t_3\in T_pM \) be three tangent vectors. As before, \( t_1 \) and \( t_2 \) determine a unique map
+      \begin{equation*}
+	s_{t_1,t_2}:D(2)\to M
+      \end{equation*}
+      So that, together with \( t_3 \), they determine a map \( g_l:D(3)\to M \) given by
+      \begin{align*}
+	g_l(d_1,0,0) &= s_{t_1,t_2}(d_1,0) \\
+	g_l(0,d_2,0) &= s_{t_1,t_2}(0,d_2) \\
+	g_l(0,0,d_3) &= t_3(d_3)
+      \end{align*}
+      Likewise, we obtain a map \( g_r \) by
+      \begin{align*}
+	g_r(d_1,0,0) &= t_1(d_1)           \\
+	g_r(0,d_2,0) &= s_{t_2,t_3}(d_2,0) \\
+	g_r(0,0,d_3) &= s_{t_2,t_3}(0,d_3)
+      \end{align*}
+      But these are the same map, since they both satisfy
+      \begin{align*}
+	g_l(d_1,0,0) &= g_r(d_1,0,0) = t_1(d_1) \\
+	g_l(0,d_2,0) &= g_r(0,d_2,0) = t_2(d_2) \\
+	g_l(0,0,d_3) &= g_r(0,0,d_3) = t_3(d_3)
+      \end{align*}
+      Now note that
+      \begin{align*}
+	((t_1+t_2)+t_3)(d) &= s_{t_1+t_2,t_3}(d,d) = g_l(d,d,d) \\
+	(t_1+(t_2+t_3))(d) &= s_{t_1,t_2+t_3}(d,d) = g_r(d,d,d) 
+      \end{align*}
+      by which we conclude that \( ((t_1+t_2)+t_3) = (t_1+(t_2+t_3)) \).
+
+    \item The map 0 is the additive identity. Let \( t:D\to M \) be a tangent vector at \( p \), and \( 0:D\to M \) be the constant \( p \). The identities
+      \begin{align*}
+	s_{t,0}(d,0) &= t(d) \\
+	s_{t,0}(0,d) &= 0(d) = p
+      \end{align*}
+      uniquely determine \( s_{t,0}:D(2)\to M \). But the function \( t\circ \pi_1:D(2)\to M \), where \( \pi_2:D(2)\to D \) is the projection onto the second coordinate, also satisfies those equations, making \( s_{t,0} = t\circ \pi_2 \). Therefore,
+      \begin{equation*}
+	(t+0)(d) = s_{t,0}(d,d) = (t\circ \pi_2)(d,d) = t(d)
+      \end{equation*}
+
+    \item The opposite of a vector, as defined, satisfies \( t + (-t) = 0 \). The function \( s_{t,-t}:D(2)\to M \) is unique such that \( s_{t,-t}(d,0) = t(d) \) and \( s_{t,-t}(0,d) = (-t)(d) = t(-d) \). Again, we explicitly exhibit the function
+      \begin{equation*}
+	f:D(2)\to M \atop (d_1,d_2)\mapsto t(d_1-d_2)
+      \end{equation*}
+      and \( f \) satisfies the same equations, making it equal to \( s_{t,-t} \). Therefore, for any \( d\in D \)
+      \begin{equation*}
+	(t+(-t))(d) = s_{t,-t}(d,d) = f(d,d) = t(d-d) = t(0) = p
+      \end{equation*}
+
+    \item We have the identities
+      \begin{enumerate}
+	\item\label{a} \( (\alpha + \beta)t = \alpha t + \beta t \)
+	\item\label{b} \( \alpha(t_1+t_2) = \alpha t_1 + \alpha t_2\)
+	\item\label{c} \( \alpha (\beta t) = (\alpha \beta) t\)
+	\item\label{d} \( 1\cdot t = t \)
+      \end{enumerate}
+      With \( \alpha,\beta\in R \) and \( t,t_1,t_2\in T_pM \). The tangent vector \( \alpha t + \beta t \) is the unique map \( s_{\alpha t, \beta t}:D(2)\to M \) satisfying
+      \begin{align*}
+	s_{\alpha t, \beta t}(d_1,0) &= (\alpha t)(d_1)= t(\alpha d_1) \\
+	s_{\alpha t, \beta t}(0,d_2) &= (\beta t)(d_2)= t(\beta d_2)
+      \end{align*}
+      On the other hand, the map \( c \), defined by
+      \begin{equation*}
+       c(d_1,d_2) = t(\alpha d_1 + \beta d_2)
+      \end{equation*}
+      satisfies the equations, by which \( s_{\alpha t, \beta t} = c\). So,
+      \begin{equation*}
+	(\alpha t + \beta t)(d) = c(d,d) = t(\alpha d + \beta d) = t((\alpha + \beta)d) = (\alpha + \beta)t(d)
+      \end{equation*}
+      by definition. That proves \ref{a}. To prove \ref{b} we make an analogous argument, this time considering
+      \begin{equation*}
+	c(d_1,d_2) = s_{t_1,t_2}(\alpha d_1, \alpha d_2)
+      \end{equation*}
+      leaving \ref{c} and \ref{d}, which are immediate.
+  \end{enumerate}
+  This concludes the proof that \( T_pM \) is an \( R \)-module. We will now prove that it is Euclidean. Recall that this means that, for any map \( \varphi:D\to T_pM \), there should be a unique vector \( t\in T_pM \) such that, for all \( d\in D \)
+  \begin{equation*}
+    \varphi(d) = \varphi(0) + d\cdot t
+  \end{equation*}
+  This will again be a consequence of microlinearity. Define
+  \begin{equation*}
+    \tau : D\times D\to M \atop (d_1,d_2)\mapsto (\varphi(d_1)-\varphi(0))(d_2)
+  \end{equation*}
+  Note that \( \varphi(d_1)-\varphi(0) \) is a tangent vector at \( p \), so that
+  \begin{equation*}
+    \tau(d_1,0) = \tau(0,d_2) = \tau(0,0) = p
+  \end{equation*}
+  for all \( d_1,d_2\in D \). We'll now need another lemma concerning a quasi colimit.
+
+  \begin{lemma}
+    M perceives the diagram
+    \begin{equation}
+      \xymatrix{
+	D \ar@<1em>[r]^{i_1} \ar[r]^{i_2} \ar@<-1em>[r]^{0} & D\times D \ar[r]^{\mu} & D
+      }
+      \label{dg:3coequ}
+    \end{equation}
+    \label{lm:3coequ}
+    as a colimit (a ``triple coequalizer'', if one wishes). Here the maps \( i_1,i_2 \) are defined by \( i_1(d)=(d,0), i_2(d)=(0,d) \), \( 0 \) is the zero map, and \( \mu \) is the multiplication of elements of \( R \), restricted to elements of \( D \).
+  \end{lemma}
+
+  In other words, the diagram
+  \begin{equation*}
+    \xymatrix{
+      M^D & M^{D\times D} \ar@<1ex>[l]_{M^{i_1}} \ar[l]_{M^{i_2}} \ar@<-1ex>[l]_{M^{0}} & M^D \ar[l]_{M^{\mu}} 
+    }
+  \end{equation*}
+  is a limit (a triple equalizer). That is, if \( g\in M^{D\times D} \) is such that
+  \begin{equation}
+    g(d_1,0)=g(0,d_2)=g(0,0) \quad \forall d_1,d_2\in D
+    \label{eq:3equ}
+  \end{equation}
+  then there exists a unique mapping 
+  \begin{equation*}
+    t:D\to M
+  \end{equation*}
+  such that
+  \begin{equation*}
+    g(d_1,d_2) = (t\circ \mu)(d_1,d_2) = t(d_1d_2)
+  \end{equation*}
+  
+  This is all we need, since the map \( \tau \) verifies the equations \ref{eq:3equ}. Therefore there exists a unique \( t:D\to M \) with
+  \begin{equation*}
+    \tau(d_1,d_2)=t(d_1d_2) \quad \forall d_1,d_2\in D
+  \end{equation*}
+  In other words for all \( d_1,d_2 \),
+  \begin{equation*}
+    (\varphi(d_1) - \varphi(0))(d_2) = t(d_1d_2) = (d_1t)(d_2)
+  \end{equation*}
+  where the last equality is by definition of scalar multiplication of tangent vectors. The above holds in particular for all \( d_2\in D \), so that there is an equality of maps
+  \begin{equation*}
+    \varphi(d_1) = \varphi(0)+d_1t
+  \end{equation*}
+\end{proof}.
+
+The proof of lemma \ref{lm:3coequ} is fairly straightforward. Since \( M \) is microlinear, it amounts to proving that diagram \ref{dg:3coequ} is a quasi colimit.
+
+\begin{proof}[Proof of lemma \ref{lm:3coequ}]
+  The diagram of Weil algebras
+  \begin{equation}
+    \xymatrix{
+      \Q[X]/(X^2) & \Q[X,Y]/(X^2,Y^2) \ar@<3ex>[l]_{f_1} \ar[l]_{f_2} \ar@<-3ex>[l]_{f_3} & \Q[X]/(X^2) \ar[l]_{m} 
+    }
+    \label{dg:3equWalg}
+  \end{equation}
+  is a limit. Here the functions \( m,f_1,f_2,f_3 \) are defined by
+  \begin{align*}
+    f_1: & \begin{array}{c@{\hspace{0.3em}}l} X & \mapsto X \\ Y & \mapsto 0 \end{array} \\[4ex]
+    f_2: & \begin{array}{c@{\hspace{0.3em}}l} X & \mapsto 0 \\ Y & \mapsto X \end{array} \\[4ex]
+    f_3: & \begin{array}{c@{\hspace{0.3em}}l} X & \mapsto 0 \\ Y & \mapsto 0 \end{array} \\[4ex]
+    m:   & \begin{array}{c@{\hspace{0.3em}}l} X & \mapsto XY                 \end{array} 
+  \end{align*}
+  To begin with, the diagram obviously commutes. Now, let \( A \) be any object, and \( g:A\to \Q[X,Y]/(X^2,Y^2) \) a map such that \( f_i\circ g = f_j\circ g \) for any \( i,j \) (\( g \) makes a similar diagram commute). Let \( a\in A \). Its image under \( g \) is an element of \( \Q[X,Y]/(X^2,Y^2) \), and such can be written, modulo \( (X^2,Y^2) \) as
+  \begin{equation*}
+    g(a) = c_{00} + c_{10}X + c_{01}Y + c_{11}XY
+  \end{equation*}
+  The condition that \( g \) commutes with the \( f_i \) force \( c_{10}=c_{01}=0 \). Define
+  \begin{equation*}
+    h(a) = c_{00} + c_{11}X
+  \end{equation*}
+  By varying \( a \) this defines a map \( h:A\to \Q[X]/(X^2) \). Since \( c_{00},c_{11} \) are unique modulo \( (X^2,Y^2) \), the map \( h \) is the unique map such that the following diagram commutes:
+  \begin{equation*}
+    \xymatrix{
+      \Q[X]/(X^2) & \Q[X,Y]/(X^2,Y^2) \ar@<3ex>[l]_{f_1} \ar[l]_{f_2} \ar@<-3ex>[l]_{f_3} & \Q[X]/(X^2) \ar[l]_{m} \\
+      &                                                                                   & A \ar[lu]^g \ar@{.>}[u]^h
+    }
+  \end{equation*}
+  This concludes that diagram \ref{dg:3equWalg} is a limit. It is left to the reader to check that diagram \ref{dg:3coequ} is the result of applying the \( \spec_R \) functor to \ref{dg:3equWalg}, making it a quasi colimit. Since \( M \) was microlinear, the lemma is proven.  
+\end{proof}
+
+The natural next step is to define the differential (or derivative, or tangent map, etc.) of a mapping between two microlinear objects. Let \( M,N \) be microlinear, and \( f:M\to N \) a map. Let \( p\in M \). We define:
+\begin{equation*}
+  df_p : T_pM\to T_{f(p)}N
+\end{equation*}
+by
+\begin{equation*}
+  df_p(t) = f\circ t
+\end{equation*}
+
+As we should expect, this map is linear. Since \( T_pM \) is Euclidean, by proposition \ref{prop:homg} it suffices to see that it is homogeneous. For \( d\in D \), we have
+\begin{equation*} 
+  df_p(\alpha t)(d) = (f\circ (\alpha t))(d) = f(t(\alpha d)) = (f\circ t)(\alpha d) = (\alpha \cdot df_p(t))(d)
+\end{equation*}
+
+Another desirable property is that if \( V \) is a Euclidean \( R \)-module, it is canonically isomorphic to \( T_pV \) at every \( p\in V \). This is easy to see by presenting the isomorphism explicitly. Define
+\begin{equation*}
+  \lambda_p:V\to T_pV
+\end{equation*}
+by sending \( v\in V \) to the map
+\begin{equation*}
+  d\mapsto p+dv
+\end{equation*}
+This is a bijection since, by virtue of \( V \) being Euclidean, every map \( t:D\to V \) is characterized by a unique \( b\in V \) such that
+\begin{equation*}
+  d\mapsto t(0)+db
+\end{equation*}
+In \( T_pV \), each \( t(0) \) is equal to \( p \), so the inverse of \( \lambda_p \) is \( \lambda_p^{-1}(t) = b \). The map \( \lambda_p \) is obviously homogeneous, so again by proposition \ref{prop:homg} it is linear. As a short exercise, one can prove that, under this identification, \( df_p \) corresponds to \( df(p) \) (definition \ref{def:df(a)}) for maps of Euclidean \( R \)-modules \( f:V\to E \).
+
+\subsection{Vector bundles; the tangent bundle}
+
+\begin{defn}
+  Let \( \pi:E\to M \) be a mapping of microlinear objects. We say that \( \pi \) is a \emph{(resp. Euclidean) vector bundle} if each fiber \( \pi_p = \pi^{-1}(\{p\}) \) of \( \pi \) is a (resp. Euclidean) \( R \)-module.
+\end{defn}
+
+As a prominent example, we have
+
+\begin{defn}
+  Let \( M \) be a microlinear object. The \emph{tangent bundle} on \( M \) is given by
+  \begin{equation*}
+    \pi:M^D\to M \atop t\mapsto t(0)
+  \end{equation*}
+\end{defn}
+
+The previous map indeed defines a Euclidean vector bundle. First, \( M^D \) is microlinear by proposition \ref{prop:expmicro}, and second each fiber is just \( T_pM \), which we have just seen to be a Euclidean \( R \)-module.
+
+We have defined vector bundles, so we should define what it means to be a morphism of vector bundles. If
+\begin{align*}
+  \pi_1:E_1\to M_1 \\
+  \pi_2:E_2\to M_2 \\
+\end{align*}
+are two vector bundles, then a pair \( (\varphi,f) \) is said to be a morphism of the vector bundles \( \pi_1,\pi_2 \) if the following diagram commutes:
+\begin{equation*}
+  \xymatrix{
+    E_1 \ar[d]_{\pi_1} \ar[r]^\varphi & E_2 \ar[d]^{\pi_2} \\
+    M_1                \ar[r]_f       & M_2
+  }
+\end{equation*}
+Equivalently, \( \varphi \) takes the fiber at \( p\in M_1 \) to the fiber at \( f(p)\in M_2 \).
+
+Again, an important example is provided by the tangent bundle to a microlinear object. If \( M,N \) are microlinear objects, and \( f:M\to N \) is a map, then \( (f^D,f) \) is a morphism of the tangent bundle at \( M \) to the tangent bundle at \( N \), as evidenced by the commutative diagram
+\begin{equation*}
+  \xymatrix{
+    M^D \ar[d]_{\pi_M} \ar[r]^{f^D} & N^D \ar[d]^{\pi_N} \\
+    M                  \ar[r]_f     & N
+  }
+\end{equation*}
+Where \( \pi_M,\pi_N \) are the projections defining the tangent bundles of \( M,N \), respectively. If we define \( \mlin \) to be the category of microlinear objects (with morphisms regular maps), and \( \vbun \) the category of vector bundles (with morphisms of vector bundles as previously defined), then the association of each microlinear object to its tangent bundle defines a functor
+\begin{equation*}
+  T:\mlin\to\vbun
+\end{equation*}
+with
+\begin{align*}
+  TM &= M^D     \\
+  Tf &= (f^D,f) \\
+\end{align*}
+
+which we call the \emph{tangent functor}. Note that fiberwise, this is exactly the association of each object to its tangent space at a point \( p \), and each map \( f \) to its differential \( df_p \).
