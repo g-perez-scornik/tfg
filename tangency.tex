@@ -1,8 +1,8 @@
-\section{Tangency}
+\chapter{Tangency}
 
 At this point we have enough of the basic theory in place to begin doing actual \emph{geometry} on ``manifolds'' (microlinear objects).
 
-\subsection{The tangent bundle}
+\section{The tangent bundle}
 
 Let \( M \) be a microlinear object and \( p\in M \). We make the following
 
@@ -309,7 +309,7 @@ This is a bijection since, by virtue of \( V \) being Euclidean, every map \( t:
 \end{equation*}
 In \( T_pV \), each \( t(0) \) is equal to \( p \), so the inverse of \( \lambda_p \) is \( \lambda_p^{-1}(t) = b \). The map \( \lambda_p \) is obviously homogeneous, so again by proposition \ref{prop:homg} it is linear. As a short exercise, one can prove that, under this identification, \( df_p \) corresponds to \( df(p) \) (definition \ref{def:df(a)}) for maps of Euclidean \( R \)-modules \( f:V\to E \).
 
-\subsection{Vector bundles; the tangent bundle}
+\section{Vector bundles; the tangent bundle}
 
 \begin{defn}
   Let \( \pi:E\to M \) be a mapping of microlinear objects. We say that \( \pi \) is a \emph{(resp. Euclidean) vector bundle} if each fiber \( \pi_p = \pi^{-1}(\{p\}) \) of \( \pi \) is a (resp. Euclidean) \( R \)-module.
@@ -358,3 +358,45 @@ with
 \end{align*}
 
 which we call the \emph{tangent functor}. Note that fiberwise, this is exactly the association of each object to its tangent space at a point \( p \), and each map \( f \) to its differential \( df_p \).
+
+\section{Vector Fields}
+
+As in classical differential geometry, we define a \emph{section} of a vector bundle to be a right inverse to the projection of the bundle. That is, if \( \pi:E\to M \) is a vector bundle, then a section of \( \pi \) is a map \( s:M\to E \) such that \( \pi\circ s = \id_M \). We will write \( \Gamma(\pi) \) for the set of sections of \( \pi \).
+
+Let \( \pi:E\to M \) be a vector bundle. It's immediate that \( \Gamma(\pi) \) comes equipped with an \( R \)-module structure, by the \( R \)-module structure on each fiber: define \( (s_1+s_2)(p) = s_1(p)+s_2(p) \), and so on (where \( s_1,s_2 \) are sections). Furthermore we have the following proposition.
+
+\begin{proposition}
+  The set \( \Gamma(\pi) \) is microlinear, and if \( \pi \) is a Euclidean vector bundle, \( \Gamma(\pi) \) is a Euclidean \( R \)-module.
+\end{proposition}
+
+\begin{proof}
+  The objects \( E \) and \( M \) are microlinear by definition of a vector bundle, and by proposition \ref{prop:expmicro} so are \( E^M, M^M \) microlinear. Now observe that the diagram
+  \begin{equation*}
+    \xymatrix{
+      {\Gamma(\pi)\,\,} \ar@{>->}[r] & E^M \ar@<1ex>[r]^{\varphi} \ar@<-1ex>[r]_{I} & M^M 
+    }
+  \end{equation*}
+  is an equalizer, where the first arrow is just the inclusion of \( \Gamma(\pi) \) into \( E^M \), \( \varphi(s) = \pi\circ s \), and \( I(s) = \id_M \). Thus \( \Gamma(\pi) \) is a limit of microlinear objects, meaning it is microlinear by proposition \ref{prop:limmicro}. Now suppose that \( \pi \) is a Euclidean vector bundle, and let \( f:D\to \Gamma(\pi) \) be a map. For fixed \( p\in M \), the Eucldiean \( R \)-module structure on \( \pi_p \) gives that there exists a unique \( b(m)\in \pi_p \) (we make explicit the dependence on \( m \)) such that for all \( d\in D \)
+  \begin{equation*}
+    f(d)(m) = f(0)(m) + d\cdot b(m)
+  \end{equation*}
+  Varying \( m \) thus gives a section \( b:M\to E \) (it is a section, since \( v(m)\in \pi_p = \pi^{-1}(p) \)) which is unique such that
+  \begin{equation*}
+    f(d) = f(0) + d\cdot b
+  \end{equation*}
+  and so \( \Gamma(\pi) \) is Euclidean.
+\end{proof}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
