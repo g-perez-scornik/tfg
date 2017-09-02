@@ -361,7 +361,7 @@ which we call the \emph{tangent functor}. Note that fiberwise, this is exactly t
 
 \section{Vector Fields}
 
-As in classical differential geometry, we define a \emph{section} of a vector bundle to be a right inverse to the projection of the bundle. That is, if \( \pi:E\to M \) is a vector bundle, then a section of \( \pi \) is a map \( s:M\to E \) such that \( \pi\circ s = \id_M \). We will write \( \Gamma(\pi) \) for the set of sections of \( \pi \).
+As in classical differential geometry, we define a \emph{section} of a vector bundle to be a right inverse to the projection map of the bundle. That is, if \( \pi:E\to M \) is a vector bundle, then a section of \( \pi \) is a map \( s:M\to E \) such that \( \pi\circ s = \id_M \). We will write \( \Gamma(\pi) \) for the set of sections of \( \pi \).
 
 Let \( \pi:E\to M \) be a vector bundle. It's immediate that \( \Gamma(\pi) \) comes equipped with an \( R \)-module structure, by the \( R \)-module structure on each fiber: define \( (s_1+s_2)(p) = s_1(p)+s_2(p) \), and so on (where \( s_1,s_2 \) are sections). Furthermore we have the following proposition.
 
@@ -376,27 +376,90 @@ Let \( \pi:E\to M \) be a vector bundle. It's immediate that \( \Gamma(\pi) \) c
       {\Gamma(\pi)\,\,} \ar@{>->}[r] & E^M \ar@<1ex>[r]^{\varphi} \ar@<-1ex>[r]_{I} & M^M 
     }
   \end{equation*}
-  is an equalizer, where the first arrow is just the inclusion of \( \Gamma(\pi) \) into \( E^M \), \( \varphi(s) = \pi\circ s \), and \( I(s) = \id_M \). Thus \( \Gamma(\pi) \) is a limit of microlinear objects, meaning it is microlinear by proposition \ref{prop:limmicro}. Now suppose that \( \pi \) is a Euclidean vector bundle, and let \( f:D\to \Gamma(\pi) \) be a map. For fixed \( p\in M \), the Eucldiean \( R \)-module structure on \( \pi_p \) gives that there exists a unique \( b(m)\in \pi_p \) (we make explicit the dependence on \( m \)) such that for all \( d\in D \)
+  is an equalizer, where the first arrow is just the inclusion of \( \Gamma(\pi) \) into \( E^M \), \( \varphi(s) = \pi\circ s \), and \( I(s) = \id_M \). Thus \( \Gamma(\pi) \) is a limit of microlinear objects, meaning it is microlinear by proposition \ref{prop:limmicro}. Now suppose that \( \pi \) is a Euclidean vector bundle, and let \( f:D\to \Gamma(\pi) \) be a map. For fixed \( p\in M \), the Eucldiean \( R \)-module structure on \( \pi_p \) gives that there exists a unique \( b(p)\in \pi_p \) (we make explicit the dependence on \( p \)) such that for all \( d\in D \)
   \begin{equation*}
-    f(d)(m) = f(0)(m) + d\cdot b(m)
+    f(d)(p) = f(0)(p) + d\cdot b(p)
   \end{equation*}
-  Varying \( m \) thus gives a section \( b:M\to E \) (it is a section, since \( v(m)\in \pi_p = \pi^{-1}(p) \)) which is unique such that
+  Varying \( p \) thus gives a section \( b:M\to E \) (it is a section, since \( b(p)\in \pi_p = \pi^{-1}(p) \)) which is unique such that
   \begin{equation*}
     f(d) = f(0) + d\cdot b
   \end{equation*}
   and so \( \Gamma(\pi) \) is Euclidean.
 \end{proof}
 
+We should also make the observation that \( \Gamma(\pi) \) is a module over \( R^M \), as well. For \( f:M\to R \) and \( s\in \Gamma(\pi) \) define
 
+\begin{equation*}
+  (f\cdot s)(p)=f(p)\cdot s(p)
+\end{equation*}
 
+We can now define what a vector field is, in a much expected way.
 
+\begin{defn}
+  Let \( M \) be a microlinear object. A \emph{vector field} on \( M \) is a section of the tangent bundle on \( M \). We denote the set of vector fields by \( \vfld M \).
+\end{defn}
 
+Now since the tangent bundle is an exponential object, we can can automatically establish a correspondence between three familiar conceptions of a vector field. On the first hand a vector field is a map
+\begin{equation*}
+  X:M\to M^D
+\end{equation*}
+such that \( X(p)(0)=p \) for every \( p\in M \). But then \( X \) is equivalent to giving a map
+\begin{equation*}
+  X:M\times D \to M
+\end{equation*}
 
+such that \( X(p,0)=p \). Thus, the notion of infinitesimal flow is recovered. Furthermore we have the principal of superposition.
 
+\begin{proposition}
+Let \( X:M\times D\to M \) be a vector field. Then for every \( p\in M \) and \( (d_1,d_2)\in D(2) \)
+\begin{equation*}
+  X(p,d_1+d_2) = X(X(p,d_1),d_2)
+\end{equation*}
+\label{prop:superpos}
+\end{proposition}
 
+\begin{proof}
+  By fixing \( p \) we obtain two maps \( f,g:D(2)\to M \), which are defined by
+  \begin{align*}
+    f(d_1,d_2) &= X(p,d_1+d_2)    \\
+    g(d_1,d_2) &= X(X(p,d_1),d_2) \\
+  \end{align*}
+  Since \( X \) is a vector field we have the equalities
+  \begin{align*}
+    f(d,0) &= g(d,0) \\
+    f(0,d) &= g(0,d) \\
+  \end{align*}
+  hence, since \( M \) is microlinear, \( f \) and \( g \) are the same map.
+\end{proof}
 
+Lastly, we also have the notion of a vector field as an ``infinitesimal transformation of the identity''. That is, from a map
+\begin{equation*}
+  X:D\times M\to M
+\end{equation*}
+there corresponds a map (which we'll call by the same name)
+\begin{equation}
+  X:D\to M^M
+  \label{eq:vecfield3}
+\end{equation}
+%TODO: make sure not all flows are diffeo
+and it is such that \( X(0)=\id_M \).
 
+From here on we will use the three ways of giving a vector field interchangeably. As in \cite{lav96} we refer to the image of an element \( d\in D \) by a map such as \ref{eq:vecfield3}, as \( X_d:M\to M \). For \( p\in M \), we should vizualize \( X_d(p) \) as the result of letting \( p \) flow along the vector field for \( d \) units of ``time''. Whereas in classical differential geometry the flow corresponding to a vector field need not be globally defined, let alone a diffeomorphism, it will be the case here.
 
+\begin{proposition}
+  Let \( X:M\to M \) be a vector field. Then for all \( d\in D \), \( X_d \) is a bijection and \( X_d^{-1}=X_{-d} \).
+\end{proposition}
 
+\begin{proof}
+  This is a simple consequence of proposition \ref{prop:superpos}, since
+  \begin{equation*}
+    X(X(p,d),-d)=X(p,0)=p
+  \end{equation*}
+  for all \( p\in M \).
+\end{proof}
 
+The following proposition also establishes a strong parallel with classical Lie algebras of vector fields (although the ``Lie'' part will be seen later).
 
+\begin{proposition}
+  Let \( M \) be microlinear. Denote the set of invertible maps from \( M \) to itself as \( \aut(M) \). This is a microlinear object, and \( \vfld M \) is \( R \)-module isomorphic to \( T_{\id_M}\aut(M) \), the tangent space at the identity.
+\end{proposition}
