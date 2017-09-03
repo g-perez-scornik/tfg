@@ -444,10 +444,11 @@ there corresponds a map (which we'll call by the same name)
 %TODO: make sure not all flows are diffeo
 and it is such that \( X(0)=\id_M \).
 
-From here on we will use the three ways of giving a vector field interchangeably. As in \cite{lav96} we refer to the image of an element \( d\in D \) by a map such as \ref{eq:vecfield3}, as \( X_d:M\to M \). For \( p\in M \), we should vizualize \( X_d(p) \) as the result of letting \( p \) flow along the vector field for \( d \) units of ``time''. Whereas in classical differential geometry the flow corresponding to a vector field need not be globally defined, let alone a diffeomorphism, it will be the case here.
+From here on we will use the three ways of giving a vector field interchangeably. As in \cite{lav96} we refer to the image of an element \( d\in D \) by a map such as \ref{eq:vecfield3}, as \( X_d:M\to M \). For \( p\in M \), we should vizualize \( X_d(p) \) as the result of letting \( p \) flow along the vector field for \( d \) units of ``time''. Whereas in classical differential geometry the flow corresponding to a vector field need not define a group of transformations (but it does a semi-group), it will be the case here.
 
 \begin{proposition}
   Let \( X:M\to M \) be a vector field. Then for all \( d\in D \), \( X_d \) is a bijection and \( X_d^{-1}=X_{-d} \).
+  \label{prop:inftrans}
 \end{proposition}
 
 \begin{proof}
@@ -463,3 +464,150 @@ The following proposition also establishes a strong parallel with classical Lie 
 \begin{proposition}
   Let \( M \) be microlinear. Denote the set of invertible maps from \( M \) to itself as \( \aut(M) \). This is a microlinear object, and \( \vfld M \) is \( R \)-module isomorphic to \( T_{\id_M}\aut(M) \), the tangent space at the identity.
 \end{proposition}
+
+\begin{proof}
+  To prove that \( \aut(M) \) is microlinear, we proceed as usual to prove that it is a limit of microlinear objects. To do this, note that \( \aut(M) \) is equal to the set
+  \begin{equation*}
+    \{ (f,g) \in M^M\times M^M \mid g\circ f = f \circ g = \id_M \}
+  \end{equation*}
+
+  In other words, we have a diagram
+  \begin{equation*}
+    \xymatrix{
+      {\aut(M)} \ar@{>->}[r]^{i} & M^M\times M^M \ar@<1ex>[r]^{c_1} \ar[r]^{c_2}\ar@<-1ex>[r]^{I} & M^M
+    }
+  \end{equation*}
+  where \( i \) is the mapping \( f\mapsto (f,f^{-1}) \), \( c_1 \) is the mapping \( (f,g)\mapsto f\circ g \), \( c_2 \) is \( (f,g)\mapsto g\circ f \), and \( I \) is \( (f,g)\mapsto \id_M \). The diagram commutes, and any object mapping into \( M^M\times M^M \) in such a way will clearly be in bijection with (a subset of) \( \aut(M) \). And, of course, \( M^M\times M^M \) along with \( M^M \) are microlinear, as per proposition \ref{prop:expmicro}. Now, any element \( t \) of \( T_{\id_M}\aut(M) \) is clearly associated with an element of \( T_{\id_M}(M^M) \), namely the ``same'' map, extending the codomain. Thus, it is an element of \( \vfld M \), thanks to the last interpretation of vector fields we observed above. Conversely, by proposition \ref{prop:inftrans}, any element of \( \vfld M \) maps \( D \) to invertible maps in \( M^M \), in other words elements of \( \aut(M) \). In summary, the map \( \vfld M \to T_{\id_M}\aut(M) \) given by
+  \begin{equation*}
+    (t:D\to M^M) \mapsto (\bar t:D\to \aut(M))
+  \end{equation*}
+  is a bijection. It is trivially homogeneous (\( \lambda t \mapsto \lambda \bar t \)), which means it is linear, thanks to proposition \ref{prop:homg}.
+\end{proof}
+
+\section{The Lie algebra of vector fields}
+
+In classical differential geometry, the Lie bracket of two vector fields is often thought of a commutator of the ``flows'' induced by the vector fields (and in the case of matrix Lie groups the Lie bracket is indeed represented by matrix commutators). The ``problem'', as noted earlier, is that classical flows may not correspond to permutations of the manifold (again, in general only a semi-group of transformations). That isn't to say that differential geometers suffer greatly from this, but we again take the opportunity to show how synthetic differential geometry actually behaves how we would like to \emph{think} about geometry behaving. That is, the Lie bracket will be directly associated to the commutator of the bijections defined by their flows.
+
+Let \( X,Y \) be vector fields on \( M \). They each define bijections \( X_d,Y_d:M\to M \) for all \( d\in D \). Let \( d_1,d_2\in D \), and consider the commutator of \( X_{d_1}, Y_{d_2} \) as a map \( \tau:D\times D \to M^M \):
+\begin{equation*}
+  \tau(d_1,d_2) = Y_{-d_2}\circ X_{-d_1}\circ Y_{d_2}\circ X_{d_1}
+\end{equation*}
+
+Let us recall lemma \ref{lm:3coequ}, which, in summary, states that for any \( g:D\times D \to M \) such that
+
+\begin{equation*}
+g(d_1,0) = g(0,d_2) = g(0,0) \quad \forall d_1,d_2\in D
+\end{equation*}
+
+there exists a unique map \( t:D\to M \) with the property
+
+\begin{equation*}
+  g(d_1,d_2) = t(d_1d_2)
+\end{equation*}
+
+The same conclusion applies when instead we have \( g:D\times D\to M^M \), as the only property of \( M \) used in the proof is that it is microlinear. It will be the case that \( \tau \) satisfies those conditions:
+
+\begin{align*}
+  \tau(d_1,0) &= Y_0\circ X_{-d_1}\circ Y_0\circ X_{d_1} \\
+              &= X_{-d_1}\circ X_{d_1}                   \\
+	      &= \id_M = \tau(0,0)                       \\
+  \tau(0,d_2) &= Y_{-d_2}\circ X_0\circ Y_{d_2}\circ X_0 \\
+              &= Y_{-d_2}\circ Y_{d_2}                   \\
+	      &= \id_M = \tau(0,0)                       \\
+\end{align*}
+
+Therefore there exists a unique \( t:D\to M \) with \( \tau(d_1,d_2) = t(d_1d_2) \) for all \( d_1,d_2 \). This allows us make the following
+
+\begin{defn}
+  Let \( X,Y \) be vector fields on \( M \) (a microlinear object). The \emph{Lie bracket} of \( X \) and \( Y \) is the unique vector field, denoted \( [X,Y] \), such that
+  \begin{equation*}
+    [X,Y](d_1,d_2) = Y_{-d_2}\circ X_{-d_1}\circ Y_{d_2}\circ X_{d_1}
+  \end{equation*}
+\end{defn}
+
+What we'll be pleased to find is that this bracket is bilinear, antisymmetric, and it satisfies the Jacobi identity. In short:
+
+\begin{proposition}
+  The pair \( (\vfld M, [\farg,\farg]) \) is a Lie algebra.
+\end{proposition}
+
+\begin{proof}
+  \begin{itemize}
+    \item The Lie bracket is antisymmetric. We only need to verify that \( [X,Y](d) = -[Y,X](d) \) for \( d = d_1d_2 \), for some \( d_1,d_2\in D \), by virtue of the uniqueness property of \( [\farg,\farg] \).
+      \begin{align*}
+	[X,Y]_{d_1d_2} &= [X,Y]_{-(-d_1d_2)}                                                   \\
+		       &= \left( [X,Y]_{-d_1d_2} \right)^{-1}                                  \\
+		       &= \left( Y_{-d_2}\circ X_{d_1}\circ Y_{d_2}\circ X_{-d_1} \right)^{-1} \\
+		       &= X_{d_1}\circ X_{-d_2}\circ X_{-d_1}\circ Y_{d_2}                     \\
+		       &= [Y,X]_{d_2(-d_1)}                                                    \\
+		       &= \left( -[Y,X] \right)_{d_1d_2}                                       \\
+      \end{align*}
+    \item Again we utilize that \( \vfld M \) is Euclidean to prove linearity, by only proving homogeneity (prop. \ref{prop:homg}). Let \( \lambda\in R \). Then
+      \begin{align*}
+	\lambda[X,Y]_{d_1d_2} &= [X,Y]_{\lambda d_1d_2}                                               \\
+	                      &= Y_{-d_2}\circ X_{-\lambda d_1}\circ Y_{d_2}\circ X_{\lambda d_1}     \\
+			      &= Y_{-d_2}\circ (\lambda X)_{-d_1}\circ Y_{d_2}\circ (\lambda X)_{d_1} \\
+			      &= [\lambda X,Y]_{d_1d_2}
+      \end{align*}
+    \item It remains to prove the Jacobi identity:
+      \begin{equation*}
+	[[X,Y],Z] + [[Y,Z],X] + [[Z,X],Y] = 0
+      \end{equation*}
+      for all vector fields \( X,Y,Z \). We will not prove it here, but the idea is the same as in the previous proofs. First note that it suffices to prove it on elements \( d_1d_2d_3 \). You then expand the left hand side to
+      \begin{align*}
+	&Z_{-d_3}\circ X_{-d_1}\circ Y_{-d_2}\circ X_{d_1}\circ Y_{d_2}\circ Z_{d_3}\circ Y_{-d_2}\circ X_{-d_1}\circ Y_{d_2}\circ X_{d_1} \\
+        &\circ X_{-d_1}\circ Y_{-d_2}\circ Z_{-d_3}\circ Y_{d_2}\circ Z_{d_3}\circ X_{d_1}\circ Z_{-d_3}\circ Y_{-d_2}\circ Z_{d_3}\circ Y_{d_2} \\
+        &\circ Y_{-d_2}\circ Z_{-d_3}\circ X_{-d_1}\circ Z_{d_3}\circ X_{d_1}\circ Y_{d_2}\circ X_{-d_1}\circ Z_{-d_3}\circ X_{d_1}\circ Z_{d_3} 
+      \end{align*}
+      and make a series of judicious manipulations to reach \( 0(d_1d_2d_3 = \id_M \). The complete proof can be found in \cite{lav96}.
+  \end{itemize}
+\end{proof}
+
+\section{Derivations}
+ The final construction we'll look at is that of the Lie derivative associated with a vector field. Its definition is much the same as the classical one; we evaluate functions \( M\to R \) along the flow induced by a vector field. Recall from the previous section that a vector field \( X \) is equivalent to giving a function
+ \begin{equation*}
+   X:M\times D\to M
+ \end{equation*}
+
+Hence, given a function \( f:M\to R \) the mapping
+\begin{equation*}
+  f(X(p,\farg):D\to R
+\end{equation*}
+is determined uniquely by \( f(X(p,0)) = f(p) \), and some \( b\in R \) with
+\begin{equation*}
+  f(X(p,d)) = f(p) + b(p)d
+\end{equation*}
+Here \( p\in M \) is fixed, and \( b \) depends on it (and \( f \), and \( X \)), as we've made explicit. Varying \( p \) gives a function \( M\to R \), leading to this
+
+\begin{defn}
+  Let \( f:M\to R \) be a function, and \( X\in \vfld M \). The Lie derivative of \( f \) along \( X \) is the unique function
+  \begin{equation*}
+    \lie_Xf:M\to R
+  \end{equation*}
+  such that
+  \begin{equation*}
+    f(X(p,d)) = f(p) + d\cdot(\lie_Xf)(p)
+  \end{equation*}
+\end{defn}
+
+The Lie derivative is a derivation, as we will see shortly. We should call to memory that a \emph{derivation} of an algebra \( A \) is a linear map \( D:A\to A \) such that \( D(fg) = D(f)g + fD(g) \) for all \( f,g\in A \).
+
+\begin{proposition}
+  The map given by associating each function \( f:M\to R \) to its Lie derivative along \( X \) is a derivation of \( R \)-algebras.
+\end{proposition}
+
+\begin{proof}
+  Homogeneity, and therefore linearity, is a given, since
+  \begin{align*}
+    (\lambda\lie_Xf)(p)    &= \lambda f(p) + d\cdot\lambda(\lie_Xf)(p)      \\
+    (\lie_X(\lambda f))(p) &= (\lambda f)(p) + d\cdot(\lie_X(\lambda f))(p) \\
+                           &= \lambda f(p) + d\cdot(\lie_X(\lambda f))(p)
+  \end{align*}
+  and by uniqueness \( \cdot\lambda(\lie_Xf)(p) = d\cdot(\lie_X(\lambda f))(p) \). The ``product rule'' will follow from the same proof we gave of the calculus version in section \ref{sec:basictheory}. Let \( f,g:M\to R \) be functions. The Lie derivative along \( X \) is defined by the expression
+  \begin{align*}
+    (fg)(X(p,d)) &= f(X(p,d))g(X(p,d))                                     \\
+                 &= (f(p) + d\cdot(\lie_Xf)(p))(g(p) + d\cdot(\lie_Xg)(p)) \\
+		 &= f(p)g(p) + d((\lie_Xf)(p)g(p) + f(p)(\lie_Xg)(p))
+  \end{align*}
+  and the unique coefficient multiplying \( d \) is clearly the same as for \( \lie_Xf\cdot g + f\cdot\lie_Xg \).
+\end{proof}<++>
