@@ -615,3 +615,64 @@ The Lie derivative is a derivation, as we will see shortly. We should call to me
   \end{align*}
   and the unique coefficient multiplying \( d \) is clearly the same as for \( \lie_Xf\cdot g + f\cdot\lie_Xg \).
 \end{proof}
+
+In this manner we've recovered the interpretation of vector fields as derivations. One might suspect that furthermore the Lie structure given by the bracket \( [\farg,\farg] \) of vector fields corresponds to the commutator of their respective derivations (given \( D_1,D_2 \) derivations of \( R^M \), their commutator is \( [D_1,D_2](f) = D_1(D_2(f)) - D_2(D_1(f)) \). If we define the Lie \emph{operator}
+\begin{equation*}
+  \lie: \vfld M\to \der(R^M)
+\end{equation*}
+then we can phrase that suspicion as
+
+\begin{proposition}
+  The Lie operator \( \lie \) is a homomorphism of \( R \)-algebras.
+\end{proposition}
+
+\begin{proof}
+  Homogeneity is easily established:
+  \begin{align*}
+    f((\alpha X)(p,d)) &= f(X(p,\alpha d)) \\
+                       &= f(p) + \alpha d\cdot(\lie_Xf)(p)
+  \end{align*}
+  the unique coefficient multiplying \( d \) is, by definition \( (\lie_{\alpha X}f)(p) \). It remains to be seen that
+  \begin{equation*}
+    \lie_{[X,Y]}f = \lie_X(\lie_Yf) - L_Y(L_Xf)
+  \end{equation*}
+  By definition of the Lie bracket, \( \lie_{[X,Y]}f \) is determined by \( f([X,Y](p,d)) \) for those \( d=d_1d_2 \) with \( d_1,d_2\in D \). So, we start with that:
+  \begin{equation*}
+    f([X,Y](p,d_1d_2)) = f(p) + d_1d_2\cdot(\lie_{[X,Y]}f)(p)
+  \end{equation*}
+  Meanwhile, the left hand side is also equal to
+  \begin{equation*}
+    f([X,Y](p,d_1d_2)) = f((Y_{-d_2}\circ X_{-d_1}\circ Y_{d_2}\circ X_{d_1})(p))
+  \end{equation*}
+  Starting with the right hand side,
+  \begin{align*}
+    \dots &= f((X_{-d_1}\circ Y_{d_2}\circ X_{d_1})(p)) - d_2(\lie_Yf)((X_{-d_1}\circ Y_{d_2}\circ X_{d_1})(p)) \\[2ex]
+          &= f((Y_{d_2}\circ X_{d_1})(p)) - d_1(\lie_Xf)((Y_{d_2}\circ X_{d_1})(p)) \\[2ex]
+	  &\quad\quad - d_2(\lie_Yf)((Y_{d_2}\circ X_{d_1})(p)) \\[2ex]
+	  &\quad\quad + d_1d_2(\lie_X(\lie_Yf))((Y_{d_2}\circ X_{d_1})(p)) \\[2ex]
+	  &= f(X_{d_1}(p)) + d_2(\lie_Yf)(X_{d_1}(p)) - d_1(\lie_Xf)(X_{d_1}(p)) \\[2ex]
+	  &\quad\quad - d_2(\lie_Yf)(X_{d_1}(p)) - d_2^2(\lie_Yf)(X_{d_1}(p)) \\[2ex]
+	  &\quad\quad - d_1d_2(\lie_Y(\lie_Xf))(X_{d_1}(p)) + d_1d_2(\lie_X(\lie_Yf))((Y_{d_2}\circ X_{d_1})(p)) \\[2ex]
+	  &= f(p) + d_1(\lie_Xf)(p) + d_2(\lie_Yf)(p) + d_1d_2(\lie_X(\lie_Yf))(p) \\[2ex]
+	  &\quad\quad - d_1(\lie_Xf)(p) - d_1^2(\lie_X(\lie_Xf))(p) \\[2ex]
+	  &\quad\quad - d_2(\lie_Yf)(p) - d_2^2(\lie_Yf)(X_{d_1}(p)) \\[2ex]
+	  &\quad\quad - d_1d_2(\lie_X(\lie_Yf))(p) - d_1d_2(\lie_Y(\lie_Xf))(p) \\[2ex]
+	  &\quad\quad - d_1^2d_2(\lie_X(\lie_Y(\lie_Xf)))(p) + d_1d_2(\lie_X(\lie_Yf))(p) \\[2ex]
+	  &\quad\quad - d_1d_2^2(\lie_Y(\lie_X(\lie_Yf)))(p)
+  \end{align*}
+  Cancelling out terms (recall that \( d_1,d_2 \) are nilsquares),
+  \begin{align*}
+    f([X,Y](p,d_1d_2)) &= f(p) + d_1d_2(\lie_X(\lie_Yf) - \lie_Y(\lie_Xf))(p)
+  \end{align*}
+  which proves the identity.
+\end{proof}
+
+Though we've established a homomorphism of Lie algebras
+\begin{equation*}
+  \lie:\vfld M\to \der(R^M)
+\end{equation*}
+we have not proved that it is an isomorphism, as would be the case for classical (paracompact) manifolds. As it would turn out, it's possible that for that to be true require more of \( M \) than microlinearity. In \cite{lav96}, the author refers to such objects as \emph{reflexive}, and they are those that satisfy that the morphism
+\begin{equation*}
+  \text{ev}:M \to {\text{alg}(R^M,R)}
+\end{equation*}
+(where \( \text{alg}(R^M,R) \) is the set of \( R \)-algebra homomorphisms), given by sending each point in \( M \) to the evaluation map \( f\mapsto f(p) \), is bijective. In the mentioned book it is shown that the Lie operator is bijective if \( M \) is reflexive (the converse is left unattended to).
