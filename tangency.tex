@@ -14,7 +14,7 @@ Let \( M \) be a microlinear object and \( p\in M \). We make the following
   such that \( t(0)=p \).
 \end{defn}
 
-We call the collection of all such tangent vectors \( T_pM \), the tangent space at \( p \) of \( M \). In resemblence to classical geometry, we of course expect each \( T_pM \) to have a vector space structure (and to justify calling them \emph{vectors} in the first place). It will not be so, since \( R \) is not a field in the classical sense, but we will prove that each \( T_pM \) is a Euclidean \( R \)-module. Let us begin by defining scalar multiplication:
+We call the collection of all such tangent vectors \( T_pM \), the tangent space at \( p \) of \( M \). In resemblance to classical geometry, we of course expect each \( T_pM \) to have a vector space structure (and to justify calling them \emph{vectors} in the first place). It will not be so, since \( R \) is not a field in the classical sense, but we will prove that each \( T_pM \) is a Euclidean \( R \)-module. Let us begin by defining scalar multiplication:
 
 \begin{equation*}
   R\times T_pM \to T_pM \atop (\lambda,t)\mapsto \lambda t
@@ -48,7 +48,7 @@ allowing us to define
   t_1+t_2:d\mapsto s_{t_1,t_2}(d,d)
 \end{equation*}
 
-Finally, let us define \( 0\in T_pM \) as the constand map \( 0(d)=p \,\forall d\in D \), and the additive opposite of a vector \( t \) as \( -t \), given by \( (-t)(d) = t(-d) \).
+Finally, let us define \( 0\in T_pM \) as the constant map \( 0(d)=p \,\forall d\in D \), and the additive opposite of a vector \( t \) as \( -t \), given by \( (-t)(d) = t(-d) \).
 
 \begin{proposition}
   Let \( p\in M \). With the operations defined above, \( T_pM \) is an \( R \)-module.
@@ -64,7 +64,7 @@ Finally, let us define \( 0\in T_pM \) as the constand map \( 0(d)=p \,\forall d
       \begin{equation*}
 	s_{t_2,t_1}:D(2)\to M
       \end{equation*}
-      unique among maps satisfying \( s_{t_2,t_1}(d_2,0) = t_2(d_2) \) and \( s_{t_2,t_1}(0,d_1) = t_1(d_1) \). Thererore, we have that for all \( (d_1,d_2)\in D(2) \)
+      unique among maps satisfying \( s_{t_2,t_1}(d_2,0) = t_2(d_2) \) and \( s_{t_2,t_1}(0,d_1) = t_1(d_1) \). Therefore, we have that for all \( (d_1,d_2)\in D(2) \)
       \begin{equation*}
 	s_{t_1,t_2}(d_1,d_2) = s_{t_2,t_1}(d_2,d_1)
       \end{equation*}
@@ -376,7 +376,7 @@ Let \( \pi:E\to M \) be a vector bundle. It's immediate that \( \Gamma(\pi) \) c
       {\Gamma(\pi)\,\,} \ar@{>->}[r] & E^M \ar@<1ex>[r]^{\varphi} \ar@<-1ex>[r]_{I} & M^M 
     }
   \end{equation*}
-  is an equalizer, where the first arrow is just the inclusion of \( \Gamma(\pi) \) into \( E^M \), \( \varphi(s) = \pi\circ s \), and \( I(s) = \id_M \). Thus \( \Gamma(\pi) \) is a limit of microlinear objects, meaning it is microlinear by proposition \ref{prop:limmicro}. Now suppose that \( \pi \) is a Euclidean vector bundle, and let \( f:D\to \Gamma(\pi) \) be a map. For fixed \( p\in M \), the Eucldiean \( R \)-module structure on \( \pi_p \) gives that there exists a unique \( b(p)\in \pi_p \) (we make explicit the dependence on \( p \)) such that for all \( d\in D \)
+  is an equalizer, where the first arrow is just the inclusion of \( \Gamma(\pi) \) into \( E^M \), \( \varphi(s) = \pi\circ s \), and \( I(s) = \id_M \). Thus \( \Gamma(\pi) \) is a limit of microlinear objects, meaning it is microlinear by proposition \ref{prop:limmicro}. Now suppose that \( \pi \) is a Euclidean vector bundle, and let \( f:D\to \Gamma(\pi) \) be a map. For fixed \( p\in M \), the Euclidean \( R \)-module structure on \( \pi_p \) gives that there exists a unique \( b(p)\in \pi_p \) (we make explicit the dependence on \( p \)) such that for all \( d\in D \)
   \begin{equation*}
     f(d)(p) = f(0)(p) + d\cdot b(p)
   \end{equation*}
@@ -444,7 +444,7 @@ there corresponds a map (which we'll call by the same name)
 %TODO: make sure not all flows are diffeo
 and it is such that \( X(0)=\id_M \).
 
-From here on we will use the three ways of giving a vector field interchangeably. As in \cite{lav96} we refer to the image of an element \( d\in D \) by a map such as \ref{eq:vecfield3}, as \( X_d:M\to M \). For \( p\in M \), we should vizualize \( X_d(p) \) as the result of letting \( p \) flow along the vector field for \( d \) units of ``time''. Whereas in classical differential geometry the flow corresponding to a vector field need not define a group of transformations (but it does a semi-group), it will be the case here.
+From here on we will use the three ways of giving a vector field interchangeably. As in \cite{lav96} we refer to the image of an element \( d\in D \) by a map such as \ref{eq:vecfield3}, as \( X_d:M\to M \). For \( p\in M \), we should visualize \( X_d(p) \) as the result of letting \( p \) flow along the vector field for \( d \) units of ``time''. Whereas in classical differential geometry the flow corresponding to a vector field need not define a group of transformations (but it does a semi-group), it will be the case here.
 
 \begin{proposition}
   Let \( X:M\to M \) be a vector field. Then for all \( d\in D \), \( X_d \) is a bijection and \( X_d^{-1}=X_{-d} \).

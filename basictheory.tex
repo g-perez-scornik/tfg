@@ -4,7 +4,7 @@ The axiomatic theory of Synthetic Differential Geometry begins by assuming a cer
 
 \section{Axiomatics}
 
-We begin with an object \( R \). We can think of \( R \) as an extension of the notion of the standard continuum, \( \mathbb{R} \). Thus \( R \) should be a commutative ring with unit. However, due to an axiom that we will shortly introduce, we cannot ask that \( R \) be a field. Later on, we will need to strengthen this requirement to, for example ``2:=1+1 is invertible''. But later on we may need that ``3 is invertible''. Instead of introducing these small axioms successively, we will take care of them succintly with our:
+We begin with an object \( R \). We can think of \( R \) as an extension of the notion of the standard continuum, \( \mathbb{R} \). Thus \( R \) should be a commutative ring with unit. However, due to an axiom that we will shortly introduce, we cannot ask that \( R \) be a field. Later on, we will need to strengthen this requirement to, for example ``2:=1+1 is invertible''. But later on we may need that ``3 is invertible''. Instead of introducing these small axioms successively, we will take care of them succinctly with our:
 
 \begin{axiom}
   \label{ax0}
@@ -215,7 +215,7 @@ By the KL axiom \ref{KL1}, there exists a unique \( b\in R \) such that
 \begin{equation*}
   f(r_1+d,\dots,r_n) = f(r) + bd
 \end{equation*}
-We define \( \ddx{f}{x_1}(r_1,\dots,r_n)\) as \( b \), which simultaneaously defines a function \( \ddx{f}{x_1}:R^n\to R \) Similarly, we define \( \ddx{f}{x_2},\dots,\ddx{f}{x_n} \). By iterating the process we obtain higher partial derivatives, denoted
+We define \( \ddx{f}{x_1}(r_1,\dots,r_n)\) as \( b \), which simultaneously defines a function \( \ddx{f}{x_1}:R^n\to R \) Similarly, we define \( \ddx{f}{x_2},\dots,\ddx{f}{x_n} \). By iterating the process we obtain higher partial derivatives, denoted
 \begin{equation*}
   \ddxk{k}{f}{x_{i_1}}{x_{i_k}}
 \end{equation*}
@@ -240,7 +240,7 @@ The previous result follows directly from the following lemma which generalizes 
 \end{lemma}
 
 \begin{proof}
-  Apply the definition of the partial derivative in \( x_i \), and succesively in \( x_j \)
+  Apply the definition of the partial derivative in \( x_i \), and successively in \( x_j \)
   \begin{align*}
     f(r_1,\dots,r_i+d_1,\dots,r_j+d_2,\dots,r_n) & = f(x_1,\dots,x_i,\dots,x_j+d_2,\dots,x_n) + \\
                                                  & \qquad\qquad + \ddx{f}{x_i}(x_1,\dots,x_i,\dots,x_j+d_2,\dots,x_n)d_1 \\
@@ -305,7 +305,7 @@ We note that \( \partial_{(\farg)}f(\vec a) \) is a linear function. In other wo
 \begin{equation*}
   \partial_{\lambda \vec u + \mu \vec v}f(\vec a) = \lambda\partial_{\vec u}f(\vec a) + \mu\partial_{\vec v}f(\vec a)
 \end{equation*}
-The proof is a straightforward excercise (one may consult \cite[p. 13]{lav96}).
+The proof is a straightforward exercise (one may consult \cite[p. 13]{lav96}).
 
 If \( V \) is finitely generated, i.e. \( V = \spn{\{e_1,\dots,e_n\}} \), then one can define
 \begin{equation*}

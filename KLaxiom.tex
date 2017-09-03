@@ -14,7 +14,7 @@ In this manner we obtain a map
   \alpha : R\times R\to R^D
 \end{equation*}
 
-Axiom \ref{KL1} can then be succintly stated by demanding that \( \alpha \) be bijective. Note that the \( R \)-module structure is also preserved, so that \( \alpha \) is an \( R \)-module isomorphism. Furthermore, \( R^D \) has a natural \( R \)-algebra structure given by the pointwise product of maps:
+Axiom \ref{KL1} can then be succinctly stated by demanding that \( \alpha \) be bijective. Note that the \( R \)-module structure is also preserved, so that \( \alpha \) is an \( R \)-module isomorphism. Furthermore, \( R^D \) has a natural \( R \)-algebra structure given by the pointwise product of maps:
 
 \begin{align}
   (a_1 + b_1d)(a_2 + b_2d) & = a_1a_2 + (a_1b_2 + b_1a_2)d + b_1b_2d^2 \\
@@ -56,7 +56,7 @@ The infinitesimals \( D \) are one among many other ``small objects'' in SDG, ca
 It will do to explore some simple consequences of this definition.
 
 \begin{lemma}
-  Any Weil algbra \( W \) may be finitely presented, that is, \( W \) is isomorphic to
+  Any Weil algebra \( W \) may be finitely presented, that is, \( W \) is isomorphic to
   \begin{equation*}
     \Q[X_1,\dots,X_n]/(P_1,\dots,P_s)
   \end{equation*}
@@ -65,7 +65,7 @@ It will do to explore some simple consequences of this definition.
 \end{lemma}
 
 \begin{proof}
-  Let \( e_1,\dots,e_n \) be a \( \Q \)-basis of \( W \). The algbra structure is then determined by the constants \( \gamma_{ij}^k \) given by
+  Let \( e_1,\dots,e_n \) be a \( \Q \)-basis of \( W \). The algebra structure is then determined by the constants \( \gamma_{ij}^k \) given by
   \begin{equation*}
     e_i\cdot e_j = \sum_{k=1}^n \gamma_{ij}^ke_k
   \end{equation*}
@@ -159,7 +159,7 @@ Again given by sending \( (p+I)\in R[W] \) to the map \( a\mapsto p(a) \). It is
 
 By asserting this axiom we obtain many of the propositions in the first part of this monograph in a stronger version, and further generalizations. But before looking at those examples we'll note that the first KL axiom given is too a consequence of axiom \ref{ax:genKL}. This can be seen simply by applying the axiom to the Weil algebra \( \mathbb{Q}[X]/(X^2) \). The result is the equivalent version of axiom \ref{KL1} that we had already observed in section \ref{ax1re}.
 
-What the general KL axiom provides is essentially, given a particular set of ``small'' elements of \( R \), a correspondence between functions from that set to \( R \) with a particular finite dimensional \( R \)-algebra. These ``small'' elelements are the objects \( \spec_R(W) \) for some Weil algebra \( W \).  We refer to them as ``small'' because they are meant to be a rigorization of the historically nebulous concept of ``infinitesimals''. We first introduced nilsquares (\( \spec_R(Q[X]/(X^2)) \)), on which all functions are affine, giving us first order derivatives. The Taylor formulas that came afterwards were restricted, however, to sums of elements of \( D \) and not any nilpotent element of \( R \). Since other nilpotents are too spectra of certain Weil algebra, we now have Taylor formulae for these, given by axiom \ref{ax:genKL}. We'll look at a few such spectra, study the KL axiom in regards to them and at the same time introduce their common nomenclature.
+What the general KL axiom provides is essentially, given a particular set of ``small'' elements of \( R \), a correspondence between functions from that set to \( R \) with a particular finite dimensional \( R \)-algebra. These ``small'' elements are the objects \( \spec_R(W) \) for some Weil algebra \( W \).  We refer to them as ``small'' because they are meant to be a rigorization of the historically nebulous concept of ``infinitesimals''. We first introduced nilsquares (\( \spec_R(Q[X]/(X^2)) \)), on which all functions are affine, giving us first order derivatives. The Taylor formulas that came afterwards were restricted, however, to sums of elements of \( D \) and not any nilpotent element of \( R \). Since other nilpotents are too spectra of certain Weil algebra, we now have Taylor formulae for these, given by axiom \ref{ax:genKL}. We'll look at a few such spectra, study the KL axiom in regards to them and at the same time introduce their common nomenclature.
 
 \begin{itemize}
   \item \( D_k := \spec_R(W_{k+1}) \) with \( W_{k+1} = \mathbb{Q}[X]/(X^{k+1}) \). These are elements of \( R \) whose \( (k+1) \)-th power is zero (in particular \( D_2 = D \)). One can check that \( W_{k+1} \) is isomorphic to the the set \( \{a_0+a_1\epsilon + \dots + a_k\epsilon^k\ \mid a_i\in R\} \) with \( \epsilon \) denoting the equivalence class of \( X \) in \( W_{k+1} \). By axiom \ref{ax:genKL} the set of functions \( D_k\to R \) are isomorphic as an \( R \)-algebra to the algebra \( W_{k+1} \). Another way of saying this is that:
@@ -176,7 +176,7 @@ What the general KL axiom provides is essentially, given a particular set of ``s
     That is, we have Taylor formulas of all orders (and one can check that the \( a_i \) are precisely the Taylor coefficients).
 
     %TODO: make sure of this
-  \item \( (D_k)^n := \spec_R((W_{k+1})^n) \) where \( (W_{k+1})^n \) just means the cartesian product with itself \( n \) times (and so does taking the spectrum of the product of \( W_k \) coincide with the product of \( D_k \)). This is a Weil algebra, and it is presented by \( \mathbb{Q}[X_1,\dots,X_n](X_1^{k+1},\dots,X_n^{k+1}) \) . The general KL axiom applied to this particular algebra is what yields higher dimensional Taylor formulae. We state it now without proof (a tedious but simple combinatorial exercise).
+  \item \( (D_k)^n := \spec_R((W_{k+1})^n) \) where \( (W_{k+1})^n \) just means the Cartesian product with itself \( n \) times (and so does taking the spectrum of the product of \( W_k \) coincide with the product of \( D_k \)). This is a Weil algebra, and it is presented by \( \mathbb{Q}[X_1,\dots,X_n](X_1^{k+1},\dots,X_n^{k+1}) \) . The general KL axiom applied to this particular algebra is what yields higher dimensional Taylor formulae. We state it now without proof (a tedious but simple combinatorial exercise).
     \begin{proposition}
       For any function \( f:R^n\to R \),
       \begin{equation*}
