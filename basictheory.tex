@@ -182,15 +182,17 @@ This justifies the earlier heuristic of considering nilcubes as candidates for s
   \end{equation*}
   in other words, the \( k \)-\textit{th} elementary symmetric polynomial of \( n \) variables (multiplied by \( k! \)). Denote this by \( e_k(X_1,\dots,X_n) \), and convene \( e_0 \equiv 1 \) and \( e_k(X_1,\dots,X_n) = 0 \) if \( k>n \). We proceed inductively:
   % [TODO] Fix this equation
-  \begin{align}
-    \begin{split}
-      f(x+\delta) & = f(x+d_1+\cdots+d_n) \\[10pt]
-                  & = f(x+d_1+\cdots+d_{n-1})+f'(x+d_1+\cdots+d_{n-1})d_n \\[10pt]
-		  & = \sum_{i=0}^{n-1}\frac{f^{(i)}(x)}{i!}i!e_i(d_1,\dots,d_{n-1}) + d_n\sum_{i=0}^{n-1}\frac{f^{(i+1)}(x)}{i!}i!e_i(d_1,\dots,d_{n-1}) \\[10pt]
-                  & = \sum_{i=0}^{n-1}f^{(i)}(x)\left( e_i(d_1,\dots,d_{n-1})+d_ke_{i-1}(d_1,\dots,d_{n-1})\right) + d_kf^{(n)}(x)e_{k-1}(d_1,\dots,d_{k-1})
-    \end{split}
+  \begin{equation}
+    \begin{aligned}
+      f(x+\delta) & = f(x+d_1+\cdots+d_n) & \\[10pt]
+                  & = f(x+d_1+\cdots+d_{n-1})+f'(x+d_1+\cdots+d_{n-1})d_n & \\[10pt]
+                  & = \sum_{i=0}^{n-1}\frac{f^{(i)}(x)}{i!}i!e_i(d_1,\dots,d_{n-1}) & \\[10pt]
+                  &\qquad\qquad + d_n\sum_{i=0}^{n-1}\frac{f^{(i+1)}(x)}{i!}i!e_i(d_1,\dots,d_{n-1}) & \\[10pt]
+                  & = \sum_{i=0}^{n-1}f^{(i)}(x)\left( e_i(d_1,\dots,d_{n-1})+d_ke_{i-1}(d_1,\dots,d_{n-1})\right) & \\[10pt]
+                  &\qquad\qquad + d_kf^{(n)}(x)e_{k-1}(d_1,\dots,d_{k-1}) &
+    \end{aligned}
     \label{eq:ntaylor}
-  \end{align}
+  \end{equation}
 It's now useful to use the following recursion that elementary symmetric polynomials satisfy:
 \begin{equation*}
   e_k(X_1,\dots,X_n) = e_{k}(X_1,\dots,X_{n-1}) + X_{n}e_{k-1}(X_1,\dots,X_{n-1})
@@ -242,14 +244,15 @@ The previous result follows directly from the following lemma which generalizes 
 \begin{proof}
   Apply the definition of the partial derivative in \( x_i \), and successively in \( x_j \)
   \begin{align*}
-    f(r_1,\dots,r_i+d_1,\dots,r_j+d_2,\dots,r_n) & = f(x_1,\dots,x_i,\dots,x_j+d_2,\dots,x_n) + \\
-                                                 & \qquad\qquad + \ddx{f}{x_i}(x_1,\dots,x_i,\dots,x_j+d_2,\dots,x_n)d_1 \\
-                                                 & = f(x_1,\dots,x_n) + \ddx{f}{x_i}(x_1,\dots,x_n)d_1 + \ddxII{f}{x_i}{x_j}(x_1,\dots,x_n)d_2d_1
+    f(r_1,\dots&,r_i+d_1,\dots,r_j+d_2,\dots,r_n) =      \\
+      & = f(x_1,\dots,x_i,\dots,x_j+d_2,\dots,x_n) \\
+      & \qquad\qquad + \ddx{f}{x_i}(x_1,\dots,x_i,\dots,x_j+d_2,\dots,x_n)d_1 \\
+      & = f(x_1,\dots,x_n) + \ddx{f}{x_i}(x_1,\dots,x_n)d_1 + \ddxII{f}{x_i}{x_j}(x_1,\dots,x_n)d_2d_1
   \end{align*}
   and \( f(x_1,\dots,x_n), \ddx{f}{x_i}(x_1,\dots,x_n), \ddx{f}{x_j}(x_1,\dots,x_n), \ddxII{f}{x_i}{x_j}(x_1,\dots,x_n)  \) are the unique coefficients that satisfy this for universally quantified \( (d_1,d_2)\in D \).
 \end{proof}
 
-On the other hand, exchanging \( d_1 \) and \( d_2 \) (and commuting products and sums) in the above equations yields the same conclusion for \( \ddxII{f}{x_j}{x_i}(x_1,\dots,x_n) \). Since they are unique they must equal each other, proving (\ref{prop:schwarz}). By induction we also obtain that the order in which we differentiate higher partial derivatives does not matter.
+On the other hand, exchanging \( d_1 \) and \( d_2 \) (and commuting products and sums) in the above equations yields the same conclusion for \( \ddxII{f}{x_j}{x_i} \). Since they are unique they must equal each other, proving (\ref{prop:schwarz}). By induction we also obtain that the order in which we differentiate higher partial derivatives does not matter.
 
 \section{Vector functions}
 We will now examine functions between \( R \)-modules. However, for a general \( R \)-module \( V \), it does not follow from the KL axiom (\ref{KL1}) that a version of it holds for functions \( D\to V \). In this case what we do is simply restrict our attention to those \( R \)-modules where this is the case. This leads to the following definition:

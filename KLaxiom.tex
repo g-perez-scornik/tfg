@@ -184,8 +184,19 @@ What the general KL axiom provides is essentially, given a particular set of ``s
       \end{equation*}
     \end{proposition}
     where we're using the usual multi-index notation - if \( \alpha=(\alpha_1,\dots,\alpha_n) \) then \( \abs\alpha = \alpha_1+\dots+\alpha_n \), \( \alpha! = \alpha_1!\cdot\dots\cdot\alpha_n! \) and \( \frac{\partial^{\abs\alpha}f}{\partial x^\alpha}=\frac{\partial^{\abs\alpha}f}{\partial x^{\alpha_1}\dots\partial x^{\alpha_n}} \). The partial derivatives are defined in the same way as before.
-  \item \( D(n) := \spec_R(W(n)) \) where \( W(n) = \Q[X_1,\dots,X_n]/(\{X_iX_j\}_{1\leq i,j \leq n}) \). A simpler way of writing this is \( D(n) = \{(d_1,\dots,d_n)\subset R^n\mid \text{the product of any two \( d_i,d_j \) is zero}\} \).
-  \item \( D_k(n) := \spec_R(W_k(n)) \) where \( W_k(n) = \Q[X_1,\dots,X_n]/(\{X_{i_1}\cdots X_{i_k}\}_{1\leq i_1,\dots,i_k\leq n}) \). Again these are the elements of \( R^n \) such that the product of any \( k \) of their components is equal to zero.
+  \item \( D(n) := \spec_R(W(n)) \) where 
+    \begin{equation*}
+        W(n) = \Q[X_1,\dots,X_n]/(\{X_iX_j\}_{1\leq i,j \leq n})
+    \end{equation*}
+    A simpler way of writing this is
+    \begin{equation*}
+      D(n) = \{(d_1,\dots,d_n)\subset R^n\mid \text{the product of any two \( d_i,d_j \) is zero}\}
+    \end{equation*}
+  \item \( D_k(n) := \spec_R(W_k(n)) \) where
+    \begin{equation*}
+      W_k(n) = \Q[X_1,\dots,X_n]/(\{X_{i_1}\cdots X_{i_k}\}_{1\leq i_1,\dots,i_k\leq n})
+    \end{equation*}
+   Again these are the elements of \( R^n \) such that the product of any \( k \) of their components is equal to zero.
 \end{itemize}
 
 There are some notable inclusions:
