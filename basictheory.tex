@@ -66,7 +66,7 @@ So what are the elements of \( D \)? For one they are not all zero, for if they 
 The infinitesimals \( D \) are thus neither zero nor nonzero. This is a contradictory statement in classical logic, but it is precisely of the type of phrases that we should expect to appear if we weaken our logic to intuitionistic logic.
 
 %TODO: cancellation of universally quantified d
-\section{Elementary Calculus}
+\section{Elementary Calculus} \label{sec:elemcalc}
 
 With our basic axiom scheme in place we can begin revisiting the classical notion of a derivative in this new context. We begin, as expected, with a function \( f:R\to R \). Fix \( x\in R \) and define a new function \( g:D\to R \) by
 \begin{equation*}
@@ -161,7 +161,7 @@ What we have just proven is the following proposition.
 
 \end{proposition}
 
-This justifies the earlier heuristic of considering nilcubes as candidates for second order Taylor expansions. Unfortunately, there is no way to assert as of now that \textit{any} nilcube must be of the form \( d_1+d_2 \) with \( d_1,d_2\in D \). It is a partial result. In section {/placeholder1/} we will introduce Taylor expansions for every nilpotent element by way of an axiom that generalizes the KL axiom \ref{KL1}. Still, it serves as a nice exercise to prove the following, more general, Taylor formula.
+This justifies the earlier heuristic of considering nilcubes as candidates for second order Taylor expansions. Unfortunately, there is no way to assert as of now that \textit{any} nilcube must be of the form \( d_1+d_2 \) with \( d_1,d_2\in D \). It is a partial result. In section \ref{sec:elemcalc} we will introduce Taylor expansions for every nilpotent element by way of an axiom that generalizes the KL axiom \ref{KL1}. Still, it serves as a nice exercise to prove the following, more general, Taylor formula.
 
 \begin{proposition}
   Let \( f:R\to R \) be a function. Then for all \( n\in\mathbb N \) and \( \delta = d_1+\cdots+d_n \)
@@ -201,7 +201,7 @@ Finally, observe that \( e_{k-1}(d_1,\dots,d_{k-1}) \) is just \( d_1d_2\cdots d
 \end{equation*}
 \end{proof}
 
-We'd do well to note that, for \( n\geq k+1 \), \( \delta^n \) is 0. The above Taylor formula is of course still valid for any \( k \) and \( n \), but the terms are all zero after \( k+1 \). We again find a unique characterization of all functions on a certain set of nilpotents. This property will be stated in section {/placeholder1/} as a general axiom.
+We'd do well to note that, for \( n\geq k+1 \), \( \delta^n \) is 0. The above Taylor formula is of course still valid for any \( k \) and \( n \), but the terms are all zero after \( k+1 \). We again find a unique characterization of all functions on a certain set of nilpotents. This property will be stated in section \ref{sec:genkl} as a general axiom.
 
 \section{Calculus of several variables}
 We now take the usual course in calculus, which is to generalize the previous study to functions of more than one variable, i.e. \( R^n\to R \), and further on functions \( E\to V \) where \( E \) and \( V \) are ``vector spaces'' in a sense that will be made precise.
@@ -290,7 +290,7 @@ This may seem like a very ad-hoc definition, but we will encounter many Euclidea
   \end{enumerate}
 \end{proof}
 
-Additionally, it's clear that any \( V \) which is isomorphic to \( R^n \) as an \( R \)-module is too Euclidean. In \cite{kock10} for example, it begins directly with this notion, calling them ``finite dimensional vector spaces''. Another fundamental example of a Euclidean \( R \)-module that we'll study are tangent spaces, in section {/placeholder2/}.
+Additionally, it's clear that any \( V \) which is isomorphic to \( R^n \) as an \( R \)-module is too Euclidean. In \cite{kock10} for example, it begins directly with this notion, calling them ``finite dimensional vector spaces''. Another fundamental example of a Euclidean \( R \)-module that we'll study are tangent spaces, in section \ref{sec:tangency}.
 
 For now let us go back to doing calculus. The Euclidean structure allows one to define directional derivatives, as is done in \cite{lav96}, for example.
 \begin{defn}
