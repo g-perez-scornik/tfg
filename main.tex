@@ -2,10 +2,7 @@
 % Gaspar Pérez Scornik <gasparperez2010@gmail.com>
 %
 
-\documentclass[11pt]{report}
-\title{A brief introduction to Synthetic Differential Geometry}
-\author{Gaspar P\'erez Scornik}
-\date{September 2017}
+\documentclass[12pt]{amsbook}
 
 \input{styles}
 \input{thmenv}
@@ -13,20 +10,65 @@
 
 \begin{document}
 
-\maketitle
+\begin{figure}
+  \begin{center}
+   \includegraphics[width=6in]{portada.pdf}
+  \end{center}
+\end{figure}
 
-\abstract{The goal of this monograph is to explore the basic axiomatic theory of Synthetic Differential
-Geometry. In case the reader is not familiar, Synthetic Differential Geometry (SDG) refers to
-a field of study which aims to put the study of smooth manifolds and geometry therein, in
+\begin{titlepage}
+	\centering
+	{\scshape\LARGE Universitat Polit\`ecnica de Catalunya\par}
+	\vspace{1cm}
+	{\scshape\Large Grau de Matem\`atiques\par}
+	\vspace{1.5cm}
+	{\huge\bfseries A Brief Introduction to Synthetic Differential Geometry\par}
+	\vspace{2cm}
+	{\Large Gaspar P\'erez Scornik\par}
+	\vspace{0.3cm}
+	{\texttt gasparperez2010@gmail.com\par}
+	\vfill
+	Bachelor's Thesis\par
+	supervised by\par
+	\vspace{0.3cm}
+	Xavier Gr\`acia Sabat\'e\par
+  Department of Mathematics
+
+	\vfill
+
+	{\large September, 2017}
+\end{titlepage}
+
+\frontmatter
+
+\setcounter{page}{2}
+
+\begin{center}
+  1991 {\itshape Mathematics Subject Classification.} 51K10, 03G30, 18F15, 58A05\par
+  \vspace{0.3cm}
+  {\itshape Key words.} Synthetic Differential Geometry, Smooth Toposes, Smooth Manifolds, Intuitionistic Logic\par
+\end{center}
+
+\vspace{0.5cm}
+
+\noindent{\scshape Abstract}. The goal of this thesis is to explore the basic axiomatic theory of Synthetic Differential Geometry (SDG). This field aims to put the study of smooth manifolds and geometry therein, in
 a topos-theoretic framework. Though the full depth of application and consequences of SDG
-require knowledge of topos-theory to comprehend, a large part of the theory can be appreciated
+require knowledge of topos theory to comprehend, a large part of the theory can be appreciated
 with only some notions of basic category theory (as well as with a standard undergraduate
 mathematics syllabus). In this work we look at this part of SDG, called the “axiomatic” theory
 because it is indeed developed axiomatically. Specifically, under the axiomatic theory of SDG
-we look at differential calculus, then “Manifolds” (their analogue in SDG), vector bundles (the
-tangent bundle as a particular case), and vector fields (and the Lie algebras thereof).}
+we look at differential calculus, then “manifolds” (their analogue in SDG), vector bundles (the
+tangent bundle as a particular case), and vector fields (and Lie algebras thereof).\par
+\vspace{0.2cm}
+
+\par\noindent\rule[0.2cm]{\textwidth}{0.4pt}
+
+\noindent{\scshape Resum}. L'objectiu d'aquest treball \'es el d'explorar la teoria axiom\`atica b\`asica de l'anomenada \emph{Geometria Diferencial Sint\`etica} (GDS). La GDS es refereix a un camp que t\'e l'objectiu d'enquadrar l'estudi de les varietats diferenciables i la seva geometria dins el marc de la teoria de topos. Malgrat que l'apreci complet de les aplicacions i conseq\"u\`encies d'aquesta teoria requereixen con\`eixer la teoria de topos, una gran part de la teoria es pot tractar amb nom\'es unes nocions b\`asiques de teoria de categories (juntament amb una educaci\'o en matem\`atiques a nivell de grau). En aquest treball visitem aquesta part de la teoria, que s'anomena ``axiom\`atica'' perqu\'e efectivament ho \'es. En particular sota la teoria axiom\`atica de la GDS tractem el c\`alcul diferencial, varietats (el seu an\`aleg), fibrats vectorials (el fibrat tangent en especial), i finalment camps vectorials (amb la seva estructura d'\`algebra de Lie).
 
 \tableofcontents
+\input{preface}
+
+\mainmatter
 
 \input{intro}
 \input{basictheory}
@@ -34,7 +76,8 @@ tangent bundle as a particular case), and vector fields (and the Lie algebras th
 \input{microlinearity}
 \input{tangency}
 
-\clearpage
+\backmatter
+
 \bibliography{tfg}
 \bibliographystyle{plain}
 

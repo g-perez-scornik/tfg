@@ -2,9 +2,13 @@
 \newtheorem{axiom}{Axiom}[section]
 \setcounter{axiom}{-1}
 \newtheorem{klaxiom}{KL Axiom}
-\newtheorem{proposition}{Proposition}[section]
-\newtheorem{lemma}{Lemma}[section]
+
+\newtheorem{proposition}{Proposition}[chapter]
+\newtheorem{lemma}[proposition]{Lemma}
+
 \theoremstyle{definition}
-\newtheorem{defn}{Definition}[section]
-\newtheorem{exmp}{Example}[defn]
-\numberwithin{equation}{section}
+\newtheorem{defn}[proposition]{Definition}
+\newtheorem{exmp}[proposition]{Example}
+
+\numberwithin{section}{chapter}
+\numberwithin{equation}{chapter}
