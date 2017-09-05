@@ -1,0 +1,34 @@
+\chapter{A quick overview of models}
+
+The exposition of the material so far is, as the introduction states, axiomatic. Consider the analogy with a first course in differential calculus; the real numbers most likely simply ``given'' as some variation of ``a complete archimedean ordered field'' that exists (or nothing is stated, and properties are simply invoked when needed). The task of actually exhibiting such an object is left until a later point in time, presumably when the student has matured enough to grasp the necessary material.
+
+Here we have done the same, albeit in a much higher context. To carry on with the theory we have instated a pair \( (\sdgE,R) \), where \( \sdgE \) is a topos and \( R \) is a \( \Q \)-algebra of \( \sdgE \) which satisfies the Kock-Lawvere axiom. Two concerns arise:
+\begin{itemize}
+  \item Does there exist such a pair in the standard mathematical universe?
+  \item If so, how do we associate results in SDG to their classical counterparts?
+\end{itemize}
+
+Naturally, both questions have been answered. For instance, in \cite[§III]{kock06} the author constructs models which answer the first question (the answer is ``yes''). The nature of these models is outside the scope of the present work, but pose an excellent subject for further study (in effect, it would be quite necessary if one were interested in pursuing SDG at a professional level).
+
+The second question is answered by what are referred to as \emph{well-adapted} models of SDG. More work has to be done to exhibit such a model, but again this has been accomplished and one can find it in the literature, for example in the same \cite{kock06}. Once more, the details make heavy use of category theory at an advanced level, but we can describe some of the attractive properties that well-adapted models possess, in regards to comparing SDG with classical geometry.
+
+Let \( \manf \) be the category of Hausdorff paracompact \( \cinf \) manifolds. To give a well-adapted model of SDG is to exhibit a category \( \sdgE \), and a full and faithful functor
+\begin{equation*}
+  i:\manf\to\sdgE
+\end{equation*}
+
+which satisfies certain properties. We won't go into detail about those properties (see \cite{kock06}), but we can look at some of the consequences of such a model. For instance, \( \sdgE \) has an object \( i(\R) \), and this will be our \( R \). It satisfies the Kock-Lawvere axiom for one, and furthermore there are such comparison results such as the following. Given a smooth map \( f:\R\to\R \), through \( i \) we obtain a map \( i(f):R\to R \). It is the case (if \( (i,\sdgE) \) is a well-adapted model), that
+\begin{equation*}
+  (i(f))' = i(f')
+\end{equation*}
+In other words, derivatives in the standard sense correspond exactly with derivatives in SDG. It's also true that \( i \) preserves products, so that \( \R^n \) gets taken to \( R^n \), and given a function \( f:\R^n\to R \), then
+\begin{equation*}
+  i\left( \ddx{f}{x_j} \right) = \ddx{i(g)}{x_j}
+\end{equation*}
+
+Another property of well-adapted models is that they preserve tangent bundles. Formally, if \( M \) is a manifold in \( \manf \), then there exists a natural isomorphism
+\begin{equation*}
+  i(TM)\stackrel{\alpha_M}{\to} (i(M))^D = T(i(M))
+\end{equation*}
+
+With these properties one can now be assured that SDG is well suited to reasoning and drawing conclusions in ``standard'' differential geometry. One particularly well detailed example of the procedure for doing so can be found in \cite{bun17}, where the authors give a synthetic proof of the Ambrose-Palais-Singer theorem, along with a synthetic treatment of (parts of) the calculus of variations - in particular the characterization of geodesic curves as critical curves of the action integral.
