@@ -19,9 +19,7 @@ We call the collection of all such tangent vectors \( T_pM \), the tangent space
 \begin{equation*}
   R\times T_pM \to T_pM \atop (\lambda,t)\mapsto \lambda t
 \end{equation*}
-
 where the map \( \lambda t: D\to M \) is defined by
-
 \begin{equation*}
   (\lambda t)(d) = t(\lambda d)
 \end{equation*}
@@ -37,13 +35,10 @@ As for addition, consider two tangent vectors at \( p \), \( t_1,t_2:D\to M \). 
 \end{equation}
 
 Since \( M \) is microlinear, it perceives \ref{dg:pushoutcopy} as a pushout. As we studied in the case of \( R \), this means that the maps \( D(2)\to M \) are in bijection with pairs of maps \( D\to M \) that are equal at \( 0 \). This is the case with \( t_1 \) and \( t_2 \), since \( t_1(0)=p=t_2(0) \). Thus, there exists a unique map, which we call
-
 \begin{equation*}
   s_{t_1,t_2}:D(2)\to M
 \end{equation*}
-
 allowing us to define
-
 \begin{equation*}
   t_1+t_2:d\mapsto s_{t_1,t_2}(d,d)
 \end{equation*}
@@ -235,7 +230,6 @@ Finally, let us define \( 0\in T_pM \) as the constant map \( 0(d)=p \,\forall d
   \begin{equation*}
     g(d_1,d_2) = (t\circ \mu)(d_1,d_2) = t(d_1d_2)
   \end{equation*}
-  
   This is all we need, since the map \( \tau \) verifies the equations \ref{eq:3equ}. Therefore there exists a unique \( t:D\to M \) with
   \begin{equation*}
     \tau(d_1,d_2)=t(d_1d_2) \quad \forall d_1,d_2\in D
@@ -282,7 +276,7 @@ The proof of lemma \ref{lm:3coequ} is fairly straightforward. Since \( M \) is m
       &                                                                                   & A \ar[lu]^g \ar@{.>}[u]^h
     }
   \end{equation*}
-  This concludes that diagram \ref{dg:3equWalg} is a limit. It is left to the reader to check that diagram \ref{dg:3coequ} is the result of applying the \( \spec_R \) functor to \ref{dg:3equWalg}, making it a quasi colimit. Since \( M \) was microlinear, the lemma is proven.  
+  This concludes that diagram \ref{dg:3equWalg} is a limit. It is left to the reader to check that diagram \ref{dg:3coequ} is the result of applying the \( \spec_R \) functor to \ref{dg:3equWalg}, making it a quasi colimit. Since \( M \) was microlinear, the lemma is proven.
 \end{proof}
 
 The natural next step is to define the differential (or derivative, or tangent map, etc.) of a mapping between two microlinear objects. Let \( M,N \) be microlinear, and \( f:M\to N \) a map. Let \( p\in M \). We define:
@@ -411,7 +405,6 @@ such that \( X(p)(0)=p \) for every \( p\in M \). But then \( X \) is equivalent
 \begin{equation*}
   X:M\times D \to M
 \end{equation*}
-
 such that \( X(p,0)=p \). Thus, the notion of infinitesimal flow is recovered. Furthermore we have the principal of superposition.
 
 \begin{proposition}
@@ -474,7 +467,6 @@ The following proposition also establishes a strong parallel with classical Lie 
   \begin{equation*}
     \{ (f,g) \in M^M\times M^M \mid g\circ f = f \circ g = \id_M \}
   \end{equation*}
-
   In other words, we have a diagram
   \begin{equation*}
     \xymatrix{
@@ -502,9 +494,7 @@ Let us recall lemma \ref{lm:3coequ}, which, in summary, states that for any \( g
 \begin{equation*}
 g(d_1,0) = g(0,d_2) = g(0,0) \quad \forall d_1,d_2\in D
 \end{equation*}
-
 there exists a unique map \( t:D\to M \) with the property
-
 \begin{equation*}
   g(d_1,d_2) = t(d_1d_2)
 \end{equation*}
@@ -546,7 +536,7 @@ What we'll be pleased to find is that this bracket is bilinear, antisymmetric, a
 		       &= [Y,X]_{d_2(-d_1)}                                                    \\
 		       &= \left( -[Y,X] \right)_{d_1d_2}                                       \\
       \end{align*}
-    \item Again we utilize that \( \vfld M \) is Euclidean to prove linearity, by only proving homogeneity (prop. \ref{prop:homg}). Let \( \lambda\in R \). Then
+    \item Again we utilize that \( \vfld M \) is Euclidean to prove linearity, by only proving homogeneity (prop.\ \ref{prop:homg}). Let \( \lambda\in R \). Then
       \begin{align*}
 	\lambda[X,Y]_{d_1d_2} &= [X,Y]_{\lambda d_1d_2}                                               \\
 	                      &= Y_{-d_2}\circ X_{-\lambda d_1}\circ Y_{d_2}\circ X_{\lambda d_1}     \\

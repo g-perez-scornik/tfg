@@ -1,6 +1,34 @@
 \chapter{The basic theory} \label{sec:basictheory}
 
-The axiomatic theory of Synthetic Differential Geometry begins by assuming a certain topos \( \sdgE \) exists. A topos is a category with certain properties which are meant to abstract the way in which the category of sets behaves. In fact, most naive set theoretic and logical notions have meaningful interpretation in terms of objects and morphisms of a topos. Thus, from this point on we will mainly omit the fact that we are working in a topos, and use standard set theoretic notation, giving only brief reminders now and then. 
+The axiomatic theory of Synthetic Differential Geometry begins by assuming a certain topos \( \sdgE \) exists. A topos is a category with certain properties which allow us to to abstract the way in which the category of sets behaves. In fact, most naive set theoretic and logical notions have meaningful interpretation in terms of objects and morphisms of a topos. For example, comprehension by formulas such as
+\begin{equation*}
+  \{x\in A\mid f(x) = 0\}
+\end{equation*}
+is possible in a topos (at least for polynomial \( f \), which is all that we need here), and it behaves in the way we would expect it to. Some authors prefer to use different notation for those types of constructions, to distinguish ``internal'' constructions in the topos, from regular set theory. For example the above might be written as
+\begin{equation*}
+  [[x\in A\mid x^2 = 0]]
+\end{equation*}
+
+We will not make such distinctions here, but do mention it now so as to make clear that the set-theoretic and logical constructions that appear throughout are those internal to \( \sdgE \). We will also use the terms set and object interchangeably, though both refer to ``objects of \( \sdgE \)''.
+
+Another fundamental (defining) property of toposes is that of the existence of exponential objects. Again, this is completely analogous to a familiar property of sets. Given sets \( A,X \), we can always form the exponential:
+\begin{equation*}
+  A^X = \{f\mid f:X\to A\}
+\end{equation*}
+and it satisfies the universal property that for any set \( B \), giving a function
+\begin{equation*}
+  B\to A^X
+\end{equation*}
+is equivalent to giving a function
+\begin{equation*}
+  X\times B\to A
+\end{equation*}
+
+In a topos we can always form exponential objects, and they too are characterized by the mentioned universal property.
+
+Thus, from this point on we will mainly omit the fact that we are working in a topos, and use standard set theoretic notation, giving only brief reminders now and then. There are of course limitations - not every formula in set theory can be meaningfully interpreted as an internal formula of a topos, particularly when it comes to logic. Notably, we do not have access to nonconstructive logic. However, this will also be demanded by our geometric theory, as will be seen very shortly. 
+
+It is duly noted that a vast oversimplification has been made of the details of the internal language of toposes. However there exists ample literature on the subject; the reader is urged to consult \cite{bun17} or \cite{kock06} for topos theory preliminaries. There are of course more primary sources, the cited works are simply those that discuss the preliminaries in the context of SDG.
 
 \section{Axiomatics}
 
@@ -46,7 +74,7 @@ However, the above proof relies on the ``fact'' that, for any \( x\in R \) we ha
 %TODO: comment about internal logic of topos is intuitionistic
 To carry on with our theory, we see that we have to reject LEM. The above proof then fails, but of course just because of that we cannot conclude that the theory functions properly. To do so would by all means require exhibiting the category \( \sdgE \) explicitly. For now we will continue ignoring this, and develop the naive theory, knowing that we have to abstain from assuming LEM.
 
-Without LEM, (\ref{0prop}) of course still contradicts (because we do want R to be a \( \Q \)-algebra) the statement
+Without LEM, proposition \ref{0prop} of course still contradicts (because we do want R to be a \( \Q \)-algebra) the statement
 \begin{equation}
   \forall d\in D\,(d=0) \vee \neg (d=0)
   \label{eq:not0}
@@ -58,12 +86,12 @@ In other words, its negation is true. One may be inclined to ``simplify'' the ne
 Note that we haven't eliminated the double negation, since \( \neg\neg p\rightarrow p \) is equivalent to LEM. Still, the above would be a contradiction, since \( p\wedge \neg p \) is still false in intuitionistic logic. But, the first equivalence we used on the universally quantified statement (\ref{eq:not0}) also fails to be valid in intuitionistic logic (see \cite[p. 248]{fra84} for example).
 
 %TODO: find a better proof of this
-So what are the elements of \( D \)? For one they are not all zero, for if they were then every function \( d\mapsto ad, a\in R \) would be equal to the constant \( 0 \), but since each coefficient \( a \) is unique, we again reach the absurdity that every \( a\in R \) is the same (equal to zero). At the same time the negation of (\ref{0prop}) implies that not all \( d \) that aren't zero satisfy \( \neg(d=0) \). The consequence is the simple statement that
+So what are the elements of \( D \)? For one they are not all zero, for if they were then every function \( d\mapsto ad, a\in R \) would be equal to the constant \( 0 \), but since each coefficient \( a \) is unique, we again reach the contradiction that every \( a\in R \) is the same (equal to zero). The conclusion is the simple statement that
 \begin{equation*}
   \exists d\in D \neg\neg(d=0)
 \end{equation*}
 
-The infinitesimals \( D \) are thus neither zero nor nonzero. This is a contradictory statement in classical logic, but it is precisely of the type of phrases that we should expect to appear if we weaken our logic to intuitionistic logic.
+The infinitesimals \( D \) can thus be neither zero nor nonzero. This is a contradictory statement in classical logic, but it is precisely of the type of phrases that we should expect to appear if we weaken our logic to intuitionistic logic.
 
 %TODO: cancellation of universally quantified d
 \section{Elementary Calculus} \label{sec:elemcalc}
@@ -133,7 +161,7 @@ Furthermore we have the Chain Rule:
 
 The reader may notice that these statements seem lazily worded. Normally, we would include in the hypotheses something like ``\textit{Let \( f,g:R\to R \) be} differentiable \textit{functions. Then} (some other function) \textit{is differentiable, and \dots etc.}'' We are not in fact forgetting hypotheses. The Kock-Lawvere Axiom \ref{KL1} actually implies that \textit{every} function from \( R \) to \( R \) is differentiable. This is easy to verify by noting that in the definition of the derivative (\ref{def:1varder}), no additional assumptions are made other than \( f \) being a function. As a direct consequence, every function from \( R \) to \( R \) is infinitely differentiable.
 
-This leads us to ask if we also have Taylor expansions of functions. In classical calculus, a Taylor expansion of second order involves a second degree polynomial, and ``terms of order 3''. In our context, these are simply nilcube elements, i.e. \( \delta\in R : \delta^3 = 0 \). An example of such a nilcube is any \( d_1+d_2 \) where \( d_1,d_2 \) are both in \( D \). In effect,
+This leads us to ask if we also have Taylor expansions of functions. In classical calculus, a Taylor expansion of second order involves a second degree polynomial, and ``terms of order 3''. In our context, these are simply nilcube elements, i.e.\ \( \delta\in R : \delta^3 = 0 \). An example of such a nilcube is any \( d_1+d_2 \) where \( d_1,d_2 \) are both in \( D \). In effect,
 \begin{equation*}
   (d_1+d_2)^3 = d_1^3 + d_2^3 + 3d_1^2d_2 + 3d_1d_2^2 = 0
 \end{equation*}
@@ -197,7 +225,11 @@ It's now useful to use the following recursion that elementary symmetric polynom
 \begin{equation*}
   e_k(X_1,\dots,X_n) = e_{k}(X_1,\dots,X_{n-1}) + X_{n}e_{k-1}(X_1,\dots,X_{n-1})
 \end{equation*}
-Finally, observe that \( e_{k-1}(d_1,\dots,d_{k-1}) \) is just \( d_1d_2\cdots d_{k-1} \), meaning that \( d_ke_{k-1}(d_1,\dots,d_{k-1}) = e_k(d_1,\dots, d_{k-1},d_k) \). With these two identities, \ref{eq:ntaylor} becomes:
+Finally, observe that \( e_{k-1}(d_1,\dots,d_{k-1}) \) is just \( d_1d_2\cdots d_{k-1} \), meaning that 
+\begin{equation*}
+  d_ke_{k-1}(d_1,\dots,d_{k-1}) = e_k(d_1,\dots, d_{k-1},d_k)
+\end{equation*}
+With these two identities, \ref{eq:ntaylor} becomes:
 \begin{equation*}
   \sum_{i=0}^{n}f^{(i)}(x)e_i(d_1,\dots,d_k)= \sum_{i=0}^n \frac{f^{(i)}(x)}{i!}\delta^j
 \end{equation*}
@@ -206,7 +238,7 @@ Finally, observe that \( e_{k-1}(d_1,\dots,d_{k-1}) \) is just \( d_1d_2\cdots d
 We'd do well to note that, for \( n\geq k+1 \), \( \delta^n \) is 0. The above Taylor formula is of course still valid for any \( k \) and \( n \), but the terms are all zero after \( k+1 \). We again find a unique characterization of all functions on a certain set of nilpotents. This property will be stated in section \ref{sec:genkl} as a general axiom.
 
 \section{Calculus of several variables}
-We now take the usual course in calculus, which is to generalize the previous study to functions of more than one variable, i.e. \( R^n\to R \), and further on functions \( E\to V \) where \( E \) and \( V \) are ``vector spaces'' in a sense that will be made precise.
+We now take the usual course in calculus, which is to generalize the previous study to functions of more than one variable, i.e.\ \( R^n\to R \), and further on functions \( E\to V \) where \( E \) and \( V \) are ``vector spaces'' in a sense that will be made precise.
 
 \subsubsection{Scalar functions}
 Let \( f:R^n\to R \) be a function, and \( r=(r_1,\dots,r_n)\in R^n \). As one would expect, we calculate the partial derivatives by adding an infinitesimal increment along a single coordinate direction. That is, let \( g: D\to R \) be defined by
@@ -242,11 +274,11 @@ The previous result follows directly from the following lemma which generalizes 
 \end{lemma}
 
 \begin{proof}
-  Apply the definition of the partial derivative in \( x_i \), and successively in \( x_j \)
+  Apply the definition of the partial derivative in \( x_i \), and successively in~\( x_j \)
   \begin{align*}
-    f(r_1,\dots&,r_i+d_1,\dots,r_j+d_2,\dots,r_n) =      \\
-      & = f(x_1,\dots,x_i,\dots,x_j+d_2,\dots,x_n) \\
-      & \qquad\qquad + \ddx{f}{x_i}(x_1,\dots,x_i,\dots,x_j+d_2,\dots,x_n)d_1 \\
+    f(r_1,\dots&,r_i+d_1,\dots,r_j+d_2,\dots,r_n) =      \\[2ex]
+      & = f(x_1,\dots,x_i,\dots,x_j+d_2,\dots,x_n) \\[2ex]
+      & \quad\quad + \ddx{f}{x_i}(x_1,\dots,x_i,\dots,x_j+d_2,\dots,x_n)d_1 \\[2ex]
       & = f(x_1,\dots,x_n) + \ddx{f}{x_i}(x_1,\dots,x_n)d_1 + \ddxII{f}{x_i}{x_j}(x_1,\dots,x_n)d_2d_1
   \end{align*}
   and \( f(x_1,\dots,x_n), \ddx{f}{x_i}(x_1,\dots,x_n), \ddx{f}{x_j}(x_1,\dots,x_n), \ddxII{f}{x_i}{x_j}(x_1,\dots,x_n)  \) are the unique coefficients that satisfy this for universally quantified \( (d_1,d_2)\in D \).
@@ -310,7 +342,7 @@ We note that \( \partial_{(\farg)}f(\vec a) \) is a linear function. In other wo
 \end{equation*}
 The proof is a straightforward exercise (one may consult \cite[p. 13]{lav96}).
 
-If \( V \) is finitely generated, i.e. \( V = \spn{\{e_1,\dots,e_n\}} \), then one can define
+If \( V \) is finitely generated, i.e.\ \( V = \spn{\{e_1,\dots,e_n\}} \), then one can define
 \begin{equation*}
   \ddx{f}{x_i}(\vec a) = \partial_{e_1}f(\vec a)
 \end{equation*}

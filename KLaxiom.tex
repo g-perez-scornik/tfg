@@ -112,7 +112,6 @@ Let \( W_1, W_2 \) be Weil algebras, with
   W_1 &\cong \Q[X_1,\dots,X_n]/I \\
   W_2 &\cong \Q[Y_1,\dots,Y_n]/J
 \end{align*}
-
 Now let \( f:W_1\to W_2 \) be a homomorphism of Weil algebras. Define
 \begin{equation*}
   \spec_C(f):\spec_C(W_2)\to \spec_C(W_1)
@@ -146,8 +145,7 @@ In the same manner we also obtain a mapping
 \begin{equation*}
   \alpha : R[W]\to R^{\spec_R(W)}
 \end{equation*}
-
-Again given by sending \( (p+I)\in R[W] \) to the map \( a\mapsto p(a) \). It is of course an algebra homomorphism. The KL Axiom asserts that it is bijective.
+again given by sending \( (p+I)\in R[W] \) to the map \( a\mapsto p(a) \). It is of course an algebra homomorphism. The KL Axiom asserts that it is bijective.
 \begin{axiom}[KL]
   Let \( W\cong \mathbb{Q}[X_1,\dots,X_n]/I \) be a Weil algebra. Then the map
   \begin{equation*}
@@ -159,7 +157,7 @@ Again given by sending \( (p+I)\in R[W] \) to the map \( a\mapsto p(a) \). It is
 
 By asserting this axiom we obtain many of the propositions in the first part of this monograph in a stronger version, and further generalizations. But before looking at those examples we'll note that the first KL axiom given is too a consequence of axiom \ref{ax:genKL}. This can be seen simply by applying the axiom to the Weil algebra \( \mathbb{Q}[X]/(X^2) \). The result is the equivalent version of axiom \ref{KL1} that we had already observed in section \ref{ax1re}.
 
-What the general KL axiom provides is essentially, given a particular set of ``small'' elements of \( R \), a correspondence between functions from that set to \( R \) with a particular finite dimensional \( R \)-algebra. These ``small'' elements are the objects \( \spec_R(W) \) for some Weil algebra \( W \).  We refer to them as ``small'' because they are meant to be a rigorization of the historically nebulous concept of ``infinitesimals''. We first introduced nilsquares (\( \spec_R(Q[X]/(X^2)) \)), on which all functions are affine, giving us first order derivatives. The Taylor formulas that came afterwards were restricted, however, to sums of elements of \( D \) and not any nilpotent element of \( R \). Since other nilpotents are too spectra of certain Weil algebra, we now have Taylor formulae for these, given by axiom \ref{ax:genKL}. We'll look at a few such spectra, study the KL axiom in regards to them and at the same time introduce their common nomenclature.
+What the general KL axiom provides is essentially, given a particular set of ``small'' elements of \( R \), a correspondence between functions from that set to \( R \) with a particular finite dimensional \( R \)-algebra. These ``small'' elements are the objects \( \spec_R(W) \) for some Weil algebra \( W \). We refer to them as ``small'' because they are meant to be a rigorization of the historically nebulous concept of ``infinitesimals''. We first introduced nilsquares (\( \spec_R(Q[X]/(X^2)) \)), on which all functions are affine, giving us first order derivatives. The Taylor formulas that came afterwards were restricted, however, to sums of elements of \( D \) and not any nilpotent element of \( R \). Since other nilpotents are too spectra of certain Weil algebra, we now have Taylor formulae for these, given by axiom \ref{ax:genKL}. We'll look at a few such spectra, study the KL axiom in regards to them and at the same time introduce their common nomenclature.
 
 \begin{itemize}
   \item \( D_k := \spec_R(W_{k+1}) \) with \( W_{k+1} = \mathbb{Q}[X]/(X^{k+1}) \). These are elements of \( R \) whose \( (k+1) \)-th power is zero (in particular \( D_2 = D \)). One can check that \( W_{k+1} \) is isomorphic to the the set \( \{a_0+a_1\epsilon + \dots + a_k\epsilon^k\ \mid a_i\in R\} \) with \( \epsilon \) denoting the equivalence class of \( X \) in \( W_{k+1} \). By axiom \ref{ax:genKL} the set of functions \( D_k\to R \) are isomorphic as an \( R \)-algebra to the algebra \( W_{k+1} \). Another way of saying this is that:

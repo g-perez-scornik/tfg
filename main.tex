@@ -2,29 +2,32 @@
 % Gaspar Pérez Scornik <gasparperez2010@gmail.com>
 %
 
-\documentclass[12pt]{amsbook}
+\documentclass[12pt,twoside]{amsbook}
 
 \input{styles}
 \input{thmenv}
 \input{macros}
 
+\DeclareRobustCommand{\gobblefour}[4]{}
+\newcommand*{\SkipTocEntry}{\addtocontents{toc}{\gobblefour}}
+
 \begin{document}
 
-\begin{figure}
-  \begin{center}
-    \includegraphics[width=6in]{portada.pdf}
-  \end{center}
-\end{figure}
+\includepdf{portada.pdf}
+
+\thispagestyle{empty}
 
 \begin{titlepage}
 	\centering
-	{\scshape\LARGE Universitat Polit\`ecnica de Catalunya\par}
-	\vspace{1cm}
-	{\scshape\Large Grau de Matem\`atiques\par}
+	{\scshape\Large Universitat Polit\`ecnica de Catalunya\par}
+	\vspace{0.5cm}
+	{\scshape\Large Faculty of Mathematics and Statistics\par}
+	\vspace{0.5cm}
+	{\scshape\Large Degree in Mathematics\par}
 	\vspace{1.5cm}
 	{\huge\bfseries A Brief Introduction to Synthetic Differential Geometry\par}
 	\vspace{2cm}
-	{\Large Gaspar P\'erez Scornik\par}
+	{\Large\bfseries Gaspar P\'erez Scornik\par}
 	\vspace{0.3cm}
 	{\texttt gasparperez2010@gmail.com\par}
 	\vfill
@@ -44,15 +47,14 @@
 \setcounter{page}{2}
 
 \begin{center}
-  1991 {\itshape Mathematics Subject Classification.} 51K10, 03G30, 18F15, 58A05\par
+  2010 {\itshape Mathematics Subject Classification:} 51K10, 03G30, 18F15, 58A05\par
   \vspace{0.3cm}
-  {\itshape Key words.} Synthetic Differential Geometry, Smooth Toposes, Smooth Manifolds, Intuitionistic Logic\par
+  {\itshape Key words:} synthetic differential geometry, smooth toposes, smooth manifolds, intuitionistic logic\par
 \end{center}
 
 \vspace{0.5cm}
 
-\noindent{\scshape Abstract}. The goal of this thesis is to explore the basic axiomatic theory of Synthetic Differential Geometry (SDG). This field aims to put the study of smooth manifolds and geometry therein, in
-a topos-theoretic framework. Though the full depth of application and consequences of SDG
+\noindent{\scshape Abstract}. The goal of this thesis is to explore the basic axiomatic theory of Synthetic Differential Geometry (SDG). This field aims to put the study of smooth manifolds, and geometry therein, in a topos-theoretic framework. Though the full depth of application and consequences of SDG
 require knowledge of topos theory to comprehend, a large part of the theory can be appreciated
 with only some notions of basic category theory (as well as with a standard undergraduate
 mathematics syllabus). In this work we look at this part of SDG, called the “axiomatic” theory
@@ -66,10 +68,11 @@ tangent bundle as a particular case), and vector fields (and Lie algebras thereo
 \noindent{\scshape Resum}. L'objectiu d'aquest treball \'es el d'explorar la teoria axiom\`atica b\`asica de l'anomenada \emph{Geometria Diferencial Sint\`etica} (GDS). La GDS es refereix a un camp que t\'e l'objectiu d'enquadrar l'estudi de les varietats diferenciables i la seva geometria dins el marc de la teoria de topos. Malgrat que l'apreci complet de les aplicacions i conseq\"u\`encies d'aquesta teoria requereixen con\`eixer la teoria de topos, una gran part de la teoria es pot tractar amb nom\'es unes nocions b\`asiques de teoria de categories (juntament amb una educaci\'o en matem\`atiques a nivell de grau). En aquest treball visitem aquesta part de la teoria, que s'anomena ``axiom\`atica'' perqu\'e efectivament ho \'es. En particular sota la teoria axiom\`atica de la GDS tractem el c\`alcul diferencial, varietats (el seu an\`aleg), fibrats vectorials (el fibrat tangent en especial), i finalment camps vectorials (amb la seva estructura d'\`algebra de Lie).
 
 \clearpage
-\section*{}
+\SkipTocEntry\chapter*{Acknowledgments}
 I would like to thank my advisor Xavier Gràcia for his counsel and direction, the BGSM for hosting a wonderful course on category theory, and my friends and family.
 
-This thesis was typeset using the \LaTeX typesetting system originally developed by Leslie Lamport, based on \TeX created by Donald Knuth. Diagrams and figures were drawn using the \texttt{XY-pic} package.
+This thesis was typeset using the \LaTeX\ typesetting system originally developed by Leslie Lamport, based on \TeX\ created by Donald Knuth. Diagrams and figures were drawn using the \texttt{XY-pic} package.
+
 \tableofcontents
 \input{preface}
 
@@ -84,7 +87,10 @@ This thesis was typeset using the \LaTeX typesetting system originally developed
 
 \backmatter
 
-\bibliography{tfg}
-\bibliographystyle{plain}
+
+\huge{
+  \bibliographystyle{plain}
+  \bibliography{main}
+}
 
 \end{document}
