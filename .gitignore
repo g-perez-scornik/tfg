@@ -34,6 +34,9 @@
 *-blx.bib
 *.run.xml
 
+## Allow final revision
+!main.bbl
+
 ## Build tool auxiliary files:
 *.fdb_latexmk
 *.synctex
