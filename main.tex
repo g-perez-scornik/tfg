@@ -8,9 +8,6 @@
 \input{thmenv}
 \input{macros}
 
-\DeclareRobustCommand{\gobblefour}[4]{}
-\newcommand*{\SkipTocEntry}{\addtocontents{toc}{\gobblefour}}
-
 \begin{document}
 
 \includepdf{portada.pdf}
@@ -43,9 +40,8 @@
 \end{titlepage}
 
 \frontmatter
-
 \setcounter{page}{2}
-
+\chapter*{Abstract}
 \begin{center}
   2010 {\itshape Mathematics Subject Classification:} 51K10, 03G30, 18F15, 58A05\par
   \vspace{0.3cm}
@@ -68,7 +64,7 @@ tangent bundle as a particular case), and vector fields (and Lie algebras thereo
 \noindent{\scshape Resum}. L'objectiu d'aquest treball \'es el d'explorar la teoria axiom\`atica b\`asica de l'anomenada \emph{Geometria Diferencial Sint\`etica} (GDS). La GDS es refereix a un camp que t\'e l'objectiu d'enquadrar l'estudi de les varietats diferenciables i la seva geometria dins el marc de la teoria de topos. Malgrat que l'apreci complet de les aplicacions i conseq\"u\`encies d'aquesta teoria requereixen con\`eixer la teoria de topos, una gran part de la teoria es pot tractar amb nom\'es unes nocions b\`asiques de teoria de categories (juntament amb una educaci\'o en matem\`atiques a nivell de grau). En aquest treball visitem aquesta part de la teoria, que s'anomena ``axiom\`atica'' perqu\'e efectivament ho \'es. En particular sota la teoria axiom\`atica de la GDS tractem el c\`alcul diferencial, varietats (el seu an\`aleg), fibrats vectorials (el fibrat tangent en especial), i finalment camps vectorials (amb la seva estructura d'\`algebra de Lie).
 
 \clearpage
-\SkipTocEntry\chapter*{Acknowledgments}
+\chapter*{Acknowledgments}
 I would like to thank my advisor Xavier Gràcia for his counsel and direction, the BGSM for hosting a wonderful course on category theory, and my friends and family.
 
 This thesis was typeset using the \LaTeX\ typesetting system originally developed by Leslie Lamport, based on \TeX\ created by Donald Knuth. Diagrams and figures were drawn using the \texttt{XY-pic} package.
