@@ -186,7 +186,7 @@
 \subsection{A Primer on Toposes}
 
 \begin{frame}{How is this possible?}
-  \begin{itemize}
+  \only<1-5>{\begin{itemize}
     \pause
     \item We have to leave the category of sets.
     \pause
@@ -195,7 +195,19 @@
     \item Toposes are the correct setting for SDG.
     \pause
     \item The objects in a topos behave like sets.
-  \end{itemize}
+  \end{itemize}}
+  \only<6-6>{
+    \begin{quotation}
+      \noindent [...] all notions, constructions, and proofs involved are presented
+      as if the base category were the category of sets; in particular
+      all constructions on the objects involved are described in terms
+      of ``elements'' of them. However, it is necessary and possible
+      to be able to understand this naive writing as referring to
+      cartesian closed categories. It is necessary because the basic
+      axioms of synthetic differential geometry have no models in the
+      category of sets (cf. I S. 1); and it is possible [...]
+    \end{quotation}
+    }
 \end{frame}
 
 \section{Microlinear Objects}
@@ -236,7 +248,7 @@
 
 \begin{itemize}
   \item To be thought of as ``manifolds''.
-  \item We can define tangent vectors (and they will form a vector space).
+  \item We can define tangent vectors (and they will form a ``vector space'').
 \end{itemize}
 
 \end{frame}
@@ -264,7 +276,7 @@
 
 \begin{frame}{Tangent Vectors}
   \begin{itemize}
-    \item The tangent space \( T_pM \) is an \( R \)-vector space.
+    \item The tangent space \( T_pM \) is an \( R \)-module.
       \begin{itemize}
         \item \( 0 \) = the constant map \( p \).
         \item \( \lambda t(d) := t(\lambda d)\)
@@ -325,7 +337,7 @@
     \item The set of vector fields is denoted \( \vfld M \).
       \begin{itemize}
         \pause
-        \item Each \( T_pM \) is a vector space, so by fiberwise operations so is \( \vfld M \).
+        \item Each \( T_pM \) is an \( R \)-module, so by fiberwise operations so is \( \vfld M \).
         \pause
         \item \( \vfld M \) is also an \( M^R \)-module, by
           \begin{equation*}
@@ -409,10 +421,10 @@
 
 \appendix
 \section<presentation>*{\appendixname}
-\subsection<presentation>*{For Further Reading}
+\subsection<presentation>*{Bibliography}
 
 \begin{frame}
-  \frametitle<presentation>{For Further Reading}
+  \frametitle<presentation>{Bibliography}
     
   \begin{thebibliography}{10}
     
