@@ -1,0 +1,415 @@
+\documentclass{beamer}
+
+\usecolortheme[RGB={39,118,193}]{structure}
+\input{thmenv}
+\input{../macros.tex}
+
+\mode<presentation>
+{
+  \usetheme{Rochester}
+}
+
+
+\usepackage[english]{babel}
+% or whatever
+
+\usepackage[latin1]{inputenc}
+% or whatever
+
+\usepackage{times}
+\usepackage[T1]{fontenc}
+% Or whatever. Note that the encoding and the font should match. If T1
+% does not look nice, try deleting the line with the fontenc.
+
+
+\title[Synthetic Differential Geometry] % (optional, use only with long paper titles)
+{A Brief Introduction to Synthetic Differential Geometry}
+
+\author
+{
+  Gaspar P\'erez Scornik\\
+  {\footnotesize Supervised by Xavier Gr\`acia Sabat\'e}
+}
+
+\institute[UPC] % (optional, but mostly needed)
+{
+  Universitat Polit\'ecnica de Catalunya\\
+  Faculty of Mathematics and Statistics
+}
+
+\date[BSCT 2017] % (optional, should be abbreviation of conference name)
+{Bachelor's Thesis, 2017}
+
+% If you have a file called "university-logo-filename.xxx", where xxx
+% is a graphic format that can be processed by latex or pdflatex,
+% resp., then you can add a logo as follows:
+
+\pgfdeclareimage[height=1.5em]{university-logo}{upc-logo.png}
+\logo{\pgfuseimage{university-logo}}
+
+% If you wish to uncover everything in a step-wise fashion, uncomment
+% the following command: 
+
+%\beamerdefaultoverlayspecification{<+->}
+
+\begin{document}
+
+\begin{frame}
+  \titlepage
+\end{frame}
+
+\begin{frame}{Outline}
+  \tableofcontents
+  % You might wish to add the option [pausesections]
+\end{frame}
+
+
+% Structuring a talk is a difficult task and the following structure
+% may not be suitable. Here are some rules that apply for this
+% solution: 
+
+% - Exactly two or three sections (other than the summary).
+% - At *most* three subsections per section.
+% - Talk about 30s to 2min per frame. So there should be between about
+%   15 and 30 frames, all told.
+
+% - A conference audience is likely to know very little of what you
+%   are going to talk about. So *simplify*!
+% - In a 20min talk, getting the main ideas across is hard
+%   enough. Leave out details, even if it means being less precise than
+%   you think necessary.
+% - If you omit details that are vital to the proof/implementation,
+%   just say so once. Everybody will be happy with that.
+
+\section{Introductory theory}
+
+\subsection{Single Variable Calculus}
+
+\begin{frame}{The Derivative}
+
+  \begin{itemize}
+  \item
+    ``The rate of change, for very small changes''
+    \begin{equation*}
+      f(x+h) = f(x) + f'(x)h + \mathcal O(h^2)
+    \end{equation*}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Recreating the Derivative Axiomatically}
+
+  \begin{itemize}
+  \item 
+    We begin with an object \( R \). Naturally, this is the ``synthetic version''
+    of \( \R \).
+  \end{itemize}
+  \pause
+  \begin{axiom}
+    \( R \) is an algebra over \( \Q \).
+  \end{axiom}
+\end{frame}
+
+\begin{frame}{Recreating the Derivative Axiomatically}{The Infinitesimals}
+
+  \begin{itemize}
+    \item Let \( D \) be the set
+      \begin{equation*}
+        D = \left\{ d\in R\mid d^2=0 \right\}.
+      \end{equation*}
+  \end{itemize}
+
+  \pause
+
+  \begin{klaxiom}
+    For all functions
+    \begin{equation*}
+      f:D\to R,
+    \end{equation*}
+    there exist unique \( a,b\in R \) such that
+    \begin{equation*}
+      f(d) = a + bd
+    \end{equation*}
+    for all \( d\in D \).
+    \begin{itemize}
+      \item The coefficient \( a \) is easily seen to be \( f(0) \).
+    \end{itemize}
+
+  \end{klaxiom}
+\end{frame}
+
+\begin{frame}{Recreating the Derivative Axiomatically}
+  \begin{itemize}
+    \item The derivative can now be defined.
+    \item Let \( f:R\to R \) be a function. Fix \( x \), define \( g:D\to R \) by
+      \begin{equation*}
+        g(d) = f(x+d).
+      \end{equation*}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Recreating the Derivative Axiomatically}
+
+  \begin{itemize}
+    \item By the KL axiom, there exist unique \( a,b \) with
+      \begin{equation*}
+        g(d) = f(x+d) = a + bd
+      \end{equation*}
+    \item The first coefficient is \( g(0) = f(x) \).
+  \end{itemize}
+  \pause
+  \begin{defn}
+    The \alert{derivative} of \( f \), written \( f'(x) \), is the unique coefficient \( b \).
+  \end{defn}
+
+\end{frame}
+
+\begin{frame}{Recreating the Derivative Axiomatically}
+  \begin{itemize}
+    \item Thus we have
+      \begin{equation*}
+        f(x+d) = f(x) + f'(x)d\quad \forall d\in D
+      \end{equation*}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{An Example}
+  \begin{exmp}
+    Consider \( f(x) = x^n \). Then
+    \begin{align*}
+      f(x+d) &= \binom{n}{0}x^n + \binom{n}{1}x^{n-1}d + K_2d^2 + \dots + K_nd^n  \\[2ex]
+             &= x^n + \alert{nx^{n-1}}d
+    \end{align*}
+    Therefore \( f'(x) = nx^{n-1} \).
+  \end{exmp}
+\end{frame}
+
+\subsection{A Primer on Toposes}
+
+\begin{frame}{How is this possible?}
+  \begin{itemize}
+    \item<1-> We have to leave the category of sets.
+    \item<2-> We have to weaken logic to only constructive logic (no LEM).
+    \item<3-> Toposes are the correct setting for SDG.
+    \item<4-> The objects in a topos behave like sets.
+  \end{itemize}
+\end{frame}
+
+\section{Microlinear Objects}
+
+\subsection{The Tangent Bundle}
+
+\begin{frame}{Microlinear Objects}
+
+\begin{itemize}
+  \item To be thought of as ``manifolds''.
+  \item We can define tangent vectors (and they will form a vector space).
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{Tangent Vectors}
+
+  \begin{itemize}
+    \item Classically, they are equivalence classes of paths.
+  \end{itemize}
+  \pause
+  \begin{defn}
+    Let \( M \) be microlinear. A \alert{tangent vector} to \( M \) at \( p \) is a map
+    \begin{equation*}
+      t:D\to M
+    \end{equation*}
+    with \( t(0)=p \).
+  \end{defn}
+  \pause
+  \begin{itemize}
+    \item With that, the \alert{tangent space} at \( p \), \( T_pM \), is the set of all
+      tangent vectors at p.
+  \end{itemize}
+
+\end{frame}
+
+\begin{frame}{Tangent Vectors}
+  \begin{itemize}
+    \item The tangent space \( T_pM \) is an \( R \)-vector space.
+      \begin{itemize}
+        \item \( 0 \) = the constant map \( p \).
+        \item \( \lambda t(d) := t(\lambda d)\)
+      \end{itemize}
+    \item For addition we need to use microlinearity.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Addition of Tangent Vectors}
+  \begin{itemize}
+    \item Define ``2-infinitesimals'':
+      \begin{equation*}
+        D(2) =  \left\{(d_1,d_2)\in D\times D \mid d_1d_2 = 0\right\}
+      \end{equation*}
+    \item Microlinearity guarantees that for \( t_1, t_2 \) tangent vectors,
+      there exists a unique
+      \begin{equation*}
+        s:D(2)\to M
+      \end{equation*}
+      such that
+      \begin{align*}
+        s(d,0) &= t_1(d)\\
+        s(0,d) &= t_2(d)
+      \end{align*}
+    \item \( (t_1 + t_2)(d) = s(d,d) \)
+  \end{itemize}
+\end{frame}
+
+%possible visualization frame
+
+\begin{frame}{Addition of Tangent Vectors}{The Neutral Element}
+  \begin{itemize}
+    \item Recall we designated \( 0\equiv p\ \text{(ct.)} \)
+    \item Let \( t \) be a t.v. The map \( s:D(2)\to M \) must satisfy
+      \begin{align*}
+        s(d,0) &= t(d,0)\\
+        s(0,d) &= 0(d) = p
+      \end{align*}
+      so \( s \) must be
+      \begin{equation*}
+        s(d_1,d_2) = t(d_1),
+      \end{equation*}
+      and \( (t + 0)(d) = s(d,d) = t(d) \)
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{The Tangent Bundle}
+  \begin{itemize}
+    \item It is simply the collection of all tangent spaces, \( M^D \). We write \( TM \).
+    \item We have a projection \( \pi:TM\to M \) given by
+      \begin{equation*}
+        t\mapsto t(0)
+      \end{equation*}
+  \end{itemize}
+\end{frame}
+
+\subsection{Vector Fields and Flows}
+
+\begin{frame}{Vector Fields}
+  \begin{itemize}
+    \item They are sections of \( TM \): \( X:M\to TM \) such that \( (\pi\circ X)(p) = p \).
+    \item The set of vector fields is denoted \( \vfld M \).
+      \begin{itemize}
+        \pause
+        \item Each \( T_pM \) is a vector space, so by fiberwise operations so is \( \vfld M \).
+        \pause
+        \item \( \vfld M \) is also an \( M^R \)-module, by
+          \begin{equation*}
+            (fX)(p) = f(p)X(p)
+          \end{equation*}
+      \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Flows}
+  \begin{itemize}
+    \item Exponentials \( A^X \) have the property that
+      \begin{equation*}
+        B\to A^X 
+      \end{equation*}
+      is equivalent to
+      \begin{equation*}
+        X\times B \to A
+      \end{equation*}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Flows}
+  \begin{itemize}
+    \item Vector fields are maps \( X:M\to M^D \), therefore the same as maps
+      \begin{equation*}
+        X: D\times M \to M.
+      \end{equation*}
+      We write the same \( X \) because it's comfortable.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \begin{proposition}
+    Flows are additive.
+  \end{proposition}
+  \begin{proof}
+    Let \( f,g:D(2) \) be defined by
+    \begin{align*}
+      f(d_1,d_2) &= X(d_1+d_2,p)\\
+      g(d_1,d_2) &= X(X(d_1,p),d_2)
+    \end{align*}
+    we have
+    \begin{align*}
+      f(d,0) &= g(d,0)\\
+      g(0,d) &= f(0,d)
+    \end{align*}
+    since \( M \) is microlinear, \( f=g \).
+  \end{proof}
+\end{frame}
+
+%\section*{Summary}
+%
+%\begin{frame}{Summary}
+%
+%  % Keep the summary *very short*.
+%  \begin{itemize}
+%  \item
+%    The \alert{first main message} of your talk in one or two lines.
+%  \item
+%    The \alert{second main message} of your talk in one or two lines.
+%  \item
+%    Perhaps a \alert{third message}, but not more than that.
+%  \end{itemize}
+%  
+%  % The following outlook is optional.
+%  \vskip0pt plus.5fill
+%  \begin{itemize}
+%  \item
+%    Outlook
+%    \begin{itemize}
+%    \item
+%      Something you haven't solved.
+%    \item
+%      Something else you haven't solved.
+%    \end{itemize}
+%  \end{itemize}
+%\end{frame}
+%
+%
+%
+%% All of the following is optional and typically not needed. 
+\appendix
+\section<presentation>*{\appendixname}
+\subsection<presentation>*{For Further Reading}
+
+\begin{frame}[allowframebreaks]
+  \frametitle<presentation>{For Further Reading}
+    
+  \begin{thebibliography}{10}
+    
+  \beamertemplatebookbibitems
+
+  \bibitem{bun17}
+    Marta~C. Bunge, Felipe Gago, and Ana~Mar\'ia San~Luis.
+    \newblock Synthetic differential topology.
+    \newblock Submitted manuscript, not yet published, 2017.
+ 
+  \bibitem{kock06}
+    Anders Kock.
+    \newblock {\em Synthetic Differential Geometry}.
+    \newblock Cambridge University Press, 2nd edition, 2006.
+    
+  \bibitem{kock10}
+    Anders Kock.
+    \newblock {\em Synthetic Geometry of Manifolds}.
+    \newblock Cambridge University Press, 2010.
+      
+  \bibitem{lav96}
+    Ren\'e Lavendhomme.
+    \newblock {\em Basic Concepts of Synthetic Differential Geometry}.
+    \newblock Springer Science+Business Media, B.V., 1996.
+
+  \end{thebibliography}
+\end{frame}
+
+\end{document}
