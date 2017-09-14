@@ -187,16 +187,50 @@
 
 \begin{frame}{How is this possible?}
   \begin{itemize}
-    \item<1-> We have to leave the category of sets.
-    \item<2-> We have to weaken logic to only constructive logic (no LEM).
-    \item<3-> Toposes are the correct setting for SDG.
-    \item<4-> The objects in a topos behave like sets.
+    \pause
+    \item We have to leave the category of sets.
+    \pause
+    \item We have to weaken logic to only constructive logic (no LEM).
+    \pause
+    \item Toposes are the correct setting for SDG.
+    \pause
+    \item The objects in a topos behave like sets.
   \end{itemize}
 \end{frame}
 
 \section{Microlinear Objects}
 
 \subsection{The Tangent Bundle}
+
+
+\begin{frame}{Microlinear Objects}
+  \begin{itemize}
+    \item Define ``2-infinitesimals'':
+      \begin{equation*}
+        D(2) =  \left\{(d_1,d_2)\in D\times D \mid d_1d_2 = 0\right\}
+      \end{equation*}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Microlinear Objects}
+
+\begin{itemize}
+  \item In particular, if \( M \) is microlinear then two maps
+    \begin{equation*}
+      f,g:D\to M
+    \end{equation*}
+    define a unique map
+    \begin{equation*}
+      h:D(2)\to M
+    \end{equation*}
+    such that 
+    \begin{align*}
+      h(d,0) &= f(d)\\
+      h(0,d) &= g(d)
+    \end{align*}
+\end{itemize}
+
+\end{frame}
 
 \begin{frame}{Microlinear Objects}
 
@@ -241,10 +275,6 @@
 
 \begin{frame}{Addition of Tangent Vectors}
   \begin{itemize}
-    \item Define ``2-infinitesimals'':
-      \begin{equation*}
-        D(2) =  \left\{(d_1,d_2)\in D\times D \mid d_1d_2 = 0\right\}
-      \end{equation*}
     \item Microlinearity guarantees that for \( t_1, t_2 \) tangent vectors,
       there exists a unique
       \begin{equation*}
@@ -255,7 +285,7 @@
         s(d,0) &= t_1(d)\\
         s(0,d) &= t_2(d)
       \end{align*}
-    \item \( (t_1 + t_2)(d) = s(d,d) \)
+    \item Define \( (t_1 + t_2)(d) = s(d,d) \)
   \end{itemize}
 \end{frame}
 
@@ -291,7 +321,7 @@
 
 \begin{frame}{Vector Fields}
   \begin{itemize}
-    \item They are sections of \( TM \): \( X:M\to TM \) such that \( (\pi\circ X)(p) = p \).
+    \item They are sections of \( TM \); maps \( X:M\to TM \) such that \( (\pi\circ X)(p) = p \).
     \item The set of vector fields is denoted \( \vfld M \).
       \begin{itemize}
         \pause
@@ -314,6 +344,9 @@
       is equivalent to
       \begin{equation*}
         X\times B \to A
+      \end{equation*}\\
+      \begin{equation*}
+        \left( \tilde f(x,b) = f(b)(x) \right)
       \end{equation*}
   \end{itemize}
 \end{frame}
@@ -347,42 +380,38 @@
   \end{proof}
 \end{frame}
 
-%\section*{Summary}
-%
-%\begin{frame}{Summary}
-%
-%  % Keep the summary *very short*.
-%  \begin{itemize}
-%  \item
-%    The \alert{first main message} of your talk in one or two lines.
-%  \item
-%    The \alert{second main message} of your talk in one or two lines.
-%  \item
-%    Perhaps a \alert{third message}, but not more than that.
-%  \end{itemize}
-%  
-%  % The following outlook is optional.
-%  \vskip0pt plus.5fill
-%  \begin{itemize}
-%  \item
-%    Outlook
-%    \begin{itemize}
-%    \item
-%      Something you haven't solved.
-%    \item
-%      Something else you haven't solved.
-%    \end{itemize}
-%  \end{itemize}
-%\end{frame}
-%
-%
-%
-%% All of the following is optional and typically not needed. 
+
+
+\section*{Summary}
+
+\begin{frame}{Summary}
+
+  % Keep the summary *very short*.
+  \begin{itemize}
+  \item
+    In SDG we define geometric objects directly.
+  \item
+    This requires working axiomatically.
+  \item
+    The right context for these needs is that of topos theory.
+  \item 
+    It's possible to recover the ``same'' constructs from classical geometry.
+  \end{itemize}
+  
+  % The following outlook is optional.
+  \vskip0pt plus.5fill
+  \pause
+  \begin{itemize}
+    \item Of course, we need to construct a category which satisfies the axioms.
+    \item These are \alert{models} of SDG.
+  \end{itemize}
+\end{frame}
+
 \appendix
 \section<presentation>*{\appendixname}
 \subsection<presentation>*{For Further Reading}
 
-\begin{frame}[allowframebreaks]
+\begin{frame}
   \frametitle<presentation>{For Further Reading}
     
   \begin{thebibliography}{10}
