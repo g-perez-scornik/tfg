@@ -377,69 +377,6 @@
   \end{itemize}
 \end{frame}
 
-\subsection{Vector Fields and Flows}
-
-\begin{frame}{Vector Fields}
-  \begin{itemize}
-    \item They are sections of \( TM \); maps \( X:M\to TM \) such that \( (\pi\circ X)(p) = p \).
-    \item The set of vector fields is denoted \( \vfld M \).
-      \begin{itemize}
-        \pause
-        \item Each \( T_pM \) is an \( R \)-module, so by fiberwise operations so is \( \vfld M \).
-        \pause
-        \item \( \vfld M \) is also an \( M^R \)-module, by
-          \begin{equation*}
-            (fX)(p) = f(p)X(p)
-          \end{equation*}
-      \end{itemize}
-  \end{itemize}
-\end{frame}
-
-\begin{frame}{Flows}
-  \begin{itemize}
-    \item Exponentials \( A^X \) have the property that
-      \begin{equation*}
-        B\to A^X 
-      \end{equation*}
-      is equivalent to
-      \begin{equation*}
-        X\times B \to A
-      \end{equation*}\\
-      \begin{equation*}
-        \left( \tilde f(x,b) = f(b)(x) \right)
-      \end{equation*}
-  \end{itemize}
-\end{frame}
-
-\begin{frame}{Flows}
-  \begin{itemize}
-    \item Vector fields are maps \( X:M\to M^D \), therefore the same as maps
-      \begin{equation*}
-        X: D\times M \to M.
-      \end{equation*}
-      We write the same \( X \) because it's comfortable.
-  \end{itemize}
-\end{frame}
-
-\begin{frame}
-  \begin{proposition}
-    Flows are additive.
-  \end{proposition}
-  \begin{proof}
-    Let \( f,g:D(2) \) be defined by
-    \begin{align*}
-      f(d_1,d_2) &= X(d_1+d_2,p)\\
-      g(d_1,d_2) &= X(X(d_1,p),d_2)
-    \end{align*}
-    we have
-    \begin{align*}
-      f(d,0) &= g(d,0)\\
-      g(0,d) &= f(0,d)
-    \end{align*}
-    since \( M \) is microlinear, \( f=g \).
-  \end{proof}
-\end{frame}
-
 
 
 \section*{Summary}

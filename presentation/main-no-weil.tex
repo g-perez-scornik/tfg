@@ -200,64 +200,6 @@
     }
 \end{frame}
 
-\section{The generalized axioms}
-
-\subsection{Weil Algebras}
-
-\begin{frame}{Weil Algebras}
-  \begin{itemize}
-    \item A Weil algebra is something of the form
-      \begin{equation*}
-        R[X_1,\dots,X_n]/(P_1,\cdots,P_s)
-      \end{equation*}
-      (with some more conditions)
-  \end{itemize}
-\end{frame}
-
-\begin{frame}{Weil Algebras}{Spectra}
-  \begin{defn}
-    Let \(W=R[X_1,\dots,X_n]/(P_1,\cdots,P_s)\) be a Weil algebra. The
-    \alert{spectrum} of \( W \) in \( R \) is
-    \begin{equation*}
-      \rspec W = \{(a_1,\dots,a_n)\in R^n\mid P_j(a_1,\ldots,a_n)=0,\ j=1,\dots,s\}
-    \end{equation*}
-  \end{defn}
-  \pause
-  \begin{exmp}
-    Consider \( W=R[X]/(X^2) \). In that case
-    \begin{equation*}
-      \rspec W = \{a\in R\mid a^2=0\} = D.
-    \end{equation*}
-  \end{exmp}
-\end{frame}
-
-\subsection{The General KL Axiom}
-
-\begin{frame}{The General KL Axiom}
-  \begin{itemize}
-    \item \( W=R[X_1,\dots,X_n]/(P_1,\cdots,P_s) \). Define
-      \begin{equation*}
-        \alpha: W\to R^{\rspec W}
-      \end{equation*}
-      by sending \( g(X_1,\dots,X_n) \) to the map
-      \begin{equation*}
-        (a_1,\dots,a_n)\mapsto g(a_1,\dots,a_n) 
-      \end{equation*}
-  \end{itemize}
-  \pause
-  \begin{klaxiom}
-    The map \( \alpha \) is an \( R \)-algebra isomorphism.
-  \end{klaxiom}
-\end{frame}
-
-\begin{frame}{The General KL Axiom}{Examples}
-  \begin{itemize}
-    \item In the case \( W=R[X]/(X^2) \), this is the first axiom we gave.
-    \item Another case is \( W=R[X]/(X^{k+1})\), which gives us the Taylor
-      expansion of order \( k \).
-  \end{itemize}
-\end{frame}
-
 \section{Microlinear Objects}
 
 \subsection{The Tangent Bundle}
